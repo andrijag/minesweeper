@@ -1,5 +1,7 @@
 package games.minesweeper;
 
+import games.minesweeper.field.Field;
+
 public class Minefield {
 	int nRows;
 	int nColumns;

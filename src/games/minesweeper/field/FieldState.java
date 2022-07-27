@@ -1,4 +1,4 @@
-package games.minesweeper;
+package games.minesweeper.field;
 
 public interface FieldState {
 
