@@ -59,11 +59,9 @@ public class Minefield {
 	}
 
 	public void incrementAdjecent(int i, int j) {
-		int di;
-		int dj;
 		for (Vector vector : Vector.values()) {
-			di = vector.getI();
-			dj = vector.getJ();
+			int di = vector.getI();
+			int dj = vector.getJ();
 			if (contains(i + di, j + dj)) {
 				increment(i + di, j + dj);
 			}
