@@ -34,14 +34,38 @@ public class Minefield {
 		return 0 <= i && i < nRows && 0 <= j && j < nColumns;
 	}
 
+	public void layMine(int i, int j) {
+		matrix[i][j].layMine();
+	}
+
+	public void increment(int i, int j) {
+		matrix[i][j].increment();
+	}
+
+	public void uncover(int i, int j) {
+		matrix[i][j].uncover();
+	}
+
+	public void flag(int i, int j) {
+		matrix[i][j].flag();
+	}
+
+	public boolean isMine(int i, int j) {
+		return matrix[i][j].isMine();
+	}
+
+	public boolean isUncovered(int i, int j) {
+		return matrix[i][j].isUncovered();
+	}
+
 	public void incrementAdjecent(int i, int j) {
 		int di;
 		int dj;
 		for (Vector vector : Vector.values()) {
 			di = vector.getI();
 			dj = vector.getJ();
-			if (0 <= i + di && i + di < nRows && 0 <= j + dj && j + dj < nColumns) {
-				matrix[i + di][j + dj].increment();
+			if (contains(i + di, j + dj)) {
+				increment(i + di, j + dj);
 			}
 		}
 	}
