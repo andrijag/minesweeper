@@ -3,15 +3,15 @@ package games.minesweeper;
 public class Minefield {
 	int nRows;
 	int nColumns;
-	Field[][] grid;
+	Field[][] matrix;
 	
 	public Minefield(int nRows, int nColumns) {
 		this.nRows = nRows;
 		this.nColumns = nColumns;
-		grid = new Field[nRows][nColumns];
+		matrix = new Field[nRows][nColumns];
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
-				grid[i][j] = new Field();
+				matrix[i][j] = new Field();
 			}
 		}
 	}
@@ -25,6 +25,6 @@ public class Minefield {
 	}
 	
 	public Field get(int i, int j) {
-		return grid[i][j];
+		return matrix[i][j];
 	}
 }
