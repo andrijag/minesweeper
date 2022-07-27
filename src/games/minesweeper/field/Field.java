@@ -4,6 +4,7 @@ import games.minesweeper.field.state.Covered;
 import games.minesweeper.field.state.FieldState;
 import games.minesweeper.field.value.FieldNumber;
 import games.minesweeper.field.value.FieldValue;
+import games.minesweeper.field.value.Mine;
 
 public class Field {
 	FieldValue value;
@@ -28,5 +29,21 @@ public class Field {
 	
 	private void setState(FieldState state) {
 		this.state = state;
+	}
+	
+	public void layMine() {
+		setValue(new Mine());
+	}
+	
+	public void increment() {
+		value.increment();
+	}
+	
+	public void uncover() {
+		setState(state.nextPrimaryState());
+	}
+	
+	public void flag() {
+		setState(state.nextSecondaryState());
 	}
 }
