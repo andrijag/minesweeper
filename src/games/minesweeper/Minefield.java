@@ -29,6 +29,10 @@ public class Minefield {
 	public Field get(int i, int j) {
 		return matrix[i][j];
 	}
+	
+	public boolean contains(int i, int j) {
+		return 0 <= i && i < nRows && 0 <= j && j < nColumns;
+	}
 
 	public void incrementAdjecent(int i, int j) {
 		int di;
