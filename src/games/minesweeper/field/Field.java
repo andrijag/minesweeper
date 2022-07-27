@@ -55,4 +55,8 @@ public class Field {
 	public boolean isUncovered() {
 		return state instanceof Uncovered;
 	}
+	
+	public String toString() {
+		return value.toString();
+	}
 }

@@ -67,4 +67,16 @@ public class Minefield {
 			}
 		}
 	}
+	
+	@Override
+	public String toString() {
+		String str = new String();
+		for (int i = 0; i < nRows; i++) {
+			for (int j = 0; j < nColumns; j++) {
+				str += matrix[i][j] + " ";
+			}
+			str += "\n";
+		}
+		return str;
+	}
 }
