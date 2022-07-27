@@ -67,7 +67,7 @@ public class Minefield {
 			}
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		String str = new String();

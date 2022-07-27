@@ -47,15 +47,15 @@ public class Field {
 	public void flag() {
 		setState(state.nextSecondaryState());
 	}
-	
+
 	public boolean isMine() {
 		return value instanceof Mine;
 	}
-	
+
 	public boolean isUncovered() {
 		return state instanceof Uncovered;
 	}
-	
+
 	public String toString() {
 		return value.toString();
 	}
