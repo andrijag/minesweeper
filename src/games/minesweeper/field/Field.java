@@ -2,6 +2,7 @@ package games.minesweeper.field;
 
 import games.minesweeper.field.state.Covered;
 import games.minesweeper.field.state.FieldState;
+import games.minesweeper.field.state.Uncovered;
 import games.minesweeper.field.value.FieldNumber;
 import games.minesweeper.field.value.FieldValue;
 import games.minesweeper.field.value.Mine;
@@ -45,5 +46,13 @@ public class Field {
 
 	public void flag() {
 		setState(state.nextSecondaryState());
+	}
+	
+	public boolean isMine() {
+		return value instanceof Mine;
+	}
+	
+	public boolean isUncovered() {
+		return state instanceof Uncovered;
 	}
 }
