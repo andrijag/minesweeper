@@ -3,8 +3,8 @@ package games.minesweeper;
 import java.util.Random;
 
 public class Minelayer {
-	Minefield minefield;
-	int nMines;
+	private Minefield minefield;
+	private int nMines;
 
 	public Minelayer(Minefield minefield, int nMines) {
 		this.minefield = minefield;

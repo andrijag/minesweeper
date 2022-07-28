@@ -6,6 +6,6 @@ public class Main {
 		Minefield mf = new Minefield(10, 10);
 		Minelayer ml = new Minelayer(mf, 9);
 		ml.layMines();
-		System.out.println("|>");
+		System.out.println(mf);
 	}
 }

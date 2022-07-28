@@ -8,8 +8,8 @@ import games.minesweeper.field.value.FieldValue;
 import games.minesweeper.field.value.Mine;
 
 public class Field {
-	FieldValue value;
-	FieldState state;
+	private FieldValue value;
+	private FieldState state;
 
 	public Field() {
 		value = new FieldNumber(0);

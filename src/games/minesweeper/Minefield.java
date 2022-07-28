@@ -3,9 +3,9 @@ package games.minesweeper;
 import games.minesweeper.field.Field;
 
 public class Minefield {
-	int nRows;
-	int nColumns;
-	Field[][] matrix;
+	private int nRows;
+	private int nColumns;
+	private Field[][] matrix;
 
 	public Minefield(int nRows, int nColumns) {
 		this.nRows = nRows;
@@ -64,6 +64,16 @@ public class Minefield {
 			int dj = vector.getJ();
 			if (contains(i + di, j + dj)) {
 				increment(i + di, j + dj);
+			}
+		}
+	}
+
+	public void updateValues() {
+		for (int i = 0; i < nRows; i++) {
+			for (int j = 0; j < nColumns; j++) {
+				if (isMine(i, j)) {
+					incrementAdjecent(i, j);
+				}
 			}
 		}
 	}

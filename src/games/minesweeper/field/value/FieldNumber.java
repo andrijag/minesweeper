@@ -1,7 +1,7 @@
 package games.minesweeper.field.value;
 
 public class FieldNumber implements FieldValue {
-	int number;
+	private int number;
 
 	public FieldNumber(int number) {
 		this.number = number;
