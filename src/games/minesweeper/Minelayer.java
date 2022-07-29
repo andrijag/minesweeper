@@ -25,7 +25,7 @@ public class Minelayer {
 			}
 		}
 	}
-	
+
 	public void scatterMines() {
 		Random rand = new Random();
 		int scatteredMines = 0;
