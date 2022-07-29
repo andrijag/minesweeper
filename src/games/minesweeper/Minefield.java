@@ -89,4 +89,10 @@ public class Minefield {
 		}
 		return str;
 	}
+
+	public void switchFields(int i, int j, int k, int l) {
+		Field tmp = matrix[i][j];
+		matrix[i][j] = matrix[k][l];
+		matrix[k][l] = tmp;
+	}
 }
