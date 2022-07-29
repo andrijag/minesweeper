@@ -12,15 +12,34 @@ public class Minelayer {
 	}
 
 	public void layMines() {
-		Random rand = new Random();
 		int layedMines = 0;
-		while (layedMines < nMines) {
-			int i = rand.nextInt(minefield.getNRows());
-			int j = rand.nextInt(minefield.getNColumns());
-			if (!minefield.isMine(i, j) && !minefield.isUncovered(i, j)) {
-				minefield.layMine(i, j);
-				minefield.incrementAdjecent(i, j);
-				layedMines++;
+		for (int i = 0; i < minefield.getNRows(); i++) {
+			for (int j = 0; j < minefield.getNColumns(); j++) {
+				if (layedMines >= nMines) {
+					return;
+				}
+				if (!minefield.isUncovered(i, j)) {
+					minefield.layMine(i, j);
+					layedMines++;
+				}
+			}
+		}
+	}
+	
+	public void scatterMines() {
+		Random rand = new Random();
+		int scatteredMines = 0;
+		for (int i = 0; i < minefield.getNRows(); i++) {
+			for (int j = 0; j < minefield.getNColumns(); j++) {
+				if (scatteredMines >= nMines) {
+					return;
+				}
+				int k = rand.nextInt(minefield.getNRows());
+				int l = rand.nextInt(minefield.getNColumns());
+				if (minefield.isMine(i, j) && !minefield.isUncovered(k, l)) {
+					minefield.switchFields(i, j, k, l);
+					scatteredMines++;
+				}
 			}
 		}
 	}
