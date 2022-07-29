@@ -58,5 +58,10 @@ public class Field {
 
 	public String toString() {
 		return value.toString();
+//		if (isUncovered()) {
+//			return value.toString();
+//		} else {
+//			return state.toString();
+//		}
 	}
 }
