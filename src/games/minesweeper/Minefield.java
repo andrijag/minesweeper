@@ -57,6 +57,10 @@ public class Minefield {
 	public boolean isUncovered(int i, int j) {
 		return matrix[i][j].isUncovered();
 	}
+	
+	public boolean isFlagged(int i, int j) {
+		return matrix[i][j].isFlagged();
+	}
 
 	public void incrementAdjecent(int i, int j) {
 		for (Vector vector : Vector.values()) {
@@ -82,6 +86,22 @@ public class Minefield {
 		Field tmp = matrix[i][j];
 		matrix[i][j] = matrix[k][l];
 		matrix[k][l] = tmp;
+	}
+	
+	public int adjecentFlags(int i, int j) {
+		int nFlags = 0;
+		for (Vector vector : Vector.values()) {
+			int di = vector.getI();
+			int dj = vector.getJ();
+			if (contains(i + di, j + dj) && isFlagged(i + di, j + dj)) {
+				nFlags++;
+			}
+		}
+		return nFlags;
+	}
+	
+	public int adjecentMines(int i, int j) {
+		return matrix[i][j].adjecentMines();
 	}
 
 	@Override
