@@ -2,6 +2,7 @@ package games.minesweeper.field;
 
 import games.minesweeper.field.state.Covered;
 import games.minesweeper.field.state.FieldState;
+import games.minesweeper.field.state.Flagged;
 import games.minesweeper.field.state.Uncovered;
 import games.minesweeper.field.value.FieldNumber;
 import games.minesweeper.field.value.FieldValue;
@@ -54,6 +55,14 @@ public class Field {
 
 	public boolean isUncovered() {
 		return state instanceof Uncovered;
+	}
+	
+	public boolean isFlagged() {
+		return state instanceof Flagged;
+	}
+	
+	public int adjecentMines() {
+		return ((FieldNumber) value).getNumber();
 	}
 
 	public String toString() {
