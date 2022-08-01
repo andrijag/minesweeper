@@ -6,6 +6,10 @@ public class FieldNumber implements FieldValue {
 	public FieldNumber(int number) {
 		this.number = number;
 	}
+	
+	public int getNumber() {
+		return number;
+	}
 
 	public void increment() {
 		number++;
