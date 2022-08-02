@@ -14,6 +14,10 @@ public class FieldNumber implements FieldValue {
 	public void increment() {
 		number++;
 	}
+	
+	public void reset() {
+		number = 0;
+	}
 
 	@Override
 	public String toString() {
