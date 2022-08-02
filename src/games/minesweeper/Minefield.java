@@ -33,6 +33,10 @@ public class Minefield {
 	public boolean contains(int i, int j) {
 		return 0 <= i && i < nRows && 0 <= j && j < nColumns;
 	}
+	
+	public void resetValue(int i, int j) {
+		matrix[i][j].resetValue();
+	}
 
 	public void layMine(int i, int j) {
 		matrix[i][j].layMine();
@@ -57,9 +61,17 @@ public class Minefield {
 	public boolean isUncovered(int i, int j) {
 		return matrix[i][j].isUncovered();
 	}
-	
+
 	public boolean isFlagged(int i, int j) {
 		return matrix[i][j].isFlagged();
+	}
+
+	public void clearValues() {
+		for (int i = 0; i < nRows; i++) {
+			for (int j = 0; j < nColumns; j++) {
+				matrix[i][j] = new Field();
+			}
+		}
 	}
 
 	public void incrementAdjecent(int i, int j) {
@@ -71,8 +83,16 @@ public class Minefield {
 			}
 		}
 	}
+	
+	public void resetValues() {
+		for (int i = 0; i < nRows; i++) {
+			for (int j = 0; j < nColumns; j++) {
+				resetValue(i, j);
+			}
+		}
+	}
 
-	public void updateValues() {
+	public void incrementValues() {
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
 				if (isMine(i, j)) {
@@ -81,13 +101,12 @@ public class Minefield {
 			}
 		}
 	}
-
-	public void switchFields(int i, int j, int k, int l) {
-		Field tmp = matrix[i][j];
-		matrix[i][j] = matrix[k][l];
-		matrix[k][l] = tmp;
-	}
 	
+	public void updateValues() {
+		resetValues();
+		incrementValues();
+	}
+
 	public int adjecentFlags(int i, int j) {
 		int nFlags = 0;
 		for (Vector vector : Vector.values()) {
@@ -99,7 +118,7 @@ public class Minefield {
 		}
 		return nFlags;
 	}
-	
+
 	public int adjecentMines(int i, int j) {
 		return matrix[i][j].adjecentMines();
 	}
