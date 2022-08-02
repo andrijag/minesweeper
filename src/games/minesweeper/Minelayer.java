@@ -1,46 +1,35 @@
 package games.minesweeper;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import games.minesweeper.field.Field;
+
 public class Minelayer {
-	private Minefield minefield;
 	private int nMines;
+	private List<Field> fields;
 
 	public Minelayer(Minefield minefield, int nMines) {
-		this.minefield = minefield;
 		this.nMines = nMines;
-	}
-
-	public void layMines() {
-		int layedMines = 0;
+		fields = new ArrayList<Field>();
 		for (int i = 0; i < minefield.getNRows(); i++) {
 			for (int j = 0; j < minefield.getNColumns(); j++) {
-				if (layedMines >= nMines) {
-					return;
-				}
-				if (!minefield.isUncovered(i, j)) {
-					minefield.layMine(i, j);
-					layedMines++;
-				}
+				fields.add(minefield.get(i, j));
 			}
 		}
 	}
 
-	public void scatterMines() {
+	public void remove(Field field) {
+		fields.remove(field);
+	}
+
+	public void layMines() {
 		Random rand = new Random();
-		int scatteredMines = 0;
-		for (int i = 0; i < minefield.getNRows(); i++) {
-			for (int j = 0; j < minefield.getNColumns(); j++) {
-				if (scatteredMines >= nMines) {
-					return;
-				}
-				int k = rand.nextInt(minefield.getNRows());
-				int l = rand.nextInt(minefield.getNColumns());
-				if (minefield.isMine(i, j) && !minefield.isUncovered(k, l)) {
-					minefield.switchFields(i, j, k, l);
-					scatteredMines++;
-				}
-			}
+		for (int i = 0; i < nMines; i++) {
+			int randI = rand.nextInt(fields.size());
+			Field field = fields.remove(randI);
+			field.layMine();
 		}
 	}
 }
