@@ -24,6 +24,10 @@ public class Field {
 	private void setValue(FieldValue value) {
 		this.value = value;
 	}
+	
+	public void resetValue() {
+		value.reset();
+	}
 
 	public FieldState getState() {
 		return state;
