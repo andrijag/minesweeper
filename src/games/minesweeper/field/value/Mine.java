@@ -12,6 +12,9 @@ public class Mine extends FieldValue {
 	public void increment() {
 	}
 
+	public void reset() {
+	}
+
 	@Override
 	public String toString() {
 		return "*";

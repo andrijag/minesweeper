@@ -6,4 +6,6 @@ public abstract class FieldValue {
 	public abstract Integer getValue();
 
 	public abstract void increment();
+	
+	public abstract void reset();
 }

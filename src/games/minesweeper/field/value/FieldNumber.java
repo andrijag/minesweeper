@@ -2,7 +2,7 @@ package games.minesweeper.field.value;
 
 public class FieldNumber extends FieldValue {
 	public FieldNumber() {
-		this.value = 0;
+		value = 0;
 	}
 
 	public Integer getValue() {
@@ -11,6 +11,10 @@ public class FieldNumber extends FieldValue {
 
 	public void increment() {
 		value++;
+	}
+	
+	public void reset() {
+		value = 0;
 	}
 
 	@Override
