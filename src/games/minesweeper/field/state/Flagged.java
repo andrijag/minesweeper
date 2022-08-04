@@ -1,11 +1,11 @@
 package games.minesweeper.field.state;
 
 public class Flagged implements FieldState {
-	public FieldState nextPrimaryState() {
+	public FieldState nextState1() {
 		return new Flagged();
 	}
 
-	public FieldState nextSecondaryState() {
+	public FieldState nextState2() {
 		return new Unknown();
 	}
 

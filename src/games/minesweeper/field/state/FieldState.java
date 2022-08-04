@@ -1,7 +1,7 @@
 package games.minesweeper.field.state;
 
 public interface FieldState {
-	public FieldState nextPrimaryState();
+	public FieldState nextState1();
 
-	public FieldState nextSecondaryState();
+	public FieldState nextState2();
 }

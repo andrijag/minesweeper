@@ -46,11 +46,11 @@ public class Field {
 	}
 
 	public void uncover() {
-		setState(state.nextPrimaryState());
+		setState(state.nextState1());
 	}
 
 	public void flag() {
-		setState(state.nextSecondaryState());
+		setState(state.nextState2());
 	}
 
 	public boolean isMine() {
