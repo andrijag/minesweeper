@@ -119,10 +119,6 @@ public class Minefield {
 		return nFlags;
 	}
 
-	public int adjecentMines(int i, int j) {
-		return matrix[i][j].adjecentMines();
-	}
-
 	@Override
 	public String toString() {
 		String str = new String();
