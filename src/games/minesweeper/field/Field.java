@@ -17,28 +17,24 @@ public class Field {
 		state = new Covered();
 	}
 
-	public FieldValue getValue() {
-		return value;
-	}
-
 	private void setValue(FieldValue value) {
 		this.value = value;
-	}
-	
-	public void resetValue() {
-		value.reset();
-	}
-
-	public FieldState getState() {
-		return state;
 	}
 
 	private void setState(FieldState state) {
 		this.state = state;
 	}
+	
+	public Integer getNumber() {
+		return value.getNumber();
+	}
 
 	public void layMine() {
 		setValue(new Mine());
+	}
+	
+	public void resetValue() {
+		value.reset();
 	}
 
 	public void increment() {
@@ -60,13 +56,9 @@ public class Field {
 	public boolean isUncovered() {
 		return state instanceof Uncovered;
 	}
-	
+
 	public boolean isFlagged() {
 		return state instanceof Flagged;
-	}
-	
-	public int adjecentMines() {
-		return ((FieldNumber) value).getNumber();
 	}
 
 	public String toString() {
