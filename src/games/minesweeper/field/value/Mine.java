@@ -1,10 +1,15 @@
 package games.minesweeper.field.value;
 
-public class Mine implements FieldValue {
-	public void increment() {
+public class Mine extends FieldValue {
+	public Mine() {
+		value = null;
 	}
 
-	public void reset() {
+	public Integer getValue() {
+		return value;
+	}
+
+	public void increment() {
 	}
 
 	@Override

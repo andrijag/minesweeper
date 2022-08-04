@@ -1,6 +1,9 @@
 package games.minesweeper.field.value;
 
-public interface FieldValue {
-	public void increment();
-	public void reset();
+public abstract class FieldValue {
+	protected Integer value;
+
+	public abstract Integer getValue();
+
+	public abstract void increment();
 }

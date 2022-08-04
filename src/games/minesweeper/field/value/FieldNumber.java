@@ -1,26 +1,20 @@
 package games.minesweeper.field.value;
 
-public class FieldNumber implements FieldValue {
-	private int number;
-
-	public FieldNumber(int number) {
-		this.number = number;
+public class FieldNumber extends FieldValue {
+	public FieldNumber() {
+		this.value = 0;
 	}
-	
-	public int getNumber() {
-		return number;
+
+	public Integer getValue() {
+		return value;
 	}
 
 	public void increment() {
-		number++;
-	}
-	
-	public void reset() {
-		number = 0;
+		value++;
 	}
 
 	@Override
 	public String toString() {
-		return Integer.toString(number);
+		return value.toString();
 	}
 }
