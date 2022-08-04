@@ -1,11 +1,13 @@
 package games.minesweeper.field.value;
 
 public abstract class FieldValue {
-	protected Integer value;
+	protected Integer number;
 
-	public abstract Integer getValue();
+	public Integer getNumber() {
+		return number;
+	}
 
 	public abstract void increment();
-	
+
 	public abstract void reset();
 }
