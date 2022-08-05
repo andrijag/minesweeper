@@ -6,6 +6,8 @@ public abstract class FieldValue {
 	public Integer getNumber() {
 		return number;
 	}
+	
+	public abstract boolean equals(int number);
 
 	public abstract void increment();
 
