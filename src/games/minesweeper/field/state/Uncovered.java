@@ -1,6 +1,6 @@
 package games.minesweeper.field.state;
 
-public class Uncovered implements FieldState {
+public class Uncovered extends FieldState {
 	public FieldState nextState1() {
 		return new Uncovered();
 	}
