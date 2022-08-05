@@ -25,5 +25,25 @@ public class Minesweeper {
 	}
 
 	public void expand(int i, int j) {
+		int nFlags = minefield.adjecentFlags(i, j);
+		if (minefield.get(i, j).equals(nFlags)) {
+			for (Vector vector : Vector.values()) {
+				int di = vector.getI();
+				int dj = vector.getJ();
+				minefield.uncover(i + di, j + dj);
+			}
+			for (Vector vector : Vector.values()) {
+				int di = vector.getI();
+				int dj = vector.getJ();
+				if (minefield.isMine(i + di, j + dj)) {
+					return;
+				}
+			}
+			for (Vector vector : Vector.values()) {
+				int di = vector.getI();
+				int dj = vector.getJ();
+				sweep(i + di, j + dj);
+			}
+		}
 	}
 }
