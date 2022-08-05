@@ -48,6 +48,10 @@ public class Field {
 	public void flag() {
 		setState(state.nextState2());
 	}
+	
+	public boolean equals(int number) {
+		return value.equals(number);
+	}
 
 	public boolean isMine() {
 		return value instanceof Mine;
@@ -62,11 +66,11 @@ public class Field {
 	}
 
 	public String toString() {
-		return value.toString();
-//		if (isUncovered()) {
-//			return value.toString();
-//		} else {
-//			return state.toString();
-//		}
+//		return value.toString();
+		if (isUncovered()) {
+			return value.toString();
+		} else {
+			return state.toString();
+		}
 	}
 }
