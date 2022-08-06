@@ -24,21 +24,17 @@ public class Field {
 	private void setState(FieldState state) {
 		this.state = state;
 	}
-	
-	public Integer getNumber() {
-		return value.getNumber();
-	}
 
 	public void layMine() {
 		setValue(new Mine());
 	}
 	
-	public void resetValue() {
-		value.reset();
-	}
-
 	public void increment() {
-		value.increment();
+		((FieldNumber) value).increment();
+	}
+	
+	public int getNumber() {
+		return ((FieldNumber) value).getNumber();
 	}
 
 	public void uncover() {
@@ -47,10 +43,6 @@ public class Field {
 
 	public void flag() {
 		setState(state.nextState2());
-	}
-	
-	public boolean equals(int number) {
-		return value.equals(number);
 	}
 
 	public boolean isMine() {
@@ -65,12 +57,13 @@ public class Field {
 		return state instanceof Flagged;
 	}
 
+	@Override
 	public String toString() {
-//		return value.toString();
-		if (isUncovered()) {
-			return value.toString();
-		} else {
-			return state.toString();
-		}
+		return value.toString();
+//		if (isUncovered()) {
+//			return value.toString();
+//		} else {
+//			return state.toString();
+//		}
 	}
 }
