@@ -28,13 +28,13 @@ public class Field {
 	public void layMine() {
 		setValue(new Mine());
 	}
-	
-	public void increment() {
-		((FieldNumber) value).increment();
-	}
-	
+
 	public int getNumber() {
 		return ((FieldNumber) value).getNumber();
+	}
+
+	public void increment() {
+		((FieldNumber) value).increment();
 	}
 
 	public void uncover() {
