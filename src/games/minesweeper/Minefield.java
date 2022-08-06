@@ -1,6 +1,7 @@
 package games.minesweeper;
 
 import games.minesweeper.field.Field;
+import games.minesweeper.field.value.FieldNumber;
 
 public class Minefield {
 	private int nRows;
@@ -33,13 +34,13 @@ public class Minefield {
 	public boolean contains(int i, int j) {
 		return 0 <= i && i < nRows && 0 <= j && j < nColumns;
 	}
-	
-	public void resetValue(int i, int j) {
-		matrix[i][j].resetValue();
-	}
 
 	public void layMine(int i, int j) {
 		matrix[i][j].layMine();
+	}
+
+	public int getNumber(int i, int j) {
+		return matrix[i][j].getNumber();
 	}
 
 	public void increment(int i, int j) {
@@ -66,7 +67,7 @@ public class Minefield {
 		return matrix[i][j].isFlagged();
 	}
 
-	public void clearValues() {
+	public void reset() {
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
 				matrix[i][j] = new Field();
@@ -74,40 +75,27 @@ public class Minefield {
 		}
 	}
 
-	public void incrementAdjecent(int i, int j) {
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (contains(i + di, j + dj)) {
-				increment(i + di, j + dj);
-			}
-		}
-	}
-	
-	public void resetValues() {
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nColumns; j++) {
-				resetValue(i, j);
-			}
-		}
-	}
-
-	public void incrementValues() {
+	public void setNumbers() {
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
 				if (isMine(i, j)) {
-					incrementAdjecent(i, j);
+					incrementNeighbours(i, j);
 				}
 			}
 		}
 	}
-	
-	public void updateValues() {
-		resetValues();
-		incrementValues();
+
+	public void incrementNeighbours(int i, int j) {
+		for (Vector vector : Vector.values()) {
+			int di = vector.getI();
+			int dj = vector.getJ();
+			if (contains(i + di, j + dj) && !isMine(i + di, j + dj)) {
+				increment(i + di, j + dj);
+			}
+		}
 	}
 
-	public int adjecentFlags(int i, int j) {
+	public int neighbourFlags(int i, int j) {
 		int nFlags = 0;
 		for (Vector vector : Vector.values()) {
 			int di = vector.getI();
@@ -117,6 +105,18 @@ public class Minefield {
 			}
 		}
 		return nFlags;
+	}
+
+	public int neighbourMines(int i, int j) {
+		int nMines = 0;
+		for (Vector vector : Vector.values()) {
+			int di = vector.getI();
+			int dj = vector.getJ();
+			if (contains(i + di, j + dj) && isMine(i + di, j + dj)) {
+				nMines++;
+			}
+		}
+		return nMines;
 	}
 
 	@Override
