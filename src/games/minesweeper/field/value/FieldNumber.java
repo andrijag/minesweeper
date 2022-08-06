@@ -11,10 +11,6 @@ public class FieldNumber extends FieldValue {
 		return number;
 	}
 
-	public void increment() {
-		number++;
-	}
-
 	@Override
 	public String toString() {
 		return Integer.toString(number);
