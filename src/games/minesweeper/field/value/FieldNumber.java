@@ -6,7 +6,7 @@ public class FieldNumber extends FieldValue {
 	public FieldNumber(int number) {
 		this.number = number;
 	}
-	
+
 	public int getNumber() {
 		return number;
 	}
