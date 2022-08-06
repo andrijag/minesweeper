@@ -107,18 +107,6 @@ public class Minefield {
 		return nFlags;
 	}
 
-	public int neighbourMines(int i, int j) {
-		int nMines = 0;
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (contains(i + di, j + dj) && isMine(i + di, j + dj)) {
-				nMines++;
-			}
-		}
-		return nMines;
-	}
-
 	@Override
 	public String toString() {
 		String str = new String();
