@@ -10,6 +10,10 @@ public class FieldNumber extends FieldValue {
 	public int getNumber() {
 		return number;
 	}
+	
+	public void increment() {
+		number++;
+	}
 
 	@Override
 	public String toString() {
