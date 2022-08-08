@@ -10,6 +10,6 @@ public class Covered extends FieldState {
 	}
 
 	public String toString() {
-		return "_";
+		return ".";
 	}
 }
