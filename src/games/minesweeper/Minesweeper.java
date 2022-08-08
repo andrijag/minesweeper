@@ -6,7 +6,7 @@ public class Minesweeper {
 	public Minesweeper(Minefield minefield) {
 		this.minefield = minefield;
 	}
-	
+
 	public void uncover(int i, int j) {
 		minefield.uncover(i, j);
 	}
