@@ -6,10 +6,14 @@ public class Minesweeper {
 	public Minesweeper(Minefield minefield) {
 		this.minefield = minefield;
 	}
+	
+	public void uncover(int i, int j) {
+		minefield.uncover(i, j);
+	}
 
 	public void sweep(int i, int j) {
 		minefield.uncover(i, j);
-		if (minefield.get(i, j).equals(0)) {
+		if (!minefield.isMine(i, j) && minefield.getNumber(i, j) == 0) {
 			for (Vector vector : Vector.values()) {
 				int di = vector.getI();
 				int dj = vector.getJ();
@@ -25,8 +29,8 @@ public class Minesweeper {
 	}
 
 	public void expand(int i, int j) {
-		int nFlags = minefield.adjecentFlags(i, j);
-		if (minefield.get(i, j).equals(nFlags)) {
+		int nFlags = minefield.neighbourFlags(i, j);
+		if (minefield.getNumber(i, j) == nFlags) {
 			for (Vector vector : Vector.values()) {
 				int di = vector.getI();
 				int dj = vector.getJ();
