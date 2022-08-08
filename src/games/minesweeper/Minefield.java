@@ -1,7 +1,6 @@
 package games.minesweeper;
 
 import games.minesweeper.field.Field;
-import games.minesweeper.field.value.FieldNumber;
 
 public class Minefield {
 	private int nRows;
@@ -65,14 +64,6 @@ public class Minefield {
 
 	public boolean isFlagged(int i, int j) {
 		return matrix[i][j].isFlagged();
-	}
-
-	public void reset() {
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nColumns; j++) {
-				matrix[i][j] = new Field();
-			}
-		}
 	}
 
 	public void setNumbers() {
