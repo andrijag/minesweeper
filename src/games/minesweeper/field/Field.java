@@ -59,11 +59,10 @@ public class Field {
 
 	@Override
 	public String toString() {
-		return value.toString();
-//		if (isUncovered()) {
-//			return value.toString();
-//		} else {
-//			return state.toString();
-//		}
+		if (isUncovered()) {
+			return value.toString();
+		} else {
+			return state.toString();
+		}
 	}
 }
