@@ -13,7 +13,7 @@ public class Minefield {
 		matrix = new Field[nRows][nColumns];
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
-				matrix[i][j] = new Field();
+				matrix[i][j] = new Field(this, i, j);
 			}
 		}
 	}
@@ -46,9 +46,9 @@ public class Minefield {
 		return matrix[i][j].getNumber();
 	}
 
-	public void uncover(int i, int j) {
-		matrix[i][j].uncover();
-	}
+//	public void uncover(int i, int j) {
+//		matrix[i][j].uncover();
+//	}
 
 	public void flag(int i, int j) {
 		matrix[i][j].flag();
@@ -64,38 +64,6 @@ public class Minefield {
 
 	public boolean isFlagged(int i, int j) {
 		return matrix[i][j].isFlagged();
-	}
-
-	public void setNumbers() {
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nColumns; j++) {
-				if (isMine(i, j)) {
-					incrementNeighbours(i, j);
-				}
-			}
-		}
-	}
-
-	private void incrementNeighbours(int i, int j) {
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (contains(i + di, j + dj) && !isMine(i + di, j + dj)) {
-				increment(i + di, j + dj);
-			}
-		}
-	}
-
-	public int neighbourFlags(int i, int j) {
-		int nFlags = 0;
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (contains(i + di, j + dj) && isFlagged(i + di, j + dj)) {
-				nFlags++;
-			}
-		}
-		return nFlags;
 	}
 
 	@Override
