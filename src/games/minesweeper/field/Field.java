@@ -14,7 +14,11 @@ public class Field {
 
 	public Field() {
 		value = new FieldNumber(0);
-		state = new Covered();
+		state = new Covered(this);
+	}
+
+	public FieldValue getValue() {
+		return value;
 	}
 
 	private void setValue(FieldValue value) {
@@ -59,10 +63,6 @@ public class Field {
 
 	@Override
 	public String toString() {
-		if (isUncovered()) {
-			return value.toString();
-		} else {
-			return state.toString();
-		}
+		return state.toString();
 	}
 }
