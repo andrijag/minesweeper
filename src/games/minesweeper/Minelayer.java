@@ -30,6 +30,7 @@ public class Minelayer {
 			int randI = rand.nextInt(fields.size());
 			Field field = fields.remove(randI);
 			field.layMine();
+			field.incrementNeighbours();
 		}
 	}
 }
