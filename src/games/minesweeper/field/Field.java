@@ -33,12 +33,12 @@ public class Field {
 		setValue(new Mine());
 	}
 
-	public int getNumber() {
-		return ((FieldNumber) value).getNumber();
-	}
-
 	public void increment() {
 		((FieldNumber) value).increment();
+	}
+
+	public int getNumber() {
+		return ((FieldNumber) value).getNumber();
 	}
 
 	public void uncover() {
