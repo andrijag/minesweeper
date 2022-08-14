@@ -1,5 +1,7 @@
 package games.minesweeper;
 
+import games.minesweeper.field.Field;
+
 public class Minesweeper {
 	private Minefield minefield;
 
@@ -16,8 +18,8 @@ public class Minesweeper {
 	}
 
 	private void expand(int i, int j) {
-		int nFlags = minefield.neighbourFlags(i, j);
-		if (minefield.getNumber(i, j) == nFlags) {
+		Field field = minefield.get(i, j);
+		if (field.getNumber() == field.neighbourFlags()) {
 			for (Vector vector : Vector.values()) {
 				int di = vector.getI();
 				int dj = vector.getJ();
@@ -27,8 +29,9 @@ public class Minesweeper {
 	}
 
 	private void sweep(int i, int j) {
-		minefield.uncover(i, j);
-		if (!minefield.isMine(i, j) && minefield.getNumber(i, j) == 0 && !minefield.isFlagged(i, j)) {
+		Field field = minefield.get(i, j);
+		field.uncover();
+		if (!field.isMine() && field.getNumber() == 0 && !field.isFlagged()) {
 			for (Vector vector : Vector.values()) {
 				int di = vector.getI();
 				int dj = vector.getJ();
