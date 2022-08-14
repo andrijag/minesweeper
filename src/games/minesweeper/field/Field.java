@@ -68,7 +68,7 @@ public class Field {
 	public boolean isFlagged() {
 		return state instanceof Flagged;
 	}
-	
+
 	public void incrementNeighbours() {
 		for (Vector vector : Vector.values()) {
 			int di = vector.getI();
