@@ -7,7 +7,7 @@ public class Minesweeper {
 		this.minefield = minefield;
 	}
 
-	public void action(int i, int j) {
+	public void uncover(int i, int j) {
 		if (minefield.isUncovered(i, j)) {
 			expand(i, j);
 		} else {
@@ -15,7 +15,18 @@ public class Minesweeper {
 		}
 	}
 
-	public void sweep(int i, int j) {
+	private void expand(int i, int j) {
+		int nFlags = minefield.neighbourFlags(i, j);
+		if (minefield.getNumber(i, j) == nFlags) {
+			for (Vector vector : Vector.values()) {
+				int di = vector.getI();
+				int dj = vector.getJ();
+				sweep(i + di, j + dj);
+			}
+		}
+	}
+
+	private void sweep(int i, int j) {
 		minefield.uncover(i, j);
 		if (!minefield.isMine(i, j) && minefield.getNumber(i, j) == 0 && !minefield.isFlagged(i, j)) {
 			for (Vector vector : Vector.values()) {
@@ -30,16 +41,5 @@ public class Minesweeper {
 
 	public void flag(int i, int j) {
 		minefield.flag(i, j);
-	}
-
-	public void expand(int i, int j) {
-		int nFlags = minefield.neighbourFlags(i, j);
-		if (minefield.getNumber(i, j) == nFlags) {
-			for (Vector vector : Vector.values()) {
-				int di = vector.getI();
-				int dj = vector.getJ();
-				sweep(i + di, j + dj);
-			}
-		}
 	}
 }
