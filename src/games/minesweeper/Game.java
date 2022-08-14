@@ -9,5 +9,19 @@ public class Game {
 		minefield = new Minefield(nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		minesweeper = new Minesweeper(minefield);
+		minelayer.layMines();
+	}
+
+	public void sweep(int i, int j) {
+		minesweeper.sweep(i, j);
+	}
+
+	public void flag(int i, int j) {
+		minesweeper.flag(i, j);
+	}
+
+	@Override
+	public String toString() {
+		return minefield.toString();
 	}
 }
