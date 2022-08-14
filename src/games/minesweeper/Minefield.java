@@ -34,16 +34,16 @@ public class Minefield {
 		return 0 <= i && i < nRows && 0 <= j && j < nColumns;
 	}
 
-	public void layMine(int i, int j) {
-		matrix[i][j].layMine();
+//	public void layMine(int i, int j) {
+//		matrix[i][j].layMine();
+//	}
+
+	public void increment(int i, int j) {
+		matrix[i][j].increment();
 	}
 
 	public int getNumber(int i, int j) {
 		return matrix[i][j].getNumber();
-	}
-
-	public void increment(int i, int j) {
-		matrix[i][j].increment();
 	}
 
 	public void uncover(int i, int j) {
@@ -76,7 +76,7 @@ public class Minefield {
 		}
 	}
 
-	public void incrementNeighbours(int i, int j) {
+	private void incrementNeighbours(int i, int j) {
 		for (Vector vector : Vector.values()) {
 			int di = vector.getI();
 			int dj = vector.getJ();
