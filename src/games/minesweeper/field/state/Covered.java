@@ -6,6 +6,16 @@ public class Covered extends FieldState {
 	public Covered(Field field) {
 		super(field);
 	}
+	
+	@Override
+	public void action1() {
+		field.uncover();
+	}
+	
+	@Override
+	public void action2() {
+		field.uncover();
+	}
 
 	@Override
 	public FieldState nextState1() {

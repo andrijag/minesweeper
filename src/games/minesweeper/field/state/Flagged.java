@@ -6,6 +6,14 @@ public class Flagged extends FieldState {
 	public Flagged(Field field) {
 		super(field);
 	}
+	
+	@Override
+	public void action1() {
+	}
+	
+	@Override
+	public void action2() {
+	}
 
 	@Override
 	public FieldState nextState1() {
