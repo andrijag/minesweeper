@@ -46,9 +46,9 @@ public class Minefield {
 		return matrix[i][j].getNumber();
 	}
 
-//	public void uncover(int i, int j) {
-//		matrix[i][j].uncover();
-//	}
+	public void sweep(int i, int j) {
+		matrix[i][j].sweep();
+	}
 
 	public void flag(int i, int j) {
 		matrix[i][j].flag();
