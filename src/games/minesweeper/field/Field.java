@@ -45,6 +45,10 @@ public class Field {
 		setValue(new Mine());
 	}
 
+	public void uncover() {
+		setState(state.nextState1());
+	}
+
 	public void increment() {
 		((FieldNumber) value).increment();
 	}
@@ -53,38 +57,43 @@ public class Field {
 		return ((FieldNumber) value).getNumber();
 	}
 
-	public void uncover() {
-		setState(state.nextState1());
+	public void sweep() {
+		uncover();
 		if (!isMine() && getNumber() == 0) {
 			for (Vector vector : Vector.values()) {
 				int di = vector.getI();
 				int dj = vector.getJ();
 				if (minefield.contains(i + di, j + dj)) {
-					Field neighbourField = minefield.get(i + di, j + dj);
-					neighbourField.sweepRecursion();
+					Field field = minefield.get(i + di, j + dj);
+					field.action();
 				}
 			}
 		}
+	}
+	
+	public void action() {
+		state.action();
 	}
 
 	public void flag() {
 		setState(state.nextState2());
 	}
 
-	public void sweep() {
-		state.action1();
-	}
-
-	public void sweepRecursion() {
-		state.action2();
+	public void chord() {
+		if (getNumber() == neighbourFlags()) {
+			for (Vector vector : Vector.values()) {
+				int di = vector.getI();
+				int dj = vector.getJ();
+				if (minefield.contains(i + di, j + dj)) {
+					Field field = minefield.get(i + di, j + dj);
+					field.action();
+				}
+			}
+		}
 	}
 
 	public boolean isMine() {
 		return value instanceof Mine;
-	}
-
-	public boolean isUncovered() {
-		return state instanceof Uncovered;
 	}
 
 	public boolean isFlagged() {
@@ -111,19 +120,6 @@ public class Field {
 			}
 		}
 		return nFlags;
-	}
-
-	public void expand() {
-		if (getNumber() == neighbourFlags()) {
-			for (Vector vector : Vector.values()) {
-				int di = vector.getI();
-				int dj = vector.getJ();
-				if (minefield.contains(i + di, j + dj)) {
-					Field neighbourField = minefield.get(i + di, j + dj);
-					neighbourField.sweepRecursion();
-				}
-			}
-		}
 	}
 
 	@Override
