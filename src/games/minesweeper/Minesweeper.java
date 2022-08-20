@@ -14,4 +14,8 @@ public class Minesweeper {
 	public void flag(int i, int j) {
 		minefield.flag(i, j);
 	}
+
+	public void chord(int i, int j) {
+		minefield.chord(i, j);
+	}
 }
