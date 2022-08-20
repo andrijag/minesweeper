@@ -8,13 +8,8 @@ public class Covered extends FieldState {
 	}
 	
 	@Override
-	public void action1() {
-		field.uncover();
-	}
-	
-	@Override
-	public void action2() {
-		field.uncover();
+	public void action() {
+		field.sweep();
 	}
 
 	@Override

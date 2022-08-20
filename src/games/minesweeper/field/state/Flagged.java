@@ -8,11 +8,7 @@ public class Flagged extends FieldState {
 	}
 	
 	@Override
-	public void action1() {
-	}
-	
-	@Override
-	public void action2() {
+	public void action() {
 	}
 
 	@Override

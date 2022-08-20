@@ -8,12 +8,7 @@ public class Uncovered extends FieldState {
 	}
 	
 	@Override
-	public void action1() {
-		field.expand();
-	}
-	
-	@Override
-	public void action2() {
+	public void action() {
 	}
 
 	@Override
