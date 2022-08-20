@@ -33,6 +33,10 @@ public class Field {
 		this.value = value;
 	}
 
+	public FieldState getState() {
+		return state;
+	}
+
 	private void setState(FieldState state) {
 		this.state = state;
 	}
@@ -51,10 +55,28 @@ public class Field {
 
 	public void uncover() {
 		setState(state.nextState1());
+		if (!isMine() && getNumber() == 0) {
+			for (Vector vector : Vector.values()) {
+				int di = vector.getI();
+				int dj = vector.getJ();
+				if (minefield.contains(i + di, j + dj)) {
+					Field neighbourField = minefield.get(i + di, j + dj);
+					neighbourField.sweepRecursion();
+				}
+			}
+		}
 	}
 
 	public void flag() {
 		setState(state.nextState2());
+	}
+
+	public void sweep() {
+		state.action1();
+	}
+
+	public void sweepRecursion() {
+		state.action2();
 	}
 
 	public boolean isMine() {
@@ -89,6 +111,19 @@ public class Field {
 			}
 		}
 		return nFlags;
+	}
+
+	public void expand() {
+		if (getNumber() == neighbourFlags()) {
+			for (Vector vector : Vector.values()) {
+				int di = vector.getI();
+				int dj = vector.getJ();
+				if (minefield.contains(i + di, j + dj)) {
+					Field neighbourField = minefield.get(i + di, j + dj);
+					neighbourField.sweepRecursion();
+				}
+			}
+		}
 	}
 
 	@Override
