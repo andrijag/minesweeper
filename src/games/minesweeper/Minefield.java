@@ -43,11 +43,11 @@ public class Minefield {
 	}
 
 	public void sweep(int i, int j) {
-		matrix[i][j].action1();
+		matrix[i][j].sweep();
 	}
 
 	public void chord(int i, int j) {
-		matrix[i][j].action2();
+		matrix[i][j].chord();
 	}
 
 	public boolean isMine(int i, int j) {
