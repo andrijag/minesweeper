@@ -5,7 +5,6 @@ import games.minesweeper.Vector;
 import games.minesweeper.field.state.Covered;
 import games.minesweeper.field.state.FieldState;
 import games.minesweeper.field.state.Flagged;
-import games.minesweeper.field.state.Uncovered;
 import games.minesweeper.field.value.FieldNumber;
 import games.minesweeper.field.value.FieldValue;
 import games.minesweeper.field.value.Mine;
@@ -33,10 +32,6 @@ public class Field {
 		this.value = value;
 	}
 
-	public FieldState getState() {
-		return state;
-	}
-
 	private void setState(FieldState state) {
 		this.state = state;
 	}
@@ -49,12 +44,24 @@ public class Field {
 		setState(state.nextState1());
 	}
 
+	public void flag() {
+		setState(state.nextState2());
+	}
+
 	public void increment() {
 		((FieldNumber) value).increment();
 	}
 
 	public int getNumber() {
 		return ((FieldNumber) value).getNumber();
+	}
+
+	public void action1() {
+		state.action1();
+	}
+
+	public void action2() {
+		state.action2();
 	}
 
 	public void sweep() {
@@ -64,29 +71,19 @@ public class Field {
 				int di = vector.getI();
 				int dj = vector.getJ();
 				if (minefield.contains(i + di, j + dj)) {
-					Field field = minefield.get(i + di, j + dj);
-					field.action();
+					minefield.sweep(i + di, j + dj);
 				}
 			}
 		}
 	}
-	
-	public void action() {
-		state.action();
-	}
-
-	public void flag() {
-		setState(state.nextState2());
-	}
 
 	public void chord() {
-		if (getNumber() == neighbourFlags()) {
+		if (!isMine() && getNumber() == neighbourFlags()) {
 			for (Vector vector : Vector.values()) {
 				int di = vector.getI();
 				int dj = vector.getJ();
 				if (minefield.contains(i + di, j + dj)) {
-					Field field = minefield.get(i + di, j + dj);
-					field.action();
+					minefield.sweep(i + di, j + dj);
 				}
 			}
 		}
