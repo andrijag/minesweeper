@@ -6,12 +6,12 @@ public class Covered extends FieldState {
 	public Covered(Field field) {
 		super(field);
 	}
-	
+
 	@Override
 	public void action1() {
 		field.sweep();
 	}
-	
+
 	@Override
 	public void action2() {
 	}

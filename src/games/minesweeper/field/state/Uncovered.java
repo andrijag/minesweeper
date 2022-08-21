@@ -6,11 +6,11 @@ public class Uncovered extends FieldState {
 	public Uncovered(Field field) {
 		super(field);
 	}
-	
+
 	@Override
 	public void action1() {
 	}
-	
+
 	@Override
 	public void action2() {
 		field.chord();
