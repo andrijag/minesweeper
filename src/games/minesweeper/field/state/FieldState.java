@@ -9,7 +9,9 @@ public abstract class FieldState {
 		this.field = field;
 	}
 	
-	public abstract void action();
+	public abstract void action1();
+	
+	public abstract void action2();
 
 	public abstract FieldState nextState1();
 

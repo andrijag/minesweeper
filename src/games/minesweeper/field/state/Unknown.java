@@ -6,10 +6,14 @@ public class Unknown extends FieldState {
 	public Unknown(Field field) {
 		super(field);
 	}
-	
+
 	@Override
-	public void action() {
+	public void action1() {
 		field.sweep();
+	}
+
+	@Override
+	public void action2() {
 	}
 
 	@Override
