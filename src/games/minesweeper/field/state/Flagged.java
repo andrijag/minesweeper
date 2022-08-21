@@ -8,20 +8,20 @@ public class Flagged extends FieldState {
 	}
 
 	@Override
-	public void action1() {
+	public void sweepHandle() {
 	}
 
 	@Override
-	public void action2() {
+	public void chordHandle() {
 	}
 
 	@Override
-	public FieldState nextState1() {
+	public FieldState nextUncoveredState() {
 		return new Flagged(field);
 	}
 
 	@Override
-	public FieldState nextState2() {
+	public FieldState nextFlaggedState() {
 		return new Unknown(field);
 	}
 

@@ -9,11 +9,11 @@ public abstract class FieldState {
 		this.field = field;
 	}
 
-	public abstract void action1();
+	public abstract void sweepHandle();
 
-	public abstract void action2();
+	public abstract void chordHandle();
 
-	public abstract FieldState nextState1();
+	public abstract FieldState nextUncoveredState();
 
-	public abstract FieldState nextState2();
+	public abstract FieldState nextFlaggedState();
 }

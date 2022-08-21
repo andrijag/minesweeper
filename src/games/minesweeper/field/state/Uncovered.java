@@ -8,21 +8,21 @@ public class Uncovered extends FieldState {
 	}
 
 	@Override
-	public void action1() {
+	public void sweepHandle() {
 	}
 
 	@Override
-	public void action2() {
-		field.chord();
+	public void chordHandle() {
+		field.chordHandle();
 	}
 
 	@Override
-	public FieldState nextState1() {
+	public FieldState nextUncoveredState() {
 		return new Uncovered(field);
 	}
 
 	@Override
-	public FieldState nextState2() {
+	public FieldState nextFlaggedState() {
 		return new Uncovered(field);
 	}
 
