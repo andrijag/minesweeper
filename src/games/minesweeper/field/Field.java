@@ -52,6 +52,26 @@ public class Field {
 		setValue(new Mine());
 	}
 
+	private void uncover() {
+		setState(state.nextUncoveredState());
+	}
+
+	public boolean isMine() {
+		return value instanceof Mine;
+	}
+
+	public int getNumber() {
+		return ((FieldNumber) value).getNumber();
+	}
+
+	public void increment() {
+		((FieldNumber) value).increment();
+	}
+
+	public boolean isFlagged() {
+		return state instanceof Flagged;
+	}
+
 	public void sweepHandle() {
 		uncover();
 		if (!isMine() && getNumber() == 0) {
@@ -63,10 +83,6 @@ public class Field {
 				}
 			}
 		}
-	}
-
-	private void uncover() {
-		setState(state.nextUncoveredState());
 	}
 
 	public void chordHandle() {
@@ -93,18 +109,6 @@ public class Field {
 		return nFlags;
 	}
 
-	public boolean isFlagged() {
-		return state instanceof Flagged;
-	}
-
-	public boolean isMine() {
-		return value instanceof Mine;
-	}
-
-	public int getNumber() {
-		return ((FieldNumber) value).getNumber();
-	}
-
 	public void incrementNeighbours() {
 		for (Vector vector : Vector.values()) {
 			int di = vector.getI();
@@ -113,10 +117,6 @@ public class Field {
 				minefield.increment(i + di, j + dj);
 			}
 		}
-	}
-
-	public void increment() {
-		((FieldNumber) value).increment();
 	}
 
 	@Override
