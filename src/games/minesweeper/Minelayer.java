@@ -20,10 +20,6 @@ public class Minelayer {
 		}
 	}
 
-	public void remove(Field field) {
-		fields.remove(field);
-	}
-
 	public void layMines() {
 		Random rand = new Random();
 		for (int i = 0; i < nMines; i++) {
@@ -32,5 +28,9 @@ public class Minelayer {
 			field.layMine();
 			field.incrementNeighbours();
 		}
+	}
+
+	public void remove(Field field) {
+		fields.remove(field);
 	}
 }
