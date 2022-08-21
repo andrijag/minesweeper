@@ -34,20 +34,20 @@ public class Minefield {
 		return 0 <= i && i < nRows && 0 <= j && j < nColumns;
 	}
 
-	public void flag(int i, int j) {
-		matrix[i][j].flag();
-	}
-
-	public void increment(int i, int j) {
-		matrix[i][j].increment();
-	}
-
 	public void sweep(int i, int j) {
 		matrix[i][j].sweep();
 	}
 
+	public void flag(int i, int j) {
+		matrix[i][j].flag();
+	}
+
 	public void chord(int i, int j) {
 		matrix[i][j].chord();
+	}
+
+	public void increment(int i, int j) {
+		matrix[i][j].increment();
 	}
 
 	public boolean isMine(int i, int j) {
