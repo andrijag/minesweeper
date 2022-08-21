@@ -28,6 +28,10 @@ public class Field {
 		return value;
 	}
 
+	public FieldState getState() {
+		return state;
+	}
+
 	private void setValue(FieldValue value) {
 		this.value = value;
 	}
@@ -41,30 +45,26 @@ public class Field {
 	}
 
 	public void uncover() {
-		setState(state.nextState1());
+		setState(state.nextUncoveredState());
 	}
 
 	public void flag() {
-		setState(state.nextState2());
-	}
-
-	public void increment() {
-		((FieldNumber) value).increment();
+		setState(state.nextFlaggedState());
 	}
 
 	public int getNumber() {
 		return ((FieldNumber) value).getNumber();
 	}
 
-	public void action1() {
-		state.action1();
-	}
-
-	public void action2() {
-		state.action2();
+	public void increment() {
+		((FieldNumber) value).increment();
 	}
 
 	public void sweep() {
+		state.sweepHandle();
+	}
+
+	public void sweepHandle() {
 		uncover();
 		if (!isMine() && getNumber() == 0) {
 			for (Vector vector : Vector.values()) {
@@ -78,6 +78,10 @@ public class Field {
 	}
 
 	public void chord() {
+		state.chordHandle();
+	}
+
+	public void chordHandle() {
 		if (!isMine() && getNumber() == neighbourFlags()) {
 			for (Vector vector : Vector.values()) {
 				int di = vector.getI();
