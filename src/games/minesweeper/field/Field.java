@@ -28,10 +28,6 @@ public class Field {
 		return value;
 	}
 
-	public FieldState getState() {
-		return state;
-	}
-
 	private void setValue(FieldValue value) {
 		this.value = value;
 	}
@@ -40,28 +36,20 @@ public class Field {
 		this.state = state;
 	}
 
-	public void layMine() {
-		setValue(new Mine());
-	}
-
-	public void uncover() {
-		setState(state.nextUncoveredState());
+	public void sweep() {
+		state.sweepHandle();
 	}
 
 	public void flag() {
 		setState(state.nextFlaggedState());
 	}
 
-	public int getNumber() {
-		return ((FieldNumber) value).getNumber();
+	public void chord() {
+		state.chordHandle();
 	}
 
-	public void increment() {
-		((FieldNumber) value).increment();
-	}
-
-	public void sweep() {
-		state.sweepHandle();
+	public void layMine() {
+		setValue(new Mine());
 	}
 
 	public void sweepHandle() {
@@ -77,8 +65,8 @@ public class Field {
 		}
 	}
 
-	public void chord() {
-		state.chordHandle();
+	private void uncover() {
+		setState(state.nextUncoveredState());
 	}
 
 	public void chordHandle() {
@@ -93,12 +81,28 @@ public class Field {
 		}
 	}
 
-	public boolean isMine() {
-		return value instanceof Mine;
+	public int neighbourFlags() {
+		int nFlags = 0;
+		for (Vector vector : Vector.values()) {
+			int di = vector.getI();
+			int dj = vector.getJ();
+			if (minefield.contains(i + di, j + dj) && minefield.isFlagged(i + di, j + dj)) {
+				nFlags++;
+			}
+		}
+		return nFlags;
 	}
 
 	public boolean isFlagged() {
 		return state instanceof Flagged;
+	}
+
+	public boolean isMine() {
+		return value instanceof Mine;
+	}
+
+	public int getNumber() {
+		return ((FieldNumber) value).getNumber();
 	}
 
 	public void incrementNeighbours() {
@@ -111,16 +115,8 @@ public class Field {
 		}
 	}
 
-	public int neighbourFlags() {
-		int nFlags = 0;
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (minefield.contains(i + di, j + dj) && minefield.isFlagged(i + di, j + dj)) {
-				nFlags++;
-			}
-		}
-		return nFlags;
+	public void increment() {
+		((FieldNumber) value).increment();
 	}
 
 	@Override
