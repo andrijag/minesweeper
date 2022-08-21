@@ -20,6 +20,10 @@ public class Game {
 		minesweeper.flag(i, j);
 	}
 
+	public void chord(int i, int j) {
+		minesweeper.chord(i, j);
+	}
+
 	@Override
 	public String toString() {
 		return minefield.toString();
