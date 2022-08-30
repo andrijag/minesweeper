@@ -86,7 +86,7 @@ public class Field {
 	}
 
 	public void chordHandle() {
-		if (!isMine() && getNumber() == neighbourFlags()) {
+		if (getNumber() == neighbourFlags()) {
 			for (Vector vector : Vector.values()) {
 				int di = vector.getI();
 				int dj = vector.getJ();
