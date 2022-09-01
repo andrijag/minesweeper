@@ -1,7 +1,6 @@
 package games.minesweeper.field;
 
 import games.minesweeper.Minefield;
-import games.minesweeper.Vector;
 import games.minesweeper.field.state.Covered;
 import games.minesweeper.field.state.FieldState;
 import games.minesweeper.field.state.Flagged;
@@ -52,7 +51,7 @@ public class Field {
 		setValue(new Mine());
 	}
 
-	private void uncover() {
+	public void uncover() {
 		setState(state.nextUncoveredState());
 	}
 
@@ -73,50 +72,19 @@ public class Field {
 	}
 
 	public void sweepHandle() {
-		uncover();
-		if (!isMine() && getNumber() == 0) {
-			for (Vector vector : Vector.values()) {
-				int di = vector.getI();
-				int dj = vector.getJ();
-				if (minefield.contains(i + di, j + dj)) {
-					minefield.sweep(i + di, j + dj);
-				}
-			}
-		}
+		minefield.sweepHandle(i, j);
 	}
 
 	public void chordHandle() {
-		if (getNumber() == neighbourFlags()) {
-			for (Vector vector : Vector.values()) {
-				int di = vector.getI();
-				int dj = vector.getJ();
-				if (minefield.contains(i + di, j + dj)) {
-					minefield.sweep(i + di, j + dj);
-				}
-			}
-		}
+		minefield.chordHandle(i, j);
 	}
 
 	public int neighbourFlags() {
-		int nFlags = 0;
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (minefield.contains(i + di, j + dj) && minefield.isFlagged(i + di, j + dj)) {
-				nFlags++;
-			}
-		}
-		return nFlags;
+		return minefield.neighbourFlags(i, j);
 	}
 
 	public void incrementNeighbours() {
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (minefield.contains(i + di, j + dj) && !minefield.isMine(i + di, j + dj)) {
-				minefield.increment(i + di, j + dj);
-			}
-		}
+		minefield.incrementNeighbours(i, j);
 	}
 
 	@Override
