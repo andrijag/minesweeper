@@ -9,9 +9,9 @@ public abstract class FieldState {
 		this.field = field;
 	}
 
-	public abstract void sweepHandle();
+	public abstract void sweep();
 
-	public abstract void chordHandle();
+	public abstract void chord();
 
 	public abstract FieldState nextUncoveredState();
 

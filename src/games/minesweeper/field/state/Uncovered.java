@@ -8,11 +8,11 @@ public class Uncovered extends FieldState {
 	}
 
 	@Override
-	public void sweepHandle() {
+	public void sweep() {
 	}
 
 	@Override
-	public void chordHandle() {
+	public void chord() {
 		field.chordHandle();
 	}
 

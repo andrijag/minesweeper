@@ -8,12 +8,12 @@ public class Covered extends FieldState {
 	}
 
 	@Override
-	public void sweepHandle() {
+	public void sweep() {
 		field.sweepHandle();
 	}
 
 	@Override
-	public void chordHandle() {
+	public void chord() {
 	}
 
 	@Override

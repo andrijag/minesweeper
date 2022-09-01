@@ -36,7 +36,7 @@ public class Field {
 	}
 
 	public void sweep() {
-		state.sweepHandle();
+		state.sweep();
 	}
 
 	public void flag() {
@@ -44,7 +44,7 @@ public class Field {
 	}
 
 	public void chord() {
-		state.chordHandle();
+		state.chord();
 	}
 
 	public void layMine() {
