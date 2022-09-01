@@ -55,16 +55,16 @@ public class Field {
 		setState(state.nextUncoveredState());
 	}
 
-	public boolean isMine() {
-		return value instanceof Mine;
-	}
-
 	public int getNumber() {
 		return ((FieldNumber) value).getNumber();
 	}
 
 	public void increment() {
 		((FieldNumber) value).increment();
+	}
+
+	public boolean isMine() {
+		return value instanceof Mine;
 	}
 
 	public boolean isFlagged() {
