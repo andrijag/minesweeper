@@ -79,10 +79,6 @@ public class Field {
 		minefield.chordHandle(i, j);
 	}
 
-	public int neighbourFlags() {
-		return minefield.neighbourFlags(i, j);
-	}
-
 	public void incrementNeighbours() {
 		minefield.incrementNeighbours(i, j);
 	}
