@@ -13,6 +13,12 @@ public class Covered extends FieldState {
 	}
 
 	@Override
+	public void flag() {
+		field.flagHandle();
+		field.incrementFlagCounter();
+	}
+
+	@Override
 	public void chord() {
 	}
 

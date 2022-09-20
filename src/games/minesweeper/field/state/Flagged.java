@@ -10,6 +10,12 @@ public class Flagged extends FieldState {
 	@Override
 	public void sweep() {
 	}
+	
+	@Override
+	public void flag() {
+		field.flagHandle();
+		field.decrementFlagCounter();
+	}
 
 	@Override
 	public void chord() {

@@ -12,6 +12,10 @@ public class Uncovered extends FieldState {
 	}
 
 	@Override
+	public void flag() {
+	}
+
+	@Override
 	public void chord() {
 		field.chordHandle();
 	}

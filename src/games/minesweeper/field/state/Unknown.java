@@ -13,6 +13,11 @@ public class Unknown extends FieldState {
 	}
 
 	@Override
+	public void flag() {
+		field.flagHandle();
+	}
+
+	@Override
 	public void chord() {
 	}
 
