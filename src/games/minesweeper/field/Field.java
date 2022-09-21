@@ -32,8 +32,8 @@ public class Field {
 		state.sweep();
 	}
 
-	public void flag() {
-		state.flag();
+	public void mark() {
+		state.mark();
 	}
 
 	public void chord() {
@@ -46,6 +46,10 @@ public class Field {
 
 	public void uncover() {
 		state = new Uncovered(this);
+	}
+
+	public void flag() {
+		state = new Flagged(this);
 	}
 
 	public int getNumber() {
@@ -63,7 +67,7 @@ public class Field {
 	public boolean isFlagged() {
 		return state instanceof Flagged;
 	}
-	
+
 	public boolean isUncovered() {
 		return state instanceof Uncovered;
 	}
@@ -72,11 +76,13 @@ public class Field {
 		minefield.sweepHandle(i, j);
 		if (isMine()) {
 			endGame();
+		} else {
+			decrementFieldsToUncover();
 		}
 	}
 
-	public void flagHandle() {
-		state = state.nextFlaggedState();
+	public void markHandle() {
+		state = state.nextMarkedState();
 	}
 
 	public void chordHandle() {
@@ -97,6 +103,10 @@ public class Field {
 
 	public void endGame() {
 		minefield.endGame();
+	}
+
+	public void decrementFieldsToUncover() {
+		minefield.decrementFieldsToUncover();
 	}
 
 	@Override
