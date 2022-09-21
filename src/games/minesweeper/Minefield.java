@@ -119,6 +119,18 @@ public class Minefield {
 		}
 	}
 
+	public void incrementFlagCounter() {
+		game.incrementFlagCounter();
+	}
+
+	public void decrementFlagCounter() {
+		game.decrementFlagCounter();
+	}
+
+	public void endGame() {
+		game.endGame();
+	}
+
 	public void uncoverMines() {
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
@@ -127,18 +139,6 @@ public class Minefield {
 				}
 			}
 		}
-	}
-
-	public void endGame() {
-		game.endGame();
-	}
-
-	public void incrementFlagCounter() {
-		game.incrementFlagCounter();
-	}
-
-	public void decrementFlagCounter() {
-		game.decrementFlagCounter();
 	}
 
 	@Override
