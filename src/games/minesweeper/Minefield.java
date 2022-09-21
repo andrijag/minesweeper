@@ -3,13 +3,11 @@ package games.minesweeper;
 import games.minesweeper.field.Field;
 
 public class Minefield {
-	private Minesweeper game;
 	private int nRows;
 	private int nColumns;
 	private Field[][] matrix;
 
-	public Minefield(Minesweeper game, int nRows, int nColumns) {
-		this.game = game;
+	public Minefield(int nRows, int nColumns) {
 		this.nRows = nRows;
 		this.nColumns = nColumns;
 		matrix = new Field[nRows][nColumns];
@@ -72,10 +70,6 @@ public class Minefield {
 		return matrix[i][j].isFlagged();
 	}
 
-	private boolean isUncovered(int i, int j) {
-		return matrix[i][j].isUncovered();
-	}
-
 	public void sweepHandle(int i, int j) {
 		uncover(i, j);
 		if (!isMine(i, j) && getNumber(i, j) == 0) {
@@ -123,36 +117,20 @@ public class Minefield {
 		}
 	}
 
-	public void incrementFlagCounter() {
-		game.incrementFlagCounter();
-	}
-
-	public void decrementFlagCounter() {
-		game.decrementFlagCounter();
-	}
-
-	public void endGame() {
-		game.endGame();
-	}
-
 	public void uncoverMines() {
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
-				if (isMine(i, j) && !isUncovered(i, j)) {
+				if (isMine(i, j)) {
 					uncover(i, j);
 				}
 			}
 		}
 	}
 
-	public void decrementFieldsToUncover() {
-		game.decrementFieldsToUncover();
-	}
-
 	public void flagMines() {
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
-				if (isMine(i, j) && !isFlagged(i, j)) {
+				if (isMine(i, j)) {
 					flag(i, j);
 				}
 			}

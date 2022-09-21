@@ -68,17 +68,8 @@ public class Field {
 		return state instanceof Flagged;
 	}
 
-	public boolean isUncovered() {
-		return state instanceof Uncovered;
-	}
-
 	public void sweepHandle() {
 		minefield.sweepHandle(i, j);
-		if (isMine()) {
-			endGame();
-		} else {
-			decrementFieldsToUncover();
-		}
 	}
 
 	public void markHandle() {
@@ -91,22 +82,6 @@ public class Field {
 
 	public void incrementNeighbours() {
 		minefield.incrementNeighbours(i, j);
-	}
-
-	public void incrementFlagCounter() {
-		minefield.incrementFlagCounter();
-	}
-
-	public void decrementFlagCounter() {
-		minefield.decrementFlagCounter();
-	}
-
-	public void endGame() {
-		minefield.endGame();
-	}
-
-	public void decrementFieldsToUncover() {
-		minefield.decrementFieldsToUncover();
 	}
 
 	@Override

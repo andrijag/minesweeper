@@ -15,7 +15,6 @@ public class Covered extends FieldState {
 	@Override
 	public void mark() {
 		field.markHandle();
-		field.incrementFlagCounter();
 	}
 
 	@Override
