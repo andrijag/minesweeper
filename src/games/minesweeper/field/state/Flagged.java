@@ -23,7 +23,7 @@ public class Flagged extends FieldState {
 
 	@Override
 	public FieldState nextUncoveredState() {
-		return new Flagged(field);
+		return null;
 	}
 
 	@Override

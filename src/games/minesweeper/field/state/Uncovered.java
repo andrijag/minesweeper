@@ -22,12 +22,12 @@ public class Uncovered extends FieldState {
 
 	@Override
 	public FieldState nextUncoveredState() {
-		return new Uncovered(field);
+		return null;
 	}
 
 	@Override
 	public FieldState nextFlaggedState() {
-		return new Uncovered(field);
+		return null;
 	}
 
 	@Override
