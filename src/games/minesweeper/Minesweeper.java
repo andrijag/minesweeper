@@ -31,6 +31,10 @@ public class Minesweeper {
 		return minefield;
 	}
 
+	public Minelayer getMinelayer() {
+		return minelayer;
+	}
+
 	public void setState(GameState state) {
 		this.state = state;
 	}
@@ -52,11 +56,6 @@ public class Minesweeper {
 		minefield = new Minefield(this, nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		state = new FirstMove(this);
-	}
-
-	public void layMinesExcludingField(int i, int j) {
-		minelayer.remove(minefield.get(i, j));
-		minelayer.layMines();
 	}
 
 	public void incrementFlagCounter() {
