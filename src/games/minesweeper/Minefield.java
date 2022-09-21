@@ -51,7 +51,7 @@ public class Minefield {
 	private void uncover(int i, int j) {
 		matrix[i][j].uncover();
 	}
-	
+
 	public void flag(int i, int j) {
 		matrix[i][j].flag();
 	}
@@ -143,6 +143,10 @@ public class Minefield {
 				}
 			}
 		}
+	}
+
+	public void decrementFieldsToUncover() {
+		game.decrementFieldsToUncover();
 	}
 
 	public void flagMines() {

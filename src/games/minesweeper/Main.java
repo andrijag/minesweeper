@@ -6,7 +6,7 @@ public class Main {
 		Minesweeper ms = new Minesweeper(9, 9, 10);
 		ms.sweep(0, 0);
 		ms.sweep(8, 8);
-		ms.flag(8, 0);
+		ms.mark(8, 0);
 		System.out.println(ms);
 	}
 }
