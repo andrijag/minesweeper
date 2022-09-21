@@ -11,7 +11,7 @@ public abstract class GameState {
 
 	public abstract void sweep(int i, int j);
 	
-	public abstract void flag(int i, int j);
+	public abstract void mark(int i, int j);
 
 	public abstract void chord(int i, int j);
 }

@@ -13,8 +13,8 @@ public class Playing extends GameState {
 	}
 
 	@Override
-	public void flag(int i, int j) {
-		game.getMinefield().flag(i, j);
+	public void mark(int i, int j) {
+		game.getMinefield().mark(i, j);
 	}
 
 	@Override

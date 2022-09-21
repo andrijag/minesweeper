@@ -12,7 +12,7 @@ public class GameOver extends GameState {
 	}
 
 	@Override
-	public void flag(int i, int j) {
+	public void mark(int i, int j) {
 	}
 
 	@Override
