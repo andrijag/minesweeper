@@ -28,14 +28,6 @@ public class Field {
 		return value;
 	}
 
-	private void setValue(FieldValue value) {
-		this.value = value;
-	}
-
-	private void setState(FieldState state) {
-		this.state = state;
-	}
-
 	public void sweep() {
 		state.sweep();
 	}
@@ -49,14 +41,11 @@ public class Field {
 	}
 
 	public void layMine() {
-		setValue(new Mine());
+		value = new Mine();
 	}
 
 	public void uncover() {
-		setState(state.nextUncoveredState());
-		if (isMine()) {
-			endGame();
-		}
+		state = new Uncovered(this);
 	}
 
 	public int getNumber() {
@@ -74,13 +63,20 @@ public class Field {
 	public boolean isFlagged() {
 		return state instanceof Flagged;
 	}
+	
+	public boolean isUncovered() {
+		return state instanceof Uncovered;
+	}
 
 	public void sweepHandle() {
 		minefield.sweepHandle(i, j);
+		if (isMine()) {
+			endGame();
+		}
 	}
 
 	public void flagHandle() {
-		setState(state.nextFlaggedState());
+		state = state.nextFlaggedState();
 	}
 
 	public void chordHandle() {
@@ -101,12 +97,6 @@ public class Field {
 
 	public void endGame() {
 		minefield.endGame();
-	}
-
-	public void uncoverMine() {
-		if (isMine()) {
-			setState(new Uncovered(this));
-		}
 	}
 
 	@Override

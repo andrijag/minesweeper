@@ -68,6 +68,10 @@ public class Minefield {
 		return matrix[i][j].isFlagged();
 	}
 
+	private boolean isUncovered(int i, int j) {
+		return matrix[i][j].isUncovered();
+	}
+
 	public void sweepHandle(int i, int j) {
 		uncover(i, j);
 		if (!isMine(i, j) && getNumber(i, j) == 0) {
@@ -118,15 +122,11 @@ public class Minefield {
 	public void uncoverMines() {
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
-				if (isMine(i, j)) {
-					uncoverMine(i, j);
+				if (isMine(i, j) && !isUncovered(i, j)) {
+					uncover(i, j);
 				}
 			}
 		}
-	}
-
-	public void uncoverMine(int i, int j) {
-		matrix[i][j].uncoverMine();
 	}
 
 	public void endGame() {
