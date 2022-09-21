@@ -15,7 +15,5 @@ public abstract class FieldState {
 
 	public abstract void chord();
 
-	public abstract FieldState nextUncoveredState();
-
 	public abstract FieldState nextFlaggedState();
 }

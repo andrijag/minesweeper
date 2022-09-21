@@ -23,11 +23,6 @@ public class Covered extends FieldState {
 	}
 
 	@Override
-	public FieldState nextUncoveredState() {
-		return new Uncovered(field);
-	}
-
-	@Override
 	public FieldState nextFlaggedState() {
 		return new Flagged(field);
 	}

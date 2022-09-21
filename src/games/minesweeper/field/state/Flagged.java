@@ -10,7 +10,7 @@ public class Flagged extends FieldState {
 	@Override
 	public void sweep() {
 	}
-	
+
 	@Override
 	public void flag() {
 		field.flagHandle();
@@ -19,11 +19,6 @@ public class Flagged extends FieldState {
 
 	@Override
 	public void chord() {
-	}
-
-	@Override
-	public FieldState nextUncoveredState() {
-		return null;
 	}
 
 	@Override
