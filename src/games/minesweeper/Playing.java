@@ -1,7 +1,7 @@
 package games.minesweeper;
 
 public class Playing extends GameState {
-	public Playing(Game game) {
+	public Playing(Minesweeper game) {
 		super(game);
 	}
 

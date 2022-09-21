@@ -1,7 +1,7 @@
 package games.minesweeper;
 
 public class GameOver extends GameState {
-	public GameOver(Game game) {
+	public GameOver(Minesweeper game) {
 		super(game);
 	}
 

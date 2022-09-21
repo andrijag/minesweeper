@@ -1,9 +1,9 @@
 package games.minesweeper;
 
 public abstract class GameState {
-	protected Game game;
+	protected Minesweeper game;
 
-	public GameState(Game game) {
+	public GameState(Minesweeper game) {
 		this.game = game;
 	}
 
