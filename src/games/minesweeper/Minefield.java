@@ -40,8 +40,8 @@ public class Minefield {
 		matrix[i][j].sweep();
 	}
 
-	public void flag(int i, int j) {
-		matrix[i][j].flag();
+	public void mark(int i, int j) {
+		matrix[i][j].mark();
 	}
 
 	public void chord(int i, int j) {
@@ -50,6 +50,10 @@ public class Minefield {
 
 	private void uncover(int i, int j) {
 		matrix[i][j].uncover();
+	}
+	
+	public void flag(int i, int j) {
+		matrix[i][j].flag();
 	}
 
 	private int getNumber(int i, int j) {
@@ -136,6 +140,16 @@ public class Minefield {
 			for (int j = 0; j < nColumns; j++) {
 				if (isMine(i, j) && !isUncovered(i, j)) {
 					uncover(i, j);
+				}
+			}
+		}
+	}
+
+	public void flagMines() {
+		for (int i = 0; i < nRows; i++) {
+			for (int j = 0; j < nColumns; j++) {
+				if (isMine(i, j) && !isFlagged(i, j)) {
+					flag(i, j);
 				}
 			}
 		}
