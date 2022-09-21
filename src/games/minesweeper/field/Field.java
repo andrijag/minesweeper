@@ -24,10 +24,6 @@ public class Field {
 		state = new Covered(this);
 	}
 
-	public Minefield getMinefield() {
-		return minefield;
-	}
-
 	public FieldValue getValue() {
 		return value;
 	}
@@ -85,7 +81,6 @@ public class Field {
 
 	public void flagHandle() {
 		setState(state.nextFlaggedState());
-		incrementFlagCounter();
 	}
 
 	public void chordHandle() {
@@ -96,10 +91,6 @@ public class Field {
 		minefield.incrementNeighbours(i, j);
 	}
 
-	public void endGame() {
-		minefield.endGame();
-	}
-
 	public void incrementFlagCounter() {
 		minefield.incrementFlagCounter();
 	}
@@ -108,8 +99,14 @@ public class Field {
 		minefield.decrementFlagCounter();
 	}
 
+	public void endGame() {
+		minefield.endGame();
+	}
+
 	public void uncoverMine() {
-		setState(new Uncovered(this));
+		if (isMine()) {
+			setState(new Uncovered(this));
+		}
 	}
 
 	@Override
