@@ -12,7 +12,7 @@ public class Uncovered extends FieldState {
 	}
 
 	@Override
-	public void flag() {
+	public void mark() {
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class Uncovered extends FieldState {
 	}
 
 	@Override
-	public FieldState nextFlaggedState() {
+	public FieldState nextMarkedState() {
 		return null;
 	}
 

@@ -11,9 +11,9 @@ public abstract class FieldState {
 
 	public abstract void sweep();
 	
-	public abstract void flag();
+	public abstract void mark();
 
 	public abstract void chord();
 
-	public abstract FieldState nextFlaggedState();
+	public abstract FieldState nextMarkedState();
 }

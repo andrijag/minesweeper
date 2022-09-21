@@ -12,8 +12,8 @@ public class Flagged extends FieldState {
 	}
 
 	@Override
-	public void flag() {
-		field.flagHandle();
+	public void mark() {
+		field.markHandle();
 		field.decrementFlagCounter();
 	}
 
@@ -22,7 +22,7 @@ public class Flagged extends FieldState {
 	}
 
 	@Override
-	public FieldState nextFlaggedState() {
+	public FieldState nextMarkedState() {
 		return new Unknown(field);
 	}
 

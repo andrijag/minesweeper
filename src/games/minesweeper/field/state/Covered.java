@@ -13,8 +13,8 @@ public class Covered extends FieldState {
 	}
 
 	@Override
-	public void flag() {
-		field.flagHandle();
+	public void mark() {
+		field.markHandle();
 		field.incrementFlagCounter();
 	}
 
@@ -23,7 +23,7 @@ public class Covered extends FieldState {
 	}
 
 	@Override
-	public FieldState nextFlaggedState() {
+	public FieldState nextMarkedState() {
 		return new Flagged(field);
 	}
 
