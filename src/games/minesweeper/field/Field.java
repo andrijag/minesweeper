@@ -4,6 +4,7 @@ import games.minesweeper.Minefield;
 import games.minesweeper.field.state.Covered;
 import games.minesweeper.field.state.FieldState;
 import games.minesweeper.field.state.Flagged;
+import games.minesweeper.field.state.Uncovered;
 import games.minesweeper.field.value.FieldNumber;
 import games.minesweeper.field.value.FieldValue;
 import games.minesweeper.field.value.Mine;
@@ -56,10 +57,10 @@ public class Field {
 	}
 
 	public void uncover() {
+		setState(state.nextUncoveredState());
 		if (isMine()) {
 			endGame();
 		}
-		setState(state.nextUncoveredState());
 	}
 
 	public int getNumber() {
@@ -84,6 +85,7 @@ public class Field {
 
 	public void flagHandle() {
 		setState(state.nextFlaggedState());
+		incrementFlagCounter();
 	}
 
 	public void chordHandle() {
@@ -104,6 +106,10 @@ public class Field {
 
 	public void decrementFlagCounter() {
 		minefield.decrementFlagCounter();
+	}
+
+	public void uncoverMine() {
+		setState(new Uncovered(this));
 	}
 
 	@Override
