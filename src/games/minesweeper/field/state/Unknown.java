@@ -28,7 +28,7 @@ public class Unknown extends FieldState {
 
 	@Override
 	public FieldState nextFlaggedState() {
-		return new Flagged(field);
+		return new Covered(field);
 	}
 
 	@Override
