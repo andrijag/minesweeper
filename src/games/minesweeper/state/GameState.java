@@ -1,4 +1,6 @@
-package games.minesweeper;
+package games.minesweeper.state;
+
+import games.minesweeper.Minesweeper;
 
 public abstract class GameState {
 	protected Minesweeper game;
