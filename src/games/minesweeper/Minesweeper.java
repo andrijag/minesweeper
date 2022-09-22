@@ -19,7 +19,7 @@ public class Minesweeper {
 		this.nColumns = nColumns;
 		this.nMines = nMines;
 		flagCounter = 0;
-		minefield = new Minefield(nRows, nColumns);
+		minefield = new Minefield(this, nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		state = new FirstMove(this);
 	}
@@ -54,7 +54,7 @@ public class Minesweeper {
 
 	public void restart() {
 		flagCounter = 0;
-		minefield = new Minefield(nRows, nColumns);
+		minefield = new Minefield(this, nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		state = new FirstMove(this);
 	}
