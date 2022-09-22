@@ -3,6 +3,7 @@ package games.minesweeper;
 import games.minesweeper.state.FirstMove;
 import games.minesweeper.state.GameOver;
 import games.minesweeper.state.GameState;
+import games.minesweeper.state.Winner;
 
 public class Minesweeper {
 	private int nRows;
@@ -66,13 +67,18 @@ public class Minesweeper {
 		flagCounter--;
 	}
 
-	public void endGame() {
+	public void gameOver() {
 		uncoverMines();
 		state = new GameOver(this);
 	}
 
 	public void uncoverMines() {
 		minefield.uncoverMines();
+	}
+
+	public void youWin() {
+		flagMines();
+		state = new Winner(this);
 	}
 
 	public void flagMines() {
