@@ -3,11 +3,13 @@ package games.minesweeper;
 import games.minesweeper.field.Field;
 
 public class Minefield {
+	private Minesweeper game;
 	private int nRows;
 	private int nColumns;
 	private Field[][] matrix;
 
-	public Minefield(int nRows, int nColumns) {
+	public Minefield(Minesweeper game, int nRows, int nColumns) {
+		this.game = game;
 		this.nRows = nRows;
 		this.nColumns = nColumns;
 		matrix = new Field[nRows][nColumns];
@@ -115,6 +117,18 @@ public class Minefield {
 				increment(i + di, j + dj);
 			}
 		}
+	}
+
+	public void incrementFlagCounter() {
+		game.incrementFlagCounter();
+	}
+
+	public void decrementFlagCounter() {
+		game.decrementFlagCounter();
+	}
+
+	public void gameOver() {
+		game.gameOver();
 	}
 
 	public void uncoverMines() {
