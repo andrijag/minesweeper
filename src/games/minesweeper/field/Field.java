@@ -29,6 +29,7 @@ public class Field {
 	}
 
 	public void sweep() {
+		value.sweep();
 		state.sweep();
 	}
 
@@ -41,7 +42,7 @@ public class Field {
 	}
 
 	public void layMine() {
-		value = new Mine();
+		value = new Mine(this);
 	}
 
 	public void uncover() {
@@ -82,6 +83,18 @@ public class Field {
 
 	public void incrementNeighbours() {
 		minefield.incrementNeighbours(i, j);
+	}
+	
+	public void incrementFlagCounter() {
+		minefield.incrementFlagCounter();
+	}
+
+	public void decrementFlagCounter() {
+		minefield.decrementFlagCounter();
+	}
+
+	public void gameOver() {
+		minefield.gameOver();
 	}
 
 	@Override
