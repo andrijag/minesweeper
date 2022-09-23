@@ -6,18 +6,18 @@ public class Unknown extends FieldState {
 	public Unknown(Field field) {
 		super(field);
 	}
-	
+
 	@Override
 	public void sweep() {
-		field.sweepHandle();
 		field.getValue().sweep();
+		field.sweepHandle();
 		field.validate();
 	}
 
 	@Override
 	public void sweepRecursion() {
-		field.sweepHandle();
 		field.getValue().sweep();
+		field.sweepHandle();
 	}
 
 	@Override

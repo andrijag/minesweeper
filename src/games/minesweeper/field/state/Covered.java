@@ -6,18 +6,18 @@ public class Covered extends FieldState {
 	public Covered(Field field) {
 		super(field);
 	}
-	
+
 	@Override
 	public void sweep() {
-		field.sweepHandle();
 		field.getValue().sweep();
+		field.sweepHandle();
 		field.validate();
 	}
 
 	@Override
 	public void sweepRecursion() {
-		field.sweepHandle();
 		field.getValue().sweep();
+		field.sweepHandle();
 	}
 
 	@Override
