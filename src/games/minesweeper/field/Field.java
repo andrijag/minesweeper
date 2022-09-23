@@ -20,7 +20,7 @@ public class Field {
 		this.minefield = minefield;
 		this.i = i;
 		this.j = j;
-		value = new FieldNumber(0);
+		value = new FieldNumber(this);
 		state = new Covered(this);
 	}
 
@@ -29,7 +29,6 @@ public class Field {
 	}
 
 	public void sweep() {
-		value.sweep();
 		state.sweep();
 	}
 
@@ -71,6 +70,7 @@ public class Field {
 
 	public void sweepHandle() {
 		minefield.sweepHandle(i, j);
+		value.sweep();
 	}
 
 	public void markHandle() {
@@ -95,6 +95,10 @@ public class Field {
 
 	public void gameOver() {
 		minefield.gameOver();
+	}
+	
+	public void decrementToUncover() {
+		minefield.decrementToUncover();
 	}
 
 	@Override
