@@ -10,7 +10,6 @@ public class Playing extends GameState {
 	@Override
 	public void sweep(int i, int j) {
 		game.getMinefield().sweep(i, j);
-		game.validate();
 	}
 
 	@Override
