@@ -20,6 +20,7 @@ public class FieldNumber extends FieldValue {
 
 	@Override
 	public void sweep() {
+		field.decrementToUncover();
 	}
 
 	@Override
