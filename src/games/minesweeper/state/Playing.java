@@ -20,6 +20,5 @@ public class Playing extends GameState {
 	@Override
 	public void chord(int i, int j) {
 		game.getMinefield().chord(i, j);
-		game.validate();
 	}
 }
