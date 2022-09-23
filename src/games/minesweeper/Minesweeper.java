@@ -3,13 +3,14 @@ package games.minesweeper;
 import games.minesweeper.state.FirstMove;
 import games.minesweeper.state.GameOver;
 import games.minesweeper.state.GameState;
+import games.minesweeper.state.Winner;
 
 public class Minesweeper {
 	private int nRows;
 	private int nColumns;
 	private int nMines;
 	private int flagCounter;
-	private int fieldsToUncover;
+	private int toUncover;
 	private Minefield minefield;
 	private Minelayer minelayer;
 	private GameState state;
@@ -19,7 +20,7 @@ public class Minesweeper {
 		this.nColumns = nColumns;
 		this.nMines = nMines;
 		flagCounter = 0;
-		fieldsToUncover = getTotalFieldsToUncover();
+		toUncover = nRows * nColumns - nMines;
 		minefield = new Minefield(this, nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		state = new FirstMove(this);
@@ -39,10 +40,6 @@ public class Minesweeper {
 
 	public void setState(GameState state) {
 		this.state = state;
-	}
-
-	public int getTotalFieldsToUncover() {
-		return nRows * nColumns - nMines;
 	}
 
 	public void sweep(int i, int j) {
@@ -72,7 +69,7 @@ public class Minesweeper {
 		flagCounter--;
 	}
 
-	public void endGame() {
+	public void gameOver() {
 		uncoverMines();
 		state = new GameOver(this);
 	}
@@ -81,16 +78,21 @@ public class Minesweeper {
 		minefield.uncoverMines();
 	}
 
-	public void decrementFieldsToUncover() {
-		fieldsToUncover--;
+	public void decrementToUncover() {
+		toUncover--;
+	}
+
+	public boolean allUncovered() {
+		return toUncover == 0;
+	}
+
+	public void youWin() {
+		flagMines();
+		state = new Winner(this);
 	}
 
 	public void flagMines() {
 		minefield.flagMines();
-	}
-
-	public boolean allUncovered() {
-		return fieldsToUncover == 0;
 	}
 
 	@Override

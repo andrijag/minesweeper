@@ -20,7 +20,7 @@ public class Field {
 		this.minefield = minefield;
 		this.i = i;
 		this.j = j;
-		value = new FieldNumber(0);
+		value = new FieldNumber(this);
 		state = new Covered(this);
 	}
 
@@ -41,7 +41,7 @@ public class Field {
 	}
 
 	public void layMine() {
-		value = new Mine();
+		value = new Mine(this);
 	}
 
 	public void uncover() {
@@ -68,17 +68,9 @@ public class Field {
 		return state instanceof Flagged;
 	}
 
-	public boolean isUncovered() {
-		return state instanceof Uncovered;
-	}
-
 	public void sweepHandle() {
 		minefield.sweepHandle(i, j);
-		if (isMine()) {
-			endGame();
-		} else {
-			decrementFieldsToUncover();
-		}
+		value.sweep();
 	}
 
 	public void markHandle() {
@@ -92,7 +84,7 @@ public class Field {
 	public void incrementNeighbours() {
 		minefield.incrementNeighbours(i, j);
 	}
-
+	
 	public void incrementFlagCounter() {
 		minefield.incrementFlagCounter();
 	}
@@ -101,12 +93,12 @@ public class Field {
 		minefield.decrementFlagCounter();
 	}
 
-	public void endGame() {
-		minefield.endGame();
+	public void gameOver() {
+		minefield.gameOver();
 	}
-
-	public void decrementFieldsToUncover() {
-		minefield.decrementFieldsToUncover();
+	
+	public void decrementToUncover() {
+		minefield.decrementToUncover();
 	}
 
 	@Override

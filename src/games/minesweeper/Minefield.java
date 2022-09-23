@@ -72,10 +72,6 @@ public class Minefield {
 		return matrix[i][j].isFlagged();
 	}
 
-	private boolean isUncovered(int i, int j) {
-		return matrix[i][j].isUncovered();
-	}
-
 	public void sweepHandle(int i, int j) {
 		uncover(i, j);
 		if (!isMine(i, j) && getNumber(i, j) == 0) {
@@ -131,28 +127,28 @@ public class Minefield {
 		game.decrementFlagCounter();
 	}
 
-	public void endGame() {
-		game.endGame();
+	public void gameOver() {
+		game.gameOver();
 	}
 
 	public void uncoverMines() {
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
-				if (isMine(i, j) && !isUncovered(i, j)) {
+				if (isMine(i, j)) {
 					uncover(i, j);
 				}
 			}
 		}
 	}
-
-	public void decrementFieldsToUncover() {
-		game.decrementFieldsToUncover();
+	
+	public void decrementToUncover() {
+		game.decrementToUncover();
 	}
 
 	public void flagMines() {
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
-				if (isMine(i, j) && !isFlagged(i, j)) {
+				if (isMine(i, j)) {
 					flag(i, j);
 				}
 			}
