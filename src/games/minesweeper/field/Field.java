@@ -27,9 +27,13 @@ public class Field {
 	public FieldValue getValue() {
 		return value;
 	}
-
+	
 	public void sweep() {
 		state.sweep();
+	}
+
+	public void sweepRecursion() {
+		state.sweepRecursion();
 	}
 
 	public void mark() {
@@ -70,7 +74,6 @@ public class Field {
 
 	public void sweepHandle() {
 		minefield.sweepHandle(i, j);
-		value.sweep();
 	}
 
 	public void markHandle() {
@@ -99,6 +102,10 @@ public class Field {
 	
 	public void decrementToUncover() {
 		minefield.decrementToUncover();
+	}
+	
+	public void validate() {
+		minefield.validate();
 	}
 
 	@Override

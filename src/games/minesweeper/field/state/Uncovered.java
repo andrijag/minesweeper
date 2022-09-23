@@ -6,9 +6,13 @@ public class Uncovered extends FieldState {
 	public Uncovered(Field field) {
 		super(field);
 	}
-
+	
 	@Override
 	public void sweep() {
+	}
+
+	@Override
+	public void sweepRecursion() {
 	}
 
 	@Override
@@ -18,6 +22,7 @@ public class Uncovered extends FieldState {
 	@Override
 	public void chord() {
 		field.chordHandle();
+		field.validate();
 	}
 
 	@Override
