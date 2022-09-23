@@ -10,6 +10,7 @@ public class Minesweeper {
 	private int nColumns;
 	private int nMines;
 	private int flagCounter;
+	private int toUncover;
 	private Minefield minefield;
 	private Minelayer minelayer;
 	private GameState state;
@@ -19,6 +20,7 @@ public class Minesweeper {
 		this.nColumns = nColumns;
 		this.nMines = nMines;
 		flagCounter = 0;
+		toUncover = nRows * nColumns - nMines;
 		minefield = new Minefield(this, nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		state = new FirstMove(this);
@@ -74,6 +76,14 @@ public class Minesweeper {
 
 	public void uncoverMines() {
 		minefield.uncoverMines();
+	}
+
+	public void decrementToUncover() {
+		toUncover--;
+	}
+
+	public boolean allUncovered() {
+		return toUncover == 0;
 	}
 
 	public void youWin() {
