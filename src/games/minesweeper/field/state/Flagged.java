@@ -6,9 +6,13 @@ public class Flagged extends FieldState {
 	public Flagged(Field field) {
 		super(field);
 	}
-
+	
 	@Override
 	public void sweep() {
+	}
+
+	@Override
+	public void sweepRecursion() {
 	}
 
 	@Override

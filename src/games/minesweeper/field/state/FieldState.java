@@ -8,8 +8,10 @@ public abstract class FieldState {
 	public FieldState(Field field) {
 		this.field = field;
 	}
-
+	
 	public abstract void sweep();
+
+	public abstract void sweepRecursion();
 	
 	public abstract void mark();
 
