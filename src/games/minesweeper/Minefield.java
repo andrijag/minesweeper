@@ -140,6 +140,10 @@ public class Minefield {
 			}
 		}
 	}
+	
+	public void decrementToUncover() {
+		game.decrementToUncover();
+	}
 
 	public void flagMines() {
 		for (int i = 0; i < nRows; i++) {
