@@ -56,6 +56,7 @@ public class Minesweeper {
 
 	public void restart() {
 		flagCounter = 0;
+		toUncover = nRows * nColumns - nMines;
 		minefield = new Minefield(this, nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		state = new FirstMove(this);
