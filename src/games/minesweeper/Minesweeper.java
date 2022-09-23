@@ -74,7 +74,7 @@ public class Minesweeper {
 		state = new GameOver(this);
 	}
 
-	public void uncoverMines() {
+	private void uncoverMines() {
 		minefield.uncoverMines();
 	}
 
@@ -88,16 +88,16 @@ public class Minesweeper {
 		}
 	}
 
-	public boolean allUncovered() {
+	private boolean allUncovered() {
 		return toUncover == 0;
 	}
 
-	public void youWin() {
+	private void youWin() {
 		flagMines();
 		state = new Winner(this);
 	}
 
-	public void flagMines() {
+	private void flagMines() {
 		minefield.flagMines();
 	}
 

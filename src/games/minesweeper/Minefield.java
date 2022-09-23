@@ -56,7 +56,7 @@ public class Minefield {
 		matrix[i][j].uncover();
 	}
 
-	public void flag(int i, int j) {
+	private void flag(int i, int j) {
 		matrix[i][j].flag();
 	}
 
@@ -131,7 +131,7 @@ public class Minefield {
 		game.decrementFlagCounter();
 	}
 
-	public void gameOver() {
+	public void detonate() {
 		game.gameOver();
 	}
 

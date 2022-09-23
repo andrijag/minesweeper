@@ -9,7 +9,7 @@ public class Mine extends FieldValue {
 
 	@Override
 	public void sweep() {
-		field.gameOver();
+		field.detonate();
 	}
 
 	@Override

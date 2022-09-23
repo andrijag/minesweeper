@@ -96,8 +96,8 @@ public class Field {
 		minefield.decrementFlagCounter();
 	}
 
-	public void gameOver() {
-		minefield.gameOver();
+	public void detonate() {
+		minefield.detonate();
 	}
 	
 	public void decrementToUncover() {
