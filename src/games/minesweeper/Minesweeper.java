@@ -81,6 +81,12 @@ public class Minesweeper {
 	public void decrementToUncover() {
 		toUncover--;
 	}
+	
+	public void validate() {
+		if (allUncovered()) {
+			youWin();
+		}
+	}
 
 	public boolean allUncovered() {
 		return toUncover == 0;
