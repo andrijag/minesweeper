@@ -35,9 +35,13 @@ public class Minefield {
 	public boolean contains(int i, int j) {
 		return (0 <= i && i < nRows) && (0 <= j && j < nColumns);
 	}
-
+	
 	public void sweep(int i, int j) {
 		matrix[i][j].sweep();
+	}
+
+	public void sweepRecursion(int i, int j) {
+		matrix[i][j].sweepRecursion();
 	}
 
 	public void mark(int i, int j) {
@@ -79,7 +83,7 @@ public class Minefield {
 				int di = vector.getI();
 				int dj = vector.getJ();
 				if (contains(i + di, j + dj)) {
-					sweep(i + di, j + dj);
+					sweepRecursion(i + di, j + dj);
 				}
 			}
 		}
@@ -91,7 +95,7 @@ public class Minefield {
 				int di = vector.getI();
 				int dj = vector.getJ();
 				if (contains(i + di, j + dj)) {
-					sweep(i + di, j + dj);
+					sweepRecursion(i + di, j + dj);
 				}
 			}
 		}
@@ -143,6 +147,10 @@ public class Minefield {
 	
 	public void decrementToUncover() {
 		game.decrementToUncover();
+	}
+	
+	public void validate() {
+		game.validate();
 	}
 
 	public void flagMines() {
