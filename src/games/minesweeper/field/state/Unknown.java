@@ -9,29 +9,24 @@ public class Unknown extends FieldState {
 
 	@Override
 	public void sweep() {
-		field.getValue().sweep();
 		field.sweepHandle();
+		field.getValue().sweep();
 		field.validate();
 	}
 
 	@Override
 	public void sweepRecursion() {
-		field.getValue().sweep();
 		field.sweepHandle();
+		field.getValue().sweep();
 	}
 
 	@Override
 	public void mark() {
-		field.markHandle();
+		field.setState(new Covered(field));
 	}
 
 	@Override
 	public void chord() {
-	}
-
-	@Override
-	public FieldState nextMarkedState() {
-		return new Covered(field);
 	}
 
 	@Override

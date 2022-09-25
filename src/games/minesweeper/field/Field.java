@@ -28,6 +28,10 @@ public class Field {
 		return value;
 	}
 	
+	public void setState(FieldState state) {
+		this.state = state;
+	}
+	
 	public void sweep() {
 		state.sweep();
 	}
@@ -74,10 +78,6 @@ public class Field {
 
 	public void sweepHandle() {
 		minefield.sweepHandle(i, j);
-	}
-
-	public void markHandle() {
-		state = state.nextMarkedState();
 	}
 
 	public void chordHandle() {

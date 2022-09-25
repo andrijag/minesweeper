@@ -17,17 +17,12 @@ public class Flagged extends FieldState {
 
 	@Override
 	public void mark() {
-		field.markHandle();
+		field.setState(new Unknown(field));
 		field.decrementFlagCounter();
 	}
 
 	@Override
 	public void chord() {
-	}
-
-	@Override
-	public FieldState nextMarkedState() {
-		return new Unknown(field);
 	}
 
 	@Override

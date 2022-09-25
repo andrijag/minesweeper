@@ -9,30 +9,25 @@ public class Covered extends FieldState {
 
 	@Override
 	public void sweep() {
-		field.getValue().sweep();
 		field.sweepHandle();
+		field.getValue().sweep();
 		field.validate();
 	}
 
 	@Override
 	public void sweepRecursion() {
-		field.getValue().sweep();
 		field.sweepHandle();
+		field.getValue().sweep();
 	}
 
 	@Override
 	public void mark() {
-		field.markHandle();
+		field.setState(new Flagged(field));
 		field.incrementFlagCounter();
 	}
 
 	@Override
 	public void chord() {
-	}
-
-	@Override
-	public FieldState nextMarkedState() {
-		return new Flagged(field);
 	}
 
 	@Override

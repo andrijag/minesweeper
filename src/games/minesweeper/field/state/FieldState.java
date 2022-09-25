@@ -16,6 +16,4 @@ public abstract class FieldState {
 	public abstract void mark();
 
 	public abstract void chord();
-
-	public abstract FieldState nextMarkedState();
 }

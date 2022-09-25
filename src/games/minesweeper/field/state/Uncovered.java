@@ -26,11 +26,6 @@ public class Uncovered extends FieldState {
 	}
 
 	@Override
-	public FieldState nextMarkedState() {
-		return null;
-	}
-
-	@Override
 	public String toString() {
 		return field.getValue().toString();
 	}
