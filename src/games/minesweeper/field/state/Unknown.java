@@ -9,15 +9,15 @@ public class Unknown extends FieldState {
 
 	@Override
 	public void sweep() {
-		field.sweepHandle();
 		field.getValue().sweep();
+		field.sweepHandle();
 		field.validate();
 	}
 
 	@Override
 	public void sweepRecursion() {
-		field.sweepHandle();
 		field.getValue().sweep();
+		field.sweepHandle();
 	}
 
 	@Override
