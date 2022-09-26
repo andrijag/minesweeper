@@ -75,11 +75,11 @@ public class Minesweeper {
 	}
 
 	public void decrementMinecount() {
-		minecount++;
+		minecount--;
 	}
 
 	public void incrementMinecount() {
-		minecount--;
+		minecount++;
 	}
 
 	public void gameOver() {
@@ -118,6 +118,6 @@ public class Minesweeper {
 
 	@Override
 	public String toString() {
-		return minefield.toString();
+		return minefield.toString() + minecount;
 	}
 }
