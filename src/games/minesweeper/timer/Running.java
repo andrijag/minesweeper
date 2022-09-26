@@ -17,6 +17,6 @@ public class Running extends TimerState {
 
 	@Override
 	public long getTime() {
-		return System.currentTimeMillis() - timer.getStartTime();
+		return timer.getElapsedTime() + System.currentTimeMillis() - timer.getStartTime();
 	}
 }
