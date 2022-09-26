@@ -88,12 +88,12 @@ public class Field {
 		minefield.incrementNeighbours(i, j);
 	}
 	
-	public void incrementFlagCounter() {
-		minefield.incrementFlagCounter();
+	public void decrementMinecount() {
+		minefield.decrementMinecount();
 	}
 
-	public void decrementFlagCounter() {
-		minefield.decrementFlagCounter();
+	public void incrementMinecount() {
+		minefield.incrementMinecount();
 	}
 
 	public void detonate() {

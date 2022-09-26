@@ -23,7 +23,7 @@ public class Covered extends FieldState {
 	@Override
 	public void mark() {
 		field.setState(new Flagged(field));
-		field.incrementFlagCounter();
+		field.decrementMinecount();
 	}
 
 	@Override

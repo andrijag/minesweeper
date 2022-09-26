@@ -123,12 +123,12 @@ public class Minefield {
 		}
 	}
 
-	public void incrementFlagCounter() {
-		game.incrementFlagCounter();
+	public void decrementMinecount() {
+		game.decrementMinecount();
 	}
 
-	public void decrementFlagCounter() {
-		game.decrementFlagCounter();
+	public void incrementMinecount() {
+		game.incrementMinecount();
 	}
 
 	public void detonate() {

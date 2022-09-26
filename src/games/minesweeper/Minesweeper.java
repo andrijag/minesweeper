@@ -10,7 +10,7 @@ public class Minesweeper {
 	private int nRows;
 	private int nColumns;
 	private int nMines;
-	private int flagCounter;
+	private int minecount;
 	private int toUncover;
 	private Timer timer;
 	private Minefield minefield;
@@ -21,7 +21,7 @@ public class Minesweeper {
 		this.nRows = nRows;
 		this.nColumns = nColumns;
 		this.nMines = nMines;
-		flagCounter = 0;
+		minecount = nMines;
 		toUncover = nRows * nColumns - nMines;
 		timer = new Timer();
 		minefield = new Minefield(this, nRows, nColumns);
@@ -29,8 +29,8 @@ public class Minesweeper {
 		state = new FirstMove(this);
 	}
 
-	public int getFlagCounter() {
-		return flagCounter;
+	public int getMinecount() {
+		return minecount;
 	}
 	
 	public Timer getTimer() {
@@ -66,7 +66,7 @@ public class Minesweeper {
 	}
 
 	public void restart() {
-		flagCounter = 0;
+		minecount = nMines;
 		toUncover = nRows * nColumns - nMines;
 		timer.reset();
 		minefield = new Minefield(this, nRows, nColumns);
@@ -74,12 +74,12 @@ public class Minesweeper {
 		state = new FirstMove(this);
 	}
 
-	public void incrementFlagCounter() {
-		flagCounter++;
+	public void decrementMinecount() {
+		minecount++;
 	}
 
-	public void decrementFlagCounter() {
-		flagCounter--;
+	public void incrementMinecount() {
+		minecount--;
 	}
 
 	public void gameOver() {
