@@ -27,11 +27,11 @@ public class Field {
 	public FieldValue getValue() {
 		return value;
 	}
-	
+
 	public void setState(FieldState state) {
 		this.state = state;
 	}
-	
+
 	public void sweep() {
 		state.sweep();
 	}
@@ -87,23 +87,23 @@ public class Field {
 	public void incrementNeighbours() {
 		minefield.incrementNeighbours(i, j);
 	}
-	
-	public void decrementMinecount() {
-		minefield.decrementMinecount();
+
+	public void incrementNFlags() {
+		minefield.incrementNFlags();
 	}
 
-	public void incrementMinecount() {
-		minefield.incrementMinecount();
+	public void decrementNFlags() {
+		minefield.decrementNFlags();
 	}
 
 	public void detonate() {
 		minefield.detonate();
 	}
-	
+
 	public void decrementToUncover() {
 		minefield.decrementToUncover();
 	}
-	
+
 	public void validate() {
 		minefield.validate();
 	}

@@ -35,7 +35,7 @@ public class Minefield {
 	public boolean contains(int i, int j) {
 		return (0 <= i && i < nRows) && (0 <= j && j < nColumns);
 	}
-	
+
 	public void sweep(int i, int j) {
 		matrix[i][j].sweep();
 	}
@@ -123,12 +123,12 @@ public class Minefield {
 		}
 	}
 
-	public void decrementMinecount() {
-		game.decrementMinecount();
+	public void incrementNFlags() {
+		game.incrementNFlags();
 	}
 
-	public void incrementMinecount() {
-		game.incrementMinecount();
+	public void decrementNFlags() {
+		game.decrementNFlags();
 	}
 
 	public void detonate() {
@@ -144,11 +144,11 @@ public class Minefield {
 			}
 		}
 	}
-	
+
 	public void decrementToUncover() {
 		game.decrementToUncover();
 	}
-	
+
 	public void validate() {
 		game.validate();
 	}

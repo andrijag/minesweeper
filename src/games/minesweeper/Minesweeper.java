@@ -10,7 +10,7 @@ public class Minesweeper {
 	private int nRows;
 	private int nColumns;
 	private int nMines;
-	private int minecount;
+	private int nFlags;
 	private int toUncover;
 	private Timer timer;
 	private Minefield minefield;
@@ -21,7 +21,7 @@ public class Minesweeper {
 		this.nRows = nRows;
 		this.nColumns = nColumns;
 		this.nMines = nMines;
-		minecount = nMines;
+		nFlags = 0;
 		toUncover = nRows * nColumns - nMines;
 		timer = new Timer();
 		minefield = new Minefield(this, nRows, nColumns);
@@ -29,16 +29,8 @@ public class Minesweeper {
 		state = new FirstMove(this);
 	}
 
-	public int getMinecount() {
-		return minecount;
-	}
-	
 	public Timer getTimer() {
 		return timer;
-	}
-	
-	public long getTime() {
-		return timer.getTime();
 	}
 
 	public Minefield getMinefield() {
@@ -51,6 +43,14 @@ public class Minesweeper {
 
 	public void setState(GameState state) {
 		this.state = state;
+	}
+
+	public long getTime() {
+		return timer.getTime();
+	}
+
+	public int getMinecount() {
+		return nMines - nFlags;
 	}
 
 	public void sweep(int i, int j) {
@@ -66,7 +66,7 @@ public class Minesweeper {
 	}
 
 	public void restart() {
-		minecount = nMines;
+		nFlags = 0;
 		toUncover = nRows * nColumns - nMines;
 		timer.reset();
 		minefield = new Minefield(this, nRows, nColumns);
@@ -74,12 +74,12 @@ public class Minesweeper {
 		state = new FirstMove(this);
 	}
 
-	public void decrementMinecount() {
-		minecount--;
+	public void incrementNFlags() {
+		nFlags++;
 	}
 
-	public void incrementMinecount() {
-		minecount++;
+	public void decrementNFlags() {
+		nFlags--;
 	}
 
 	public void gameOver() {
@@ -95,7 +95,7 @@ public class Minesweeper {
 	public void decrementToUncover() {
 		toUncover--;
 	}
-	
+
 	public void validate() {
 		if (allUncovered()) {
 			youWin();
@@ -118,6 +118,6 @@ public class Minesweeper {
 
 	@Override
 	public String toString() {
-		return minefield.toString() + minecount;
+		return minefield.toString() + getMinecount();
 	}
 }
