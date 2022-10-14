@@ -109,6 +109,7 @@ public class Minesweeper {
 	private void youWin() {
 		timer.stop();
 		flagMines();
+		nFlags = nMines;
 		state = new Winner(this);
 	}
 
@@ -118,6 +119,6 @@ public class Minesweeper {
 
 	@Override
 	public String toString() {
-		return minefield.toString() + getMinecount();
+		return getMinecount() + "\t" + getTime() + "\n" + minefield.toString();
 	}
 }
