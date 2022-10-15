@@ -18,6 +18,17 @@ public class Minefield {
 				matrix[i][j] = new Field(this, i, j);
 			}
 		}
+		for (int i = 0; i < nRows; i++) {
+			for (int j = 0; j < nColumns; j++) {
+				for (Vector vector : Vector.values()) {
+					int di = vector.getI();
+					int dj = vector.getJ();
+					if (contains(i + di, j + dj)) {
+						matrix[i][j].addNeighbour(get(i + di, j + dj));
+					}
+				}
+			}
+		}
 	}
 
 	public int getNRows() {
@@ -60,67 +71,8 @@ public class Minefield {
 		matrix[i][j].flag();
 	}
 
-	private int getNumber(int i, int j) {
-		return matrix[i][j].getNumber();
-	}
-
-	private void increment(int i, int j) {
-		matrix[i][j].increment();
-	}
-
 	private boolean isMine(int i, int j) {
 		return matrix[i][j].isMine();
-	}
-
-	private boolean isFlagged(int i, int j) {
-		return matrix[i][j].isFlagged();
-	}
-
-	public void sweepHandle(int i, int j) {
-		uncover(i, j);
-		if (!isMine(i, j) && getNumber(i, j) == 0) {
-			for (Vector vector : Vector.values()) {
-				int di = vector.getI();
-				int dj = vector.getJ();
-				if (contains(i + di, j + dj)) {
-					sweepRecursion(i + di, j + dj);
-				}
-			}
-		}
-	}
-
-	public void chordHandle(int i, int j) {
-		if (getNumber(i, j) == neighbourFlags(i, j)) {
-			for (Vector vector : Vector.values()) {
-				int di = vector.getI();
-				int dj = vector.getJ();
-				if (contains(i + di, j + dj)) {
-					sweepRecursion(i + di, j + dj);
-				}
-			}
-		}
-	}
-
-	public int neighbourFlags(int i, int j) {
-		int nFlags = 0;
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (contains(i + di, j + dj) && isFlagged(i + di, j + dj)) {
-				nFlags++;
-			}
-		}
-		return nFlags;
-	}
-
-	public void incrementNeighbours(int i, int j) {
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (contains(i + di, j + dj) && !isMine(i + di, j + dj)) {
-				increment(i + di, j + dj);
-			}
-		}
 	}
 
 	public void incrementNFlags() {
