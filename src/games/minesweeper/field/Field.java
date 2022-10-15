@@ -1,6 +1,5 @@
 package games.minesweeper.field;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import games.minesweeper.Minefield;
