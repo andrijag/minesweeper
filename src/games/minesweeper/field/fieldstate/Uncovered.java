@@ -18,7 +18,6 @@ public class Uncovered extends FieldState {
 	@Override
 	public void chord() {
 		field.chordHandle();
-		field.validate();
 	}
 
 	@Override

@@ -118,10 +118,6 @@ public class Field {
 		minefield.decrementToUncover();
 	}
 
-	public void validate() {
-		minefield.validate();
-	}
-
 	@Override
 	public String toString() {
 		return state.toString();

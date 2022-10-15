@@ -14,6 +14,7 @@ public class FirstMove extends GameState {
 		game.getMinelayer().layMines();
 		game.setState(new Playing(game));
 		game.sweep(i, j);
+		game.validate();
 	}
 
 	@Override

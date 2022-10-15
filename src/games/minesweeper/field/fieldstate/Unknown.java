@@ -11,7 +11,6 @@ public class Unknown extends FieldState {
 	public void sweep() {
 		field.sweepHandle();
 		field.getValue().sweep();
-		field.validate();
 	}
 
 	@Override

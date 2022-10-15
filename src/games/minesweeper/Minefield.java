@@ -100,10 +100,6 @@ public class Minefield {
 		game.decrementToUncover();
 	}
 
-	public void validate() {
-		game.validate();
-	}
-
 	public void flagMines() {
 		for (int i = 0; i < nRows; i++)
 			for (int j = 0; j < nColumns; j++)
