@@ -13,7 +13,7 @@ public class FirstMove extends GameState {
 		game.getMinelayer().remove(game.getMinefield().get(i, j));
 		game.getMinelayer().layMines();
 		game.setState(new Playing(game));
-		game.getMinefield().sweep(i, j);
+		game.sweep(i, j);
 	}
 
 	@Override
