@@ -10,8 +10,6 @@ public abstract class FieldState {
 	}
 	
 	public abstract void sweep();
-
-	public abstract void sweepRecursion();
 	
 	public abstract void mark();
 

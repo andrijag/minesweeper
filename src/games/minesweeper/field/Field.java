@@ -39,10 +39,6 @@ public class Field {
 		state.sweep();
 	}
 
-	public void sweepRecursion() {
-		state.sweepRecursion();
-	}
-
 	public void mark() {
 		state.mark();
 	}
@@ -83,13 +79,13 @@ public class Field {
 		uncover();
 		if (!isMine() && getNumber() == 0)
 			for (Field neighbour : neighbours)
-				neighbour.sweepRecursion();
+				neighbour.sweep();
 	}
 
 	public void chordHandle() {
 		if (getNumber() == neighbourFlags())
 			for (Field neighbour : neighbours)
-				neighbour.sweepRecursion();
+				neighbour.sweep();
 	}
 
 	public int neighbourFlags() {

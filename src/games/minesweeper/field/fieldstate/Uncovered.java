@@ -6,13 +6,9 @@ public class Uncovered extends FieldState {
 	public Uncovered(Field field) {
 		super(field);
 	}
-	
-	@Override
-	public void sweep() {
-	}
 
 	@Override
-	public void sweepRecursion() {
+	public void sweep() {
 	}
 
 	@Override

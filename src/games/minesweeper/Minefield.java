@@ -57,10 +57,6 @@ public class Minefield {
 		matrix[i][j].sweep();
 	}
 
-	public void sweepRecursion(int i, int j) {
-		matrix[i][j].sweepRecursion();
-	}
-
 	public void mark(int i, int j) {
 		matrix[i][j].mark();
 	}

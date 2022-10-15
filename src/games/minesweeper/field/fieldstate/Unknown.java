@@ -15,12 +15,6 @@ public class Unknown extends FieldState {
 	}
 
 	@Override
-	public void sweepRecursion() {
-		field.sweepHandle();
-		field.getValue().sweep();
-	}
-
-	@Override
 	public void mark() {
 		field.setState(new Covered(field));
 	}
