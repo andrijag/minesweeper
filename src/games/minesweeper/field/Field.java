@@ -14,19 +14,14 @@ import games.minesweeper.field.fieldvalue.Mine;
 
 public class Field {
 	private Minefield minefield;
-	private int i;
-	private int j;
 	private FieldValue value;
 	private FieldState state;
 	private List<Field> neighbours;
 
-	public Field(Minefield minefield, int i, int j) {
+	public Field(Minefield minefield) {
 		this.minefield = minefield;
-		this.i = i;
-		this.j = j;
 		value = new FieldNumber(this);
 		state = new Covered(this);
-		neighbours = new ArrayList<Field>();
 	}
 
 	public FieldValue getValue() {
@@ -37,8 +32,8 @@ public class Field {
 		this.state = state;
 	}
 
-	public void addNeighbour(Field neighbour) {
-		neighbours.add(neighbour);
+	public void setNeighbours(List<Field> neighbours) {
+		this.neighbours = neighbours;
 	}
 
 	public void sweep() {
