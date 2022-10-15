@@ -10,7 +10,6 @@ public class Covered extends FieldState {
 	@Override
 	public void sweep() {
 		field.sweepHandle();
-		field.getValue().sweep();
 	}
 
 	@Override

@@ -10,7 +10,6 @@ public class Unknown extends FieldState {
 	@Override
 	public void sweep() {
 		field.sweepHandle();
-		field.getValue().sweep();
 	}
 
 	@Override

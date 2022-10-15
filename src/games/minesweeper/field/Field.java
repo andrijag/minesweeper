@@ -58,6 +58,11 @@ public class Field {
 	public void flag() {
 		state = new Flagged(this);
 	}
+	
+	public void expose() {
+		uncover();
+		value.expose();
+	}
 
 	public int getNumber() {
 		return ((FieldNumber) value).getNumber();
@@ -76,7 +81,7 @@ public class Field {
 	}
 
 	public void sweepHandle() {
-		uncover();
+		expose();
 		if (!isMine() && getNumber() == 0)
 			for (Field neighbour : neighbours)
 				neighbour.sweep();
