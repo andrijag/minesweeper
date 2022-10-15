@@ -1,5 +1,8 @@
 package games.minesweeper.field;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.minesweeper.Minefield;
 import games.minesweeper.field.fieldstate.Covered;
 import games.minesweeper.field.fieldstate.FieldState;
@@ -15,6 +18,7 @@ public class Field {
 	private int j;
 	private FieldValue value;
 	private FieldState state;
+	private List<Field> neighbours;
 
 	public Field(Minefield minefield, int i, int j) {
 		this.minefield = minefield;
@@ -22,6 +26,7 @@ public class Field {
 		this.j = j;
 		value = new FieldNumber(this);
 		state = new Covered(this);
+		neighbours = new ArrayList<Field>();
 	}
 
 	public FieldValue getValue() {
@@ -30,6 +35,10 @@ public class Field {
 
 	public void setState(FieldState state) {
 		this.state = state;
+	}
+
+	public void addNeighbour(Field neighbour) {
+		neighbours.add(neighbour);
 	}
 
 	public void sweep() {
@@ -77,15 +86,38 @@ public class Field {
 	}
 
 	public void sweepHandle() {
-		minefield.sweepHandle(i, j);
+		uncover();
+		if (!isMine() && getNumber() == 0) {
+			for (Field neighbour : neighbours) {
+				neighbour.sweepRecursion();
+			}
+		}
 	}
 
 	public void chordHandle() {
-		minefield.chordHandle(i, j);
+		if (getNumber() == neighbourFlags()) {
+			for (Field neighbour : neighbours) {
+				neighbour.sweepRecursion();
+			}
+		}
+	}
+
+	public int neighbourFlags() {
+		int nFlags = 0;
+		for (Field neighbour : neighbours) {
+			if (neighbour.isFlagged()) {
+				nFlags++;
+			}
+		}
+		return nFlags;
 	}
 
 	public void incrementNeighbours() {
-		minefield.incrementNeighbours(i, j);
+		for (Field neighbour : neighbours) {
+			if (!neighbour.isMine()) {
+				neighbour.increment();
+			}
+		}
 	}
 
 	public void incrementNFlags() {
