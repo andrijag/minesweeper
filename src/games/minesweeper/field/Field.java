@@ -31,6 +31,10 @@ public class Field {
 		this.state = state;
 	}
 
+	public List<Field> getNeighbours() {
+		return neighbours;
+	}
+
 	public void setNeighbours(List<Field> neighbours) {
 		this.neighbours = neighbours;
 	}
@@ -58,7 +62,7 @@ public class Field {
 	public void flag() {
 		state = new Flagged(this);
 	}
-	
+
 	public void expose() {
 		uncover();
 		value.expose();
@@ -78,19 +82,6 @@ public class Field {
 
 	public boolean isFlagged() {
 		return state instanceof Flagged;
-	}
-
-	public void sweepHandle() {
-		expose();
-		if (!isMine() && getNumber() == 0)
-			for (Field neighbour : neighbours)
-				neighbour.sweep();
-	}
-
-	public void chordHandle() {
-		if (getNumber() == neighbourFlags())
-			for (Field neighbour : neighbours)
-				neighbour.sweep();
 	}
 
 	public int neighbourFlags() {

@@ -16,11 +16,6 @@ public class Uncovered extends FieldState {
 	}
 
 	@Override
-	public void chord() {
-		field.chordHandle();
-	}
-
-	@Override
 	public String toString() {
 		return field.getValue().toString();
 	}

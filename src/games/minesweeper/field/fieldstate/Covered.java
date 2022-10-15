@@ -8,11 +8,6 @@ public class Covered extends FieldState {
 	}
 
 	@Override
-	public void sweep() {
-		field.sweepHandle();
-	}
-
-	@Override
 	public void mark() {
 		field.setState(new Flagged(field));
 		field.incrementNFlags();

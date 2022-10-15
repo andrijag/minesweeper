@@ -8,11 +8,6 @@ public class Unknown extends FieldState {
 	}
 
 	@Override
-	public void sweep() {
-		field.sweepHandle();
-	}
-
-	@Override
 	public void mark() {
 		field.setState(new Covered(field));
 	}
