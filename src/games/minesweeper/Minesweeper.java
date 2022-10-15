@@ -97,9 +97,8 @@ public class Minesweeper {
 	}
 
 	public void validate() {
-		if (allUncovered()) {
+		if (allUncovered())
 			youWin();
-		}
 	}
 
 	private boolean allUncovered() {

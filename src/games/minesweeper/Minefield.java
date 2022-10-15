@@ -16,16 +16,14 @@ public class Minefield {
 		this.nRows = nRows;
 		this.nColumns = nColumns;
 		matrix = new Field[nRows][nColumns];
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nColumns; j++) {
+
+		for (int i = 0; i < nRows; i++)
+			for (int j = 0; j < nColumns; j++)
 				matrix[i][j] = new Field(this);
-			}
-		}
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nColumns; j++) {
+
+		for (int i = 0; i < nRows; i++)
+			for (int j = 0; j < nColumns; j++)
 				matrix[i][j].setNeighbours(getNeighbours(i, j));
-			}
-		}
 	}
 
 	public int getNRows() {
@@ -49,9 +47,8 @@ public class Minefield {
 		for (Vector vector : Vector.values()) {
 			int di = vector.getI();
 			int dj = vector.getJ();
-			if (contains(i + di, j + dj)) {
+			if (contains(i + di, j + dj))
 				neighbours.add(matrix[i + di][j + dj]);
-			}
 		}
 		return neighbours;
 	}
@@ -97,13 +94,10 @@ public class Minefield {
 	}
 
 	public void uncoverMines() {
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nColumns; j++) {
-				if (isMine(i, j)) {
+		for (int i = 0; i < nRows; i++)
+			for (int j = 0; j < nColumns; j++)
+				if (isMine(i, j))
 					uncover(i, j);
-				}
-			}
-		}
 	}
 
 	public void decrementToUncover() {
@@ -115,25 +109,20 @@ public class Minefield {
 	}
 
 	public void flagMines() {
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nColumns; j++) {
-				if (isMine(i, j)) {
+		for (int i = 0; i < nRows; i++)
+			for (int j = 0; j < nColumns; j++)
+				if (isMine(i, j))
 					flag(i, j);
-				}
-			}
-		}
 	}
 
 	@Override
 	public String toString() {
 		String str = new String();
 		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nColumns; j++) {
+			for (int j = 0; j < nColumns; j++)
 				str += matrix[i][j] + " ";
-			}
 			str += "\n";
 		}
 		return str;
 	}
-
 }

@@ -81,37 +81,29 @@ public class Field {
 
 	public void sweepHandle() {
 		uncover();
-		if (!isMine() && getNumber() == 0) {
-			for (Field neighbour : neighbours) {
+		if (!isMine() && getNumber() == 0)
+			for (Field neighbour : neighbours)
 				neighbour.sweepRecursion();
-			}
-		}
 	}
 
 	public void chordHandle() {
-		if (getNumber() == neighbourFlags()) {
-			for (Field neighbour : neighbours) {
+		if (getNumber() == neighbourFlags())
+			for (Field neighbour : neighbours)
 				neighbour.sweepRecursion();
-			}
-		}
 	}
 
 	public int neighbourFlags() {
 		int nFlags = 0;
-		for (Field neighbour : neighbours) {
-			if (neighbour.isFlagged()) {
+		for (Field neighbour : neighbours)
+			if (neighbour.isFlagged())
 				nFlags++;
-			}
-		}
 		return nFlags;
 	}
 
 	public void incrementNeighbours() {
-		for (Field neighbour : neighbours) {
-			if (!neighbour.isMine()) {
+		for (Field neighbour : neighbours)
+			if (!neighbour.isMine())
 				neighbour.increment();
-			}
-		}
 	}
 
 	public void incrementNFlags() {

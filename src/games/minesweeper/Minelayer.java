@@ -13,11 +13,9 @@ public class Minelayer {
 	public Minelayer(Minefield minefield, int nMines) {
 		this.nMines = nMines;
 		fields = new ArrayList<Field>();
-		for (int i = 0; i < minefield.getNRows(); i++) {
-			for (int j = 0; j < minefield.getNColumns(); j++) {
+		for (int i = 0; i < minefield.getNRows(); i++)
+			for (int j = 0; j < minefield.getNColumns(); j++)
 				fields.add(minefield.get(i, j));
-			}
-		}
 	}
 
 	public void layMines() {
