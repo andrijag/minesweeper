@@ -1,4 +1,4 @@
-package games.minesweeper.state;
+package games.minesweeper.gamestate;
 
 import games.minesweeper.Minesweeper;
 

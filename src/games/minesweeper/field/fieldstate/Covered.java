@@ -1,9 +1,9 @@
-package games.minesweeper.field.state;
+package games.minesweeper.field.fieldstate;
 
 import games.minesweeper.field.Field;
 
-public class Unknown extends FieldState {
-	public Unknown(Field field) {
+public class Covered extends FieldState {
+	public Covered(Field field) {
 		super(field);
 	}
 
@@ -22,7 +22,8 @@ public class Unknown extends FieldState {
 
 	@Override
 	public void mark() {
-		field.setState(new Covered(field));
+		field.setState(new Flagged(field));
+		field.incrementNFlags();
 	}
 
 	@Override
@@ -31,6 +32,6 @@ public class Unknown extends FieldState {
 
 	@Override
 	public String toString() {
-		return "?";
+		return ".";
 	}
 }

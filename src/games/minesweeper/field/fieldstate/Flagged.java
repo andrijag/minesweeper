@@ -1,9 +1,9 @@
-package games.minesweeper.field.state;
+package games.minesweeper.field.fieldstate;
 
 import games.minesweeper.field.Field;
 
-public class Uncovered extends FieldState {
-	public Uncovered(Field field) {
+public class Flagged extends FieldState {
+	public Flagged(Field field) {
 		super(field);
 	}
 	
@@ -17,16 +17,16 @@ public class Uncovered extends FieldState {
 
 	@Override
 	public void mark() {
+		field.setState(new Unknown(field));
+		field.decrementNFlags();
 	}
 
 	@Override
 	public void chord() {
-		field.chordHandle();
-		field.validate();
 	}
 
 	@Override
 	public String toString() {
-		return field.getValue().toString();
+		return ">";
 	}
 }

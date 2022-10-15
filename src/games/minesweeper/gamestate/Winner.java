@@ -1,9 +1,9 @@
-package games.minesweeper.state;
+package games.minesweeper.gamestate;
 
 import games.minesweeper.Minesweeper;
 
-public class GameOver extends GameState {
-	public GameOver(Minesweeper game) {
+public class Winner extends GameState {
+	public Winner(Minesweeper game) {
 		super(game);
 	}
 

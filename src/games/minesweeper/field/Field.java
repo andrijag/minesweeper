@@ -1,13 +1,13 @@
 package games.minesweeper.field;
 
 import games.minesweeper.Minefield;
-import games.minesweeper.field.state.Covered;
-import games.minesweeper.field.state.FieldState;
-import games.minesweeper.field.state.Flagged;
-import games.minesweeper.field.state.Uncovered;
-import games.minesweeper.field.value.FieldNumber;
-import games.minesweeper.field.value.FieldValue;
-import games.minesweeper.field.value.Mine;
+import games.minesweeper.field.fieldstate.Covered;
+import games.minesweeper.field.fieldstate.FieldState;
+import games.minesweeper.field.fieldstate.Flagged;
+import games.minesweeper.field.fieldstate.Uncovered;
+import games.minesweeper.field.fieldvalue.FieldNumber;
+import games.minesweeper.field.fieldvalue.FieldValue;
+import games.minesweeper.field.fieldvalue.Mine;
 
 public class Field {
 	private Minefield minefield;

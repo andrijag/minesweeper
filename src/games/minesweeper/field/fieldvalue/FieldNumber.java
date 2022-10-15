@@ -1,4 +1,4 @@
-package games.minesweeper.field.value;
+package games.minesweeper.field.fieldvalue;
 
 import games.minesweeper.field.Field;
 

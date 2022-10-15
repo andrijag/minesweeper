@@ -1,9 +1,9 @@
 package games.minesweeper;
 
-import games.minesweeper.state.FirstMove;
-import games.minesweeper.state.GameOver;
-import games.minesweeper.state.GameState;
-import games.minesweeper.state.Winner;
+import games.minesweeper.gamestate.FirstMove;
+import games.minesweeper.gamestate.GameOver;
+import games.minesweeper.gamestate.GameState;
+import games.minesweeper.gamestate.Winner;
 import games.minesweeper.timer.Timer;
 
 public class Minesweeper {
