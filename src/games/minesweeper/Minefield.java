@@ -1,5 +1,8 @@
 package games.minesweeper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.minesweeper.field.Field;
 
 public class Minefield {
@@ -15,18 +18,12 @@ public class Minefield {
 		matrix = new Field[nRows][nColumns];
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
-				matrix[i][j] = new Field(this, i, j);
+				matrix[i][j] = new Field(this);
 			}
 		}
 		for (int i = 0; i < nRows; i++) {
 			for (int j = 0; j < nColumns; j++) {
-				for (Vector vector : Vector.values()) {
-					int di = vector.getI();
-					int dj = vector.getJ();
-					if (contains(i + di, j + dj)) {
-						matrix[i][j].addNeighbour(get(i + di, j + dj));
-					}
-				}
+				matrix[i][j].setNeighbours(getNeighbours(i, j));
 			}
 		}
 	}
@@ -45,6 +42,18 @@ public class Minefield {
 
 	public boolean contains(int i, int j) {
 		return (0 <= i && i < nRows) && (0 <= j && j < nColumns);
+	}
+
+	public List<Field> getNeighbours(int i, int j) {
+		List<Field> neighbours = new ArrayList<Field>();
+		for (Vector vector : Vector.values()) {
+			int di = vector.getI();
+			int dj = vector.getJ();
+			if (contains(i + di, j + dj)) {
+				neighbours.add(matrix[i + di][j + dj]);
+			}
+		}
+		return neighbours;
 	}
 
 	public void sweep(int i, int j) {
