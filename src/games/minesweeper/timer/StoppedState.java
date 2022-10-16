@@ -1,15 +1,14 @@
 package games.minesweeper.timer;
 
-public class Stopped extends TimerState {
-	public Stopped(Timer timer) {
+public class StoppedState extends TimerState {
+	public StoppedState(Timer timer) {
 		super(timer);
 	}
 
 	@Override
 	public void start() {
 		timer.setStartTime(System.currentTimeMillis());
-		timer.setState(new Running(timer));
-
+		timer.setState(new RunningState(timer));
 	}
 
 	@Override

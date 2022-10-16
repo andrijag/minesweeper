@@ -8,7 +8,7 @@ public class Timer {
 	public Timer() {
 		startTime = 0;
 		elapsedTime = 0;
-		state = new Stopped(this);
+		state = new StoppedState(this);
 	}
 
 	public long getStartTime() {
@@ -42,7 +42,7 @@ public class Timer {
 	public void reset() {
 		startTime = 0;
 		elapsedTime = 0;
-		state = new Stopped(this);
+		state = new StoppedState(this);
 	}
 
 	public long getTime() {
