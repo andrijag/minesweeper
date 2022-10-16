@@ -1,8 +1,8 @@
 package main.java.games.minesweeper.stopwatch;
 
 public class StoppedState extends StopwatchState {
-	public StoppedState(Stopwatch timer) {
-		super(timer);
+	public StoppedState(Stopwatch stopwatch) {
+		super(stopwatch);
 	}
 
 	@Override
