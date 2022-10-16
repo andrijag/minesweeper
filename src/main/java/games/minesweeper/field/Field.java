@@ -1,15 +1,15 @@
-package games.minesweeper.field;
+package main.java.games.minesweeper.field;
 
 import java.util.List;
 
-import games.minesweeper.Minefield;
-import games.minesweeper.field.fieldstate.Covered;
-import games.minesweeper.field.fieldstate.FieldState;
-import games.minesweeper.field.fieldstate.Flagged;
-import games.minesweeper.field.fieldstate.Uncovered;
-import games.minesweeper.field.fieldvalue.FieldNumber;
-import games.minesweeper.field.fieldvalue.FieldValue;
-import games.minesweeper.field.fieldvalue.Mine;
+import main.java.games.minesweeper.Minefield;
+import main.java.games.minesweeper.field.fieldstate.Covered;
+import main.java.games.minesweeper.field.fieldstate.FieldState;
+import main.java.games.minesweeper.field.fieldstate.Flagged;
+import main.java.games.minesweeper.field.fieldstate.Uncovered;
+import main.java.games.minesweeper.field.fieldvalue.FieldNumber;
+import main.java.games.minesweeper.field.fieldvalue.FieldValue;
+import main.java.games.minesweeper.field.fieldvalue.Mine;
 
 public class Field {
 	private Minefield minefield;

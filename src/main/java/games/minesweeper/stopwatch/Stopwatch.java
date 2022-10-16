@@ -1,4 +1,4 @@
-package games.minesweeper.stopwatch;
+package main.java.games.minesweeper.stopwatch;
 
 public class Stopwatch {
 	private long startTime;

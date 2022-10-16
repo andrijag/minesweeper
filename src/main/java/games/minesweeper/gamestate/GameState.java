@@ -1,6 +1,6 @@
-package games.minesweeper.gamestate;
+package main.java.games.minesweeper.gamestate;
 
-import games.minesweeper.Minesweeper;
+import main.java.games.minesweeper.Minesweeper;
 
 public abstract class GameState {
 	protected Minesweeper game;

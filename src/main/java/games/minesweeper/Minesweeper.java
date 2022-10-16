@@ -1,16 +1,15 @@
-package games.minesweeper;
+package main.java.games.minesweeper;
 
-import games.minesweeper.gamestate.FirstMove;
-import games.minesweeper.gamestate.GameOver;
-import games.minesweeper.gamestate.GameState;
-import games.minesweeper.gamestate.Winner;
-import games.minesweeper.stopwatch.Stopwatch;
+import main.java.games.minesweeper.gamestate.FirstMove;
+import main.java.games.minesweeper.gamestate.GameOver;
+import main.java.games.minesweeper.gamestate.GameState;
+import main.java.games.minesweeper.gamestate.Winner;
+import main.java.games.minesweeper.stopwatch.Stopwatch;
 
 public class Minesweeper {
 	private int nRows;
 	private int nColumns;
 	private int nMines;
-	private int nFlags;
 	private int toUncover;
 	private Stopwatch stopwatch;
 	private Minefield minefield;
@@ -21,7 +20,6 @@ public class Minesweeper {
 		this.nRows = nRows;
 		this.nColumns = nColumns;
 		this.nMines = nMines;
-		nFlags = 0;
 		toUncover = nRows * nColumns - nMines;
 		stopwatch = new Stopwatch();
 		minefield = new Minefield(this, nRows, nColumns);
@@ -44,13 +42,17 @@ public class Minesweeper {
 	public void setState(GameState state) {
 		this.state = state;
 	}
+	
+	public int getNFlags() {
+		return minefield.getNFlags();
+	}
 
 	public long getTime() {
 		return stopwatch.getTime();
 	}
 
 	public int getMinecount() {
-		return nMines - nFlags;
+		return nMines - getNFlags();
 	}
 
 	public void sweep(int i, int j) {
@@ -66,20 +68,11 @@ public class Minesweeper {
 	}
 
 	public void restart() {
-		nFlags = 0;
 		toUncover = nRows * nColumns - nMines;
 		stopwatch.reset();
 		minefield = new Minefield(this, nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		state = new FirstMove(this);
-	}
-
-	public void incrementNFlags() {
-		nFlags++;
-	}
-
-	public void decrementNFlags() {
-		nFlags--;
 	}
 
 	public void gameOver() {
@@ -108,7 +101,6 @@ public class Minesweeper {
 	private void youWin() {
 		stopwatch.stop();
 		flagMines();
-		nFlags = nMines;
 		state = new Winner(this);
 	}
 

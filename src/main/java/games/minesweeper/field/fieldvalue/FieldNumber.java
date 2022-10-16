@@ -1,6 +1,6 @@
-package games.minesweeper.field.fieldvalue;
+package main.java.games.minesweeper.field.fieldvalue;
 
-import games.minesweeper.field.Field;
+import main.java.games.minesweeper.field.Field;
 
 public class FieldNumber extends FieldValue {
 	private int number;

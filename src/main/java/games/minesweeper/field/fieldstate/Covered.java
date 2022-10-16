@@ -1,6 +1,6 @@
-package games.minesweeper.field.fieldstate;
+package main.java.games.minesweeper.field.fieldstate;
 
-import games.minesweeper.field.Field;
+import main.java.games.minesweeper.field.Field;
 
 public class Covered extends FieldState {
 	public Covered(Field field) {

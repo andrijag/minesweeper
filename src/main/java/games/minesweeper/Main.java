@@ -1,4 +1,4 @@
-package games.minesweeper;
+package main.java.games.minesweeper;
 
 public class Main {
 	public static void main(String args[]) {

@@ -1,10 +1,10 @@
-package games.minesweeper;
+package main.java.games.minesweeper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import games.minesweeper.field.Field;
+import main.java.games.minesweeper.field.Field;
 
 public class Minelayer {
 	private int nMines;

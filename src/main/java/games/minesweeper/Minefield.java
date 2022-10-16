@@ -1,20 +1,22 @@
-package games.minesweeper;
+package main.java.games.minesweeper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import games.minesweeper.field.Field;
+import main.java.games.minesweeper.field.Field;
 
 public class Minefield {
 	private Minesweeper game;
 	private int nRows;
 	private int nColumns;
+	private int nFlags;
 	private Field[][] matrix;
 
 	public Minefield(Minesweeper game, int nRows, int nColumns) {
 		this.game = game;
 		this.nRows = nRows;
 		this.nColumns = nColumns;
+		nFlags = 0;
 		matrix = new Field[nRows][nColumns];
 
 		for (int i = 0; i < nRows; i++)
@@ -32,6 +34,10 @@ public class Minefield {
 
 	public int getNColumns() {
 		return nColumns;
+	}
+	
+	public int getNFlags() {
+		return nFlags;
 	}
 
 	public Field get(int i, int j) {
@@ -78,11 +84,11 @@ public class Minefield {
 	}
 
 	public void incrementNFlags() {
-		game.incrementNFlags();
+		nFlags++;
 	}
 
 	public void decrementNFlags() {
-		game.decrementNFlags();
+		nFlags--;
 	}
 
 	public void detonate() {
