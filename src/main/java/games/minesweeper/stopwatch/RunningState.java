@@ -11,7 +11,7 @@ public class RunningState extends StopwatchState {
 
 	@Override
 	public void stop() {
-		stopwatch.setElapsedTime(stopwatch.getElapsedTime() + System.currentTimeMillis() - stopwatch.getStartTime());
+		stopwatch.setElapsedTime(getTime());
 		stopwatch.setState(new StoppedState(stopwatch));
 	}
 
