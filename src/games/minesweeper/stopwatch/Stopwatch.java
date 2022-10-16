@@ -1,11 +1,11 @@
-package games.minesweeper.timer;
+package games.minesweeper.stopwatch;
 
-public class Timer {
+public class Stopwatch {
 	private long startTime;
 	private long elapsedTime;
-	private TimerState state;
+	private StopwatchState state;
 
-	public Timer() {
+	public Stopwatch() {
 		startTime = 0;
 		elapsedTime = 0;
 		state = new StoppedState(this);
@@ -27,7 +27,7 @@ public class Timer {
 		this.elapsedTime = elapsedTime;
 	}
 
-	public void setState(TimerState state) {
+	public void setState(StopwatchState state) {
 		this.state = state;
 	}
 
