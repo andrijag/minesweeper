@@ -2,25 +2,28 @@ package main.java.games.minesweeper.gamestate;
 
 import main.java.games.minesweeper.Minesweeper;
 
-public class Playing extends GameState {
-	public Playing(Minesweeper game) {
+public class FirstMoveState extends GameState {
+	public FirstMoveState(Minesweeper game) {
 		super(game);
 	}
 
 	@Override
 	public void sweep(int i, int j) {
-		game.getMinefield().sweep(i, j);
+		game.getTimer().start();
+		game.getMinelayer().remove(game.getMinefield().get(i, j));
+		game.getMinelayer().layMines();
+		game.setState(new PlayingState(game));
+		game.sweep(i, j);
 		game.validate();
 	}
 
 	@Override
 	public void mark(int i, int j) {
+		game.getTimer().start();
 		game.getMinefield().mark(i, j);
 	}
 
 	@Override
 	public void chord(int i, int j) {
-		game.getMinefield().chord(i, j);
-		game.validate();
 	}
 }
