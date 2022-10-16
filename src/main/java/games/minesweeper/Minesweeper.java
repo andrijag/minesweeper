@@ -1,9 +1,9 @@
 package main.java.games.minesweeper;
 
-import main.java.games.minesweeper.gamestate.FirstMove;
-import main.java.games.minesweeper.gamestate.GameOver;
+import main.java.games.minesweeper.gamestate.FirstMoveState;
+import main.java.games.minesweeper.gamestate.GameOverState;
 import main.java.games.minesweeper.gamestate.GameState;
-import main.java.games.minesweeper.gamestate.Winner;
+import main.java.games.minesweeper.gamestate.WinnerState;
 import main.java.games.minesweeper.stopwatch.Stopwatch;
 
 public class Minesweeper {
@@ -24,10 +24,10 @@ public class Minesweeper {
 		stopwatch = new Stopwatch();
 		minefield = new Minefield(this, nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
-		state = new FirstMove(this);
+		state = new FirstMoveState(this);
 	}
 
-	public Stopwatch getTimer() {
+	public Stopwatch getStopwatch() {
 		return stopwatch;
 	}
 
@@ -72,13 +72,13 @@ public class Minesweeper {
 		stopwatch.reset();
 		minefield = new Minefield(this, nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
-		state = new FirstMove(this);
+		state = new FirstMoveState(this);
 	}
 
 	public void gameOver() {
 		stopwatch.stop();
 		uncoverMines();
-		state = new GameOver(this);
+		state = new GameOverState(this);
 	}
 
 	private void uncoverMines() {
@@ -101,7 +101,7 @@ public class Minesweeper {
 	private void youWin() {
 		stopwatch.stop();
 		flagMines();
-		state = new Winner(this);
+		state = new WinnerState(this);
 	}
 
 	private void flagMines() {

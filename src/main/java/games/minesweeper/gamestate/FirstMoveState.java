@@ -9,7 +9,7 @@ public class FirstMoveState extends GameState {
 
 	@Override
 	public void sweep(int i, int j) {
-		game.getTimer().start();
+		game.getStopwatch().start();
 		game.getMinelayer().remove(game.getMinefield().get(i, j));
 		game.getMinelayer().layMines();
 		game.setState(new PlayingState(game));
@@ -19,7 +19,7 @@ public class FirstMoveState extends GameState {
 
 	@Override
 	public void mark(int i, int j) {
-		game.getTimer().start();
+		game.getStopwatch().start();
 		game.getMinefield().mark(i, j);
 	}
 
