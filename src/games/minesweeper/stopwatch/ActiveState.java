@@ -1,7 +1,7 @@
 package games.minesweeper.timer;
 
-public class Running extends TimerState {
-	public Running(Timer timer) {
+public class RunningState extends TimerState {
+	public RunningState(Timer timer) {
 		super(timer);
 	}
 
@@ -12,7 +12,7 @@ public class Running extends TimerState {
 	@Override
 	public void stop() {
 		timer.setElapsedTime(timer.getElapsedTime() + System.currentTimeMillis() - timer.getStartTime());
-		timer.setState(new Stopped(timer));
+		timer.setState(new StoppedState(timer));
 	}
 
 	@Override
