@@ -8,7 +8,7 @@ public class Mine extends FieldValue {
 	}
 
 	@Override
-	public void expose() {
+	public void uncover() {
 		field.detonate();
 	}
 

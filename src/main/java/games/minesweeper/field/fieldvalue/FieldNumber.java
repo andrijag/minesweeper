@@ -19,7 +19,7 @@ public class FieldNumber extends FieldValue {
 	}
 
 	@Override
-	public void expose() {
+	public void uncover() {
 		field.decrementToUncover();
 	}
 

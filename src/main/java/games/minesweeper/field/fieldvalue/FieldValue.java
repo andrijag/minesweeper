@@ -9,5 +9,5 @@ public abstract class FieldValue {
 		this.field = field;
 	}
 
-	public abstract void expose();
+	public abstract void uncover();
 }

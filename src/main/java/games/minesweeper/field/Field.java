@@ -57,15 +57,11 @@ public class Field {
 
 	public void uncover() {
 		state = new Uncovered(this);
+		value.uncover();
 	}
 
 	public void flag() {
 		state = new Flagged(this);
-	}
-
-	public void expose() {
-		uncover();
-		value.expose();
 	}
 
 	public int getNumber() {
