@@ -33,7 +33,7 @@ public class Minefield {
 	public int getNumberOfColumns() {
 		return numberOfColumns;
 	}
-	
+
 	public int getNumberOfFlags() {
 		return numberOfFlags;
 	}
@@ -69,11 +69,11 @@ public class Minefield {
 		matrix[i][j].chord();
 	}
 
-	public void incrementNFlags() {
+	public void incrementNumberOfFlags() {
 		numberOfFlags++;
 	}
 
-	public void decrementNFlags() {
+	public void decrementNumberOfFlags() {
 		numberOfFlags--;
 	}
 
