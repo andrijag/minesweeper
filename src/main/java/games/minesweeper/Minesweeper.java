@@ -10,7 +10,6 @@ public class Minesweeper {
 	private int numberOfRows;
 	private int numberOfColumns;
 	private int numberOfMines;
-	private int toUncover;
 	private Stopwatch stopwatch;
 	private Minefield minefield;
 	private Minelayer minelayer;
@@ -20,7 +19,6 @@ public class Minesweeper {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
 		this.numberOfMines = numberOfMines;
-		toUncover = numberOfRows * numberOfColumns - numberOfMines;
 		stopwatch = new Stopwatch();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield, numberOfMines);
@@ -68,7 +66,6 @@ public class Minesweeper {
 	}
 
 	public void restart() {
-		toUncover = numberOfRows * numberOfColumns - numberOfMines;
 		stopwatch.reset();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield, numberOfMines);
@@ -85,17 +82,7 @@ public class Minesweeper {
 		minefield.uncoverMines();
 	}
 
-	public void decrementToUncover() {
-		toUncover--;
-	}
-
 	public void validate() {
-		if (allUncovered())
-			youWin();
-	}
-
-	private boolean allUncovered() {
-		return toUncover == 0;
 	}
 
 	private void youWin() {
