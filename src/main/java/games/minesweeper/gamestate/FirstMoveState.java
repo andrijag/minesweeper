@@ -14,7 +14,6 @@ public class FirstMoveState extends GameState {
 		game.getMinelayer().layMines();
 		game.setState(new PlayingState(game));
 		game.sweep(i, j);
-		game.validate();
 	}
 
 	@Override
