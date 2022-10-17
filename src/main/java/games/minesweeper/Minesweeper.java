@@ -22,7 +22,7 @@ public class Minesweeper {
 		this.nMines = nMines;
 		toUncover = nRows * nColumns - nMines;
 		stopwatch = new Stopwatch();
-		minefield = new Minefield(this, nRows, nColumns);
+		minefield = new Minefield(nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		state = new FirstMoveState(this);
 	}
@@ -42,7 +42,7 @@ public class Minesweeper {
 	public void setState(GameState state) {
 		this.state = state;
 	}
-	
+
 	public int getNFlags() {
 		return minefield.getNFlags();
 	}
@@ -70,7 +70,7 @@ public class Minesweeper {
 	public void restart() {
 		toUncover = nRows * nColumns - nMines;
 		stopwatch.reset();
-		minefield = new Minefield(this, nRows, nColumns);
+		minefield = new Minefield(nRows, nColumns);
 		minelayer = new Minelayer(minefield, nMines);
 		state = new FirstMoveState(this);
 	}

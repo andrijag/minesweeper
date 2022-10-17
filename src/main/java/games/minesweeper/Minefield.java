@@ -6,14 +6,12 @@ import java.util.List;
 import main.java.games.minesweeper.field.Field;
 
 public class Minefield {
-	private Minesweeper game;
 	private int nRows;
 	private int nColumns;
 	private int nFlags;
 	private Field[][] matrix;
 
-	public Minefield(Minesweeper game, int nRows, int nColumns) {
-		this.game = game;
+	public Minefield(int nRows, int nColumns) {
 		this.nRows = nRows;
 		this.nColumns = nColumns;
 		nFlags = 0;
@@ -92,7 +90,6 @@ public class Minefield {
 	}
 
 	public void detonate() {
-		game.gameOver();
 	}
 
 	public void uncoverMines() {
@@ -103,7 +100,6 @@ public class Minefield {
 	}
 
 	public void decrementToUncover() {
-		game.decrementToUncover();
 	}
 
 	public void flagMines() {
