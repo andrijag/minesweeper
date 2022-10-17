@@ -69,18 +69,6 @@ public class Minefield {
 		matrix[i][j].chord();
 	}
 
-	private void uncover(int i, int j) {
-		matrix[i][j].uncover();
-	}
-
-	private void flag(int i, int j) {
-		matrix[i][j].flag();
-	}
-
-	private boolean isMine(int i, int j) {
-		return matrix[i][j].isMine();
-	}
-
 	public void incrementNFlags() {
 		nFlags++;
 	}
@@ -93,20 +81,12 @@ public class Minefield {
 	}
 
 	public void uncoverMines() {
-		for (int i = 0; i < nRows; i++)
-			for (int j = 0; j < nColumns; j++)
-				if (isMine(i, j))
-					uncover(i, j);
 	}
 
 	public void decrementToUncover() {
 	}
 
 	public void flagMines() {
-		for (int i = 0; i < nRows; i++)
-			for (int j = 0; j < nColumns; j++)
-				if (isMine(i, j))
-					flag(i, j);
 	}
 
 	@Override
