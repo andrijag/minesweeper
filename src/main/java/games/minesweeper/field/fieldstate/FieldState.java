@@ -16,11 +16,11 @@ public abstract class FieldState {
 				neighbour.sweep();
 	}
 
-	public abstract void mark();
-
 	public void chord() {
 		if (field.getNumber() == field.neighbourFlags())
 			for (Field neighbour : field.getNeighbours())
 				neighbour.sweep();
 	}
+
+	public abstract void mark();
 }

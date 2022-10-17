@@ -8,13 +8,13 @@ public class Covered extends FieldState {
 	}
 
 	@Override
-	public void mark() {
-		field.setState(new Flagged(field));
-		field.incrementNumberOfFlags();
+	public void chord() {
 	}
 
 	@Override
-	public void chord() {
+	public void mark() {
+		field.setState(new Flagged(field));
+		field.incrementNumberOfFlags();
 	}
 
 	@Override

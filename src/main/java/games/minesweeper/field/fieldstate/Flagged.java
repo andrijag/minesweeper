@@ -6,19 +6,19 @@ public class Flagged extends FieldState {
 	public Flagged(Field field) {
 		super(field);
 	}
-	
+
 	@Override
 	public void sweep() {
+	}
+
+	@Override
+	public void chord() {
 	}
 
 	@Override
 	public void mark() {
 		field.setState(new Unknown(field));
 		field.decrementNumberOfFlags();
-	}
-
-	@Override
-	public void chord() {
 	}
 
 	@Override

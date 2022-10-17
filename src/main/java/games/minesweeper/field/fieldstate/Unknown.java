@@ -8,12 +8,12 @@ public class Unknown extends FieldState {
 	}
 
 	@Override
-	public void mark() {
-		field.setState(new Covered(field));
+	public void chord() {
 	}
 
 	@Override
-	public void chord() {
+	public void mark() {
+		field.setState(new Covered(field));
 	}
 
 	@Override
