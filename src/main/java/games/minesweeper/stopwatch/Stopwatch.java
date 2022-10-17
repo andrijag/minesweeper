@@ -15,12 +15,12 @@ public class Stopwatch {
 		return startTime;
 	}
 
-	public long getElapsedTime() {
-		return elapsedTime;
-	}
-
 	public void setStartTime(long startTime) {
 		this.startTime = startTime;
+	}
+
+	public long getElapsedTime() {
+		return elapsedTime;
 	}
 
 	public void setElapsedTime(long elapsedTime) {
