@@ -6,36 +6,36 @@ import java.util.List;
 import main.java.games.minesweeper.field.Field;
 
 public class Minefield {
-	private int nRows;
-	private int nColumns;
-	private int nFlags;
+	private int numberOfRows;
+	private int numberOfColumns;
+	private int numberOfFlags;
 	private Field[][] matrix;
 
-	public Minefield(int nRows, int nColumns) {
-		this.nRows = nRows;
-		this.nColumns = nColumns;
-		nFlags = 0;
-		matrix = new Field[nRows][nColumns];
+	public Minefield(int numberOfRows, int numberOfColumns) {
+		this.numberOfRows = numberOfRows;
+		this.numberOfColumns = numberOfColumns;
+		numberOfFlags = 0;
+		matrix = new Field[numberOfRows][numberOfColumns];
 
-		for (int i = 0; i < nRows; i++)
-			for (int j = 0; j < nColumns; j++)
+		for (int i = 0; i < numberOfRows; i++)
+			for (int j = 0; j < numberOfColumns; j++)
 				matrix[i][j] = new Field(this);
 
-		for (int i = 0; i < nRows; i++)
-			for (int j = 0; j < nColumns; j++)
+		for (int i = 0; i < numberOfRows; i++)
+			for (int j = 0; j < numberOfColumns; j++)
 				matrix[i][j].setNeighbours(getNeighbours(i, j));
 	}
 
-	public int getNRows() {
-		return nRows;
+	public int getNumberOfRows() {
+		return numberOfRows;
 	}
 
-	public int getNColumns() {
-		return nColumns;
+	public int getNumberOfColumns() {
+		return numberOfColumns;
 	}
 	
-	public int getNFlags() {
-		return nFlags;
+	public int getNumberOfFlags() {
+		return numberOfFlags;
 	}
 
 	public Field get(int i, int j) {
@@ -43,7 +43,7 @@ public class Minefield {
 	}
 
 	public boolean contains(int i, int j) {
-		return (0 <= i && i < nRows) && (0 <= j && j < nColumns);
+		return (0 <= i && i < numberOfRows) && (0 <= j && j < numberOfColumns);
 	}
 
 	public List<Field> getNeighbours(int i, int j) {
@@ -70,11 +70,11 @@ public class Minefield {
 	}
 
 	public void incrementNFlags() {
-		nFlags++;
+		numberOfFlags++;
 	}
 
 	public void decrementNFlags() {
-		nFlags--;
+		numberOfFlags--;
 	}
 
 	public void detonate() {
@@ -92,8 +92,8 @@ public class Minefield {
 	@Override
 	public String toString() {
 		String str = new String();
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nColumns; j++)
+		for (int i = 0; i < numberOfRows; i++) {
+			for (int j = 0; j < numberOfColumns; j++)
 				str += matrix[i][j] + " ";
 			str += "\n";
 		}

@@ -7,23 +7,23 @@ import main.java.games.minesweeper.gamestate.WinnerState;
 import main.java.games.minesweeper.stopwatch.Stopwatch;
 
 public class Minesweeper {
-	private int nRows;
-	private int nColumns;
-	private int nMines;
+	private int numberOfRows;
+	private int numberOfColumns;
+	private int numberOfMines;
 	private int toUncover;
 	private Stopwatch stopwatch;
 	private Minefield minefield;
 	private Minelayer minelayer;
 	private GameState state;
 
-	public Minesweeper(int nRows, int nColumns, int nMines) {
-		this.nRows = nRows;
-		this.nColumns = nColumns;
-		this.nMines = nMines;
-		toUncover = nRows * nColumns - nMines;
+	public Minesweeper(int numberOfRows, int numberOfColumns, int numberOfMines) {
+		this.numberOfRows = numberOfRows;
+		this.numberOfColumns = numberOfColumns;
+		this.numberOfMines = numberOfMines;
+		toUncover = numberOfRows * numberOfColumns - numberOfMines;
 		stopwatch = new Stopwatch();
-		minefield = new Minefield(nRows, nColumns);
-		minelayer = new Minelayer(minefield, nMines);
+		minefield = new Minefield(numberOfRows, numberOfColumns);
+		minelayer = new Minelayer(minefield, numberOfMines);
 		state = new FirstMoveState(this);
 	}
 
@@ -43,8 +43,8 @@ public class Minesweeper {
 		this.state = state;
 	}
 
-	public int getNFlags() {
-		return minefield.getNFlags();
+	public int getNumberOfFlags() {
+		return minefield.getNumberOfFlags();
 	}
 
 	public long getTime() {
@@ -52,7 +52,7 @@ public class Minesweeper {
 	}
 
 	public int getMinecount() {
-		return nMines - getNFlags();
+		return numberOfMines - getNumberOfFlags();
 	}
 
 	public void sweep(int i, int j) {
@@ -68,10 +68,10 @@ public class Minesweeper {
 	}
 
 	public void restart() {
-		toUncover = nRows * nColumns - nMines;
+		toUncover = numberOfRows * numberOfColumns - numberOfMines;
 		stopwatch.reset();
-		minefield = new Minefield(nRows, nColumns);
-		minelayer = new Minelayer(minefield, nMines);
+		minefield = new Minefield(numberOfRows, numberOfColumns);
+		minelayer = new Minelayer(minefield, numberOfMines);
 		state = new FirstMoveState(this);
 	}
 
