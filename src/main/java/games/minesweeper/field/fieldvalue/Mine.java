@@ -1,6 +1,6 @@
-package games.minesweeper.field.fieldvalue;
+package main.java.games.minesweeper.field.fieldvalue;
 
-import games.minesweeper.field.Field;
+import main.java.games.minesweeper.field.Field;
 
 public class Mine extends FieldValue {
 	public Mine(Field field) {
@@ -8,7 +8,7 @@ public class Mine extends FieldValue {
 	}
 
 	@Override
-	public void sweep() {
+	public void uncover() {
 		field.detonate();
 	}
 

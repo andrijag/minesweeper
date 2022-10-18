@@ -1,15 +1,16 @@
-package games.minesweeper.gamestate;
+package main.java.games.minesweeper.gamestate;
 
-import games.minesweeper.Minesweeper;
+import main.java.games.minesweeper.Minesweeper;
 
-public class Playing extends GameState {
-	public Playing(Minesweeper game) {
+public class PlayingState extends GameState {
+	public PlayingState(Minesweeper game) {
 		super(game);
 	}
 
 	@Override
 	public void sweep(int i, int j) {
 		game.getMinefield().sweep(i, j);
+		game.validate();
 	}
 
 	@Override
@@ -20,5 +21,6 @@ public class Playing extends GameState {
 	@Override
 	public void chord(int i, int j) {
 		game.getMinefield().chord(i, j);
+		game.validate();
 	}
 }

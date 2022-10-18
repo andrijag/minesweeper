@@ -1,15 +1,15 @@
-package games.minesweeper.field;
+package main.java.games.minesweeper.field;
 
 import java.util.List;
 
-import games.minesweeper.Minefield;
-import games.minesweeper.field.fieldstate.Covered;
-import games.minesweeper.field.fieldstate.FieldState;
-import games.minesweeper.field.fieldstate.Flagged;
-import games.minesweeper.field.fieldstate.Uncovered;
-import games.minesweeper.field.fieldvalue.FieldNumber;
-import games.minesweeper.field.fieldvalue.FieldValue;
-import games.minesweeper.field.fieldvalue.Mine;
+import main.java.games.minesweeper.Minefield;
+import main.java.games.minesweeper.field.fieldstate.Covered;
+import main.java.games.minesweeper.field.fieldstate.FieldState;
+import main.java.games.minesweeper.field.fieldstate.Flagged;
+import main.java.games.minesweeper.field.fieldstate.Uncovered;
+import main.java.games.minesweeper.field.fieldvalue.FieldNumber;
+import main.java.games.minesweeper.field.fieldvalue.FieldValue;
+import main.java.games.minesweeper.field.fieldvalue.Mine;
 
 public class Field {
 	private Minefield minefield;
@@ -31,16 +31,16 @@ public class Field {
 		this.state = state;
 	}
 
+	public List<Field> getNeighbours() {
+		return neighbours;
+	}
+
 	public void setNeighbours(List<Field> neighbours) {
 		this.neighbours = neighbours;
 	}
 
 	public void sweep() {
 		state.sweep();
-	}
-
-	public void sweepRecursion() {
-		state.sweepRecursion();
 	}
 
 	public void mark() {
@@ -57,6 +57,7 @@ public class Field {
 
 	public void uncover() {
 		state = new Uncovered(this);
+		value.uncover();
 	}
 
 	public void flag() {
@@ -79,19 +80,6 @@ public class Field {
 		return state instanceof Flagged;
 	}
 
-	public void sweepHandle() {
-		uncover();
-		if (!isMine() && getNumber() == 0)
-			for (Field neighbour : neighbours)
-				neighbour.sweepRecursion();
-	}
-
-	public void chordHandle() {
-		if (getNumber() == neighbourFlags())
-			for (Field neighbour : neighbours)
-				neighbour.sweepRecursion();
-	}
-
 	public int neighbourFlags() {
 		int nFlags = 0;
 		for (Field neighbour : neighbours)
@@ -106,12 +94,12 @@ public class Field {
 				neighbour.increment();
 	}
 
-	public void incrementNFlags() {
-		minefield.incrementNFlags();
+	public void incrementNumberOfFlags() {
+		minefield.incrementNumberOfFlags();
 	}
 
-	public void decrementNFlags() {
-		minefield.decrementNFlags();
+	public void decrementNumberOfFlags() {
+		minefield.decrementNumberOfFlags();
 	}
 
 	public void detonate() {
@@ -120,10 +108,6 @@ public class Field {
 
 	public void decrementToUncover() {
 		minefield.decrementToUncover();
-	}
-
-	public void validate() {
-		minefield.validate();
 	}
 
 	@Override

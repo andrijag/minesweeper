@@ -1,24 +1,24 @@
-package games.minesweeper.gamestate;
+package main.java.games.minesweeper.gamestate;
 
-import games.minesweeper.Minesweeper;
+import main.java.games.minesweeper.Minesweeper;
 
-public class FirstMove extends GameState {
-	public FirstMove(Minesweeper game) {
+public class FirstMoveState extends GameState {
+	public FirstMoveState(Minesweeper game) {
 		super(game);
 	}
 
 	@Override
 	public void sweep(int i, int j) {
-		game.getTimer().start();
+		game.getStopwatch().start();
 		game.getMinelayer().remove(game.getMinefield().get(i, j));
 		game.getMinelayer().layMines();
-		game.setState(new Playing(game));
+		game.setState(new PlayingState(game));
 		game.sweep(i, j);
 	}
 
 	@Override
 	public void mark(int i, int j) {
-		game.getTimer().start();
+		game.getStopwatch().start();
 		game.getMinefield().mark(i, j);
 	}
 
