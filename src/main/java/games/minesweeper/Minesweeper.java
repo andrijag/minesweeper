@@ -73,11 +73,10 @@ public class Minesweeper {
 	}
 
 	public void validate() {
-		if (minefield.isDetonated()) {
+		if (minefield.isDetonated())
 			youLose();
-		} else if (minefield.isCleared()) {
+		else if (minefield.isCleared())
 			youWin();
-		}
 	}
 
 	private void youLose() {
