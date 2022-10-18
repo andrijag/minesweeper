@@ -42,11 +42,7 @@ public class Minesweeper {
 	}
 
 	public int getMinecount() {
-		return numberOfMines - getNumberOfFlags();
-	}
-
-	public int getNumberOfFlags() {
-		return minefield.getNumberOfFlags();
+		return numberOfMines - minefield.getNumberOfFlags();
 	}
 
 	public long getTime() {
