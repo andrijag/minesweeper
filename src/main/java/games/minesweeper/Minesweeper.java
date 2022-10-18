@@ -1,7 +1,7 @@
 package main.java.games.minesweeper;
 
 import main.java.games.minesweeper.gamestate.FirstMoveState;
-import main.java.games.minesweeper.gamestate.GameOverState;
+import main.java.games.minesweeper.gamestate.LoserState;
 import main.java.games.minesweeper.gamestate.GameState;
 import main.java.games.minesweeper.gamestate.WinnerState;
 import main.java.games.minesweeper.stopwatch.Stopwatch;
@@ -41,16 +41,16 @@ public class Minesweeper {
 		this.state = state;
 	}
 
+	public int getMinecount() {
+		return numberOfMines - getNumberOfFlags();
+	}
+
 	public int getNumberOfFlags() {
 		return minefield.getNumberOfFlags();
 	}
 
 	public long getTime() {
 		return stopwatch.getTime();
-	}
-
-	public int getMinecount() {
-		return numberOfMines - getNumberOfFlags();
 	}
 
 	public void sweep(int i, int j) {
@@ -72,27 +72,24 @@ public class Minesweeper {
 		state = new FirstMoveState(this);
 	}
 
-	public void gameOver() {
-		stopwatch.stop();
-		uncoverMines();
-		state = new GameOverState(this);
-	}
-
-	private void uncoverMines() {
-		minefield.uncoverMines();
-	}
-
 	public void validate() {
+		if (minefield.isDetonated()) {
+			youLose();
+		} else if (minefield.isCleared()) {
+			youWin();
+		}
+	}
+
+	private void youLose() {
+		stopwatch.stop();
+		minefield.uncoverMines();
+		state = new LoserState(this);
 	}
 
 	private void youWin() {
 		stopwatch.stop();
-		flagMines();
-		state = new WinnerState(this);
-	}
-
-	private void flagMines() {
 		minefield.flagMines();
+		state = new WinnerState(this);
 	}
 
 	@Override
