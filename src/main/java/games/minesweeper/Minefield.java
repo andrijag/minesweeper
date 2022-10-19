@@ -14,6 +14,7 @@ public class Minefield {
 	private int numberOfFields;
 	private boolean detonated;
 	private Field[][] matrix;
+	private List<Field> fieldsWithMines;
 
 	public Minefield(int numberOfRows, int numberOfColumns, int numberOfMines) {
 		this.numberOfRows = numberOfRows;
@@ -24,6 +25,7 @@ public class Minefield {
 		numberOfFields = numberOfRows * numberOfColumns;
 		detonated = false;
 		matrix = new Field[numberOfRows][numberOfColumns];
+		fieldsWithMines = new ArrayList<Field>();
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
@@ -64,6 +66,10 @@ public class Minefield {
 		}
 		return neighbours;
 	}
+	
+	public void addFieldWithMine(Field field) {
+		fieldsWithMines.add(field);
+	}
 
 	public void sweep(int i, int j) {
 		matrix[i][j].sweep();
@@ -90,13 +96,17 @@ public class Minefield {
 	}
 
 	public void uncoverMines() {
+		for (Field field : fieldsWithMines)
+			field.uncover();
 	}
 
-	public void decrementNumberOfUncoveredFields() {
+	public void incrementNumberOfUncoveredFields() {
 		numberOfUncoveredFields++;
 	}
 
 	public void flagMines() {
+		for (Field field : fieldsWithMines)
+			field.flag();
 	}
 
 	public boolean isCleared() {
