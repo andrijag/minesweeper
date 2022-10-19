@@ -9,7 +9,7 @@ public class Mine extends FieldValue {
 
 	@Override
 	public void uncover() {
-		field.detonate();
+		field.getMinefield().detonate();
 	}
 
 	@Override

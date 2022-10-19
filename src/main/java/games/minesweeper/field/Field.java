@@ -22,6 +22,10 @@ public class Field {
 		value = new FieldNumber(this);
 		state = new Covered(this);
 	}
+	
+	public Minefield getMinefield() {
+		return minefield;
+	}
 
 	public FieldValue getValue() {
 		return value;
@@ -92,22 +96,6 @@ public class Field {
 		for (Field neighbour : neighbours)
 			if (!neighbour.isMine())
 				neighbour.increment();
-	}
-
-	public void incrementNumberOfFlags() {
-		minefield.incrementNumberOfFlags();
-	}
-
-	public void decrementNumberOfFlags() {
-		minefield.decrementNumberOfFlags();
-	}
-
-	public void detonate() {
-		minefield.detonate();
-	}
-
-	public void decrementToUncover() {
-		minefield.decrementToUncover();
 	}
 
 	@Override

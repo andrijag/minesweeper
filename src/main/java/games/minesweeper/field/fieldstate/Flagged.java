@@ -18,7 +18,7 @@ public class Flagged extends FieldState {
 	@Override
 	public void mark() {
 		field.setState(new Unknown(field));
-		field.decrementNumberOfFlags();
+		field.getMinefield().decrementNumberOfFlags();
 	}
 
 	@Override

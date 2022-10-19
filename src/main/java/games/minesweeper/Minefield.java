@@ -8,13 +8,21 @@ import main.java.games.minesweeper.field.Field;
 public class Minefield {
 	private int numberOfRows;
 	private int numberOfColumns;
+	private int numberOfMines;
 	private int numberOfFlags;
+	private int numberOfUncoveredFields;
+	private int numberOfFields;
+	private boolean detonated;
 	private Field[][] matrix;
 
-	public Minefield(int numberOfRows, int numberOfColumns) {
+	public Minefield(int numberOfRows, int numberOfColumns, int numberOfMines) {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
+		this.numberOfMines = numberOfMines;
 		numberOfFlags = 0;
+		numberOfUncoveredFields = 0;
+		numberOfFields = numberOfRows * numberOfColumns;
+		detonated = false;
 		matrix = new Field[numberOfRows][numberOfColumns];
 
 		for (int i = 0; i < numberOfRows; i++)
@@ -78,25 +86,25 @@ public class Minefield {
 	}
 
 	public void detonate() {
+		detonated = true;
 	}
 
 	public void uncoverMines() {
 	}
 
-	public void decrementToUncover() {
+	public void decrementNumberOfUncoveredFields() {
+		numberOfUncoveredFields++;
 	}
 
 	public void flagMines() {
 	}
 
-//	TODO
 	public boolean isCleared() {
-		return false;
+		return numberOfUncoveredFields + numberOfMines == numberOfFields;
 	}
 
-//	TODO
 	public boolean isDetonated() {
-		return false;
+		return detonated;
 	}
 
 	@Override
