@@ -89,6 +89,16 @@ public class Minefield {
 	public void flagMines() {
 	}
 
+//	TODO
+	public boolean isCleared() {
+		return false;
+	}
+
+//	TODO
+	public boolean isDetonated() {
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		String str = new String();
