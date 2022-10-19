@@ -20,7 +20,7 @@ public class Minesweeper {
 		this.numberOfColumns = numberOfColumns;
 		this.numberOfMines = numberOfMines;
 		stopwatch = new Stopwatch();
-		minefield = new Minefield(numberOfRows, numberOfColumns, numberOfMines);
+		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield, numberOfMines);
 		state = new FirstMoveState(this);
 	}
@@ -63,7 +63,7 @@ public class Minesweeper {
 
 	public void restart() {
 		stopwatch.reset();
-		minefield = new Minefield(numberOfRows, numberOfColumns, numberOfMines);
+		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield, numberOfMines);
 		state = new FirstMoveState(this);
 	}
