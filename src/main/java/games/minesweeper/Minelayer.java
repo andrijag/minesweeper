@@ -10,8 +10,8 @@ public class Minelayer {
 	private int numberOfMines;
 	private List<Field> fields;
 
-	public Minelayer(Minefield minefield, int nMines) {
-		this.numberOfMines = nMines;
+	public Minelayer(Minefield minefield, int numberOfMines) {
+		this.numberOfMines = numberOfMines;
 		fields = new ArrayList<Field>();
 		for (int i = 0; i < minefield.getNumberOfRows(); i++)
 			for (int j = 0; j < minefield.getNumberOfColumns(); j++)
