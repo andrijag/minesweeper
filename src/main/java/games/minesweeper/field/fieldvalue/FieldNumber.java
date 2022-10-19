@@ -20,7 +20,7 @@ public class FieldNumber extends FieldValue {
 
 	@Override
 	public void uncover() {
-		field.getMinefield().decrementNumberOfUncoveredFields();
+		field.getMinefield().incrementNumberOfUncoveredFields();
 	}
 
 	@Override
