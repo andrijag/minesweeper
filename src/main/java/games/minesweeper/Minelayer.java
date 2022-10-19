@@ -17,7 +17,7 @@ public class Minelayer {
 		fields = new ArrayList<Field>();
 		for (int i = 0; i < minefield.getNumberOfRows(); i++)
 			for (int j = 0; j < minefield.getNumberOfColumns(); j++)
-				fields.add(minefield.get(i, j));
+				fields.add(minefield.getField(i, j));
 	}
 
 	public void scatterMines() {
