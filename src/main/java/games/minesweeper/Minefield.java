@@ -8,32 +8,30 @@ import main.java.games.minesweeper.field.Field;
 public class Minefield {
 	private int numberOfRows;
 	private int numberOfColumns;
-	private int numberOfMines;
-	private int numberOfFlags;
-	private int numberOfUncoveredFields;
 	private int numberOfFields;
-	private boolean detonated;
-	private Field[][] matrix;
+	private int numberOfUncoveredFields;
+	private int numberOfFlags;
+	private Field[][] fields;
 	private List<Field> fieldsWithMines;
+	private boolean detonated;
 
-	public Minefield(int numberOfRows, int numberOfColumns, int numberOfMines) {
+	public Minefield(int numberOfRows, int numberOfColumns) {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
-		this.numberOfMines = numberOfMines;
-		numberOfFlags = 0;
-		numberOfUncoveredFields = 0;
 		numberOfFields = numberOfRows * numberOfColumns;
-		detonated = false;
-		matrix = new Field[numberOfRows][numberOfColumns];
+		numberOfUncoveredFields = 0;
+		numberOfFlags = 0;
+		fields = new Field[numberOfRows][numberOfColumns];
 		fieldsWithMines = new ArrayList<Field>();
+		detonated = false;
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
-				matrix[i][j] = new Field(this);
+				fields[i][j] = new Field(this);
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
-				matrix[i][j].setNeighbours(getNeighbours(i, j));
+				fields[i][j].setNeighbours(getNeighbours(i, j));
 	}
 
 	public int getNumberOfRows() {
@@ -48,8 +46,8 @@ public class Minefield {
 		return numberOfFlags;
 	}
 
-	public Field get(int i, int j) {
-		return matrix[i][j];
+	public Field getField(int i, int j) {
+		return fields[i][j];
 	}
 
 	public boolean contains(int i, int j) {
@@ -62,25 +60,33 @@ public class Minefield {
 			int di = vector.getI();
 			int dj = vector.getJ();
 			if (contains(i + di, j + dj))
-				neighbours.add(matrix[i + di][j + dj]);
+				neighbours.add(fields[i + di][j + dj]);
 		}
 		return neighbours;
 	}
-	
+
 	public void addFieldWithMine(Field field) {
 		fieldsWithMines.add(field);
 	}
 
+	public int getNumberOfMines() {
+		return fieldsWithMines.size();
+	}
+
 	public void sweep(int i, int j) {
-		matrix[i][j].sweep();
+		fields[i][j].sweep();
 	}
 
 	public void mark(int i, int j) {
-		matrix[i][j].mark();
+		fields[i][j].mark();
 	}
 
 	public void chord(int i, int j) {
-		matrix[i][j].chord();
+		fields[i][j].chord();
+	}
+
+	public void incrementNumberOfUncoveredFields() {
+		numberOfUncoveredFields++;
 	}
 
 	public void incrementNumberOfFlags() {
@@ -95,13 +101,17 @@ public class Minefield {
 		detonated = true;
 	}
 
+	public boolean isCleared() {
+		return numberOfUncoveredFields + getNumberOfMines() == numberOfFields;
+	}
+
+	public boolean isDetonated() {
+		return detonated;
+	}
+
 	public void uncoverMines() {
 		for (Field field : fieldsWithMines)
 			field.uncover();
-	}
-
-	public void incrementNumberOfUncoveredFields() {
-		numberOfUncoveredFields++;
 	}
 
 	public void flagMines() {
@@ -109,20 +119,12 @@ public class Minefield {
 			field.flag();
 	}
 
-	public boolean isCleared() {
-		return numberOfUncoveredFields + numberOfMines == numberOfFields;
-	}
-
-	public boolean isDetonated() {
-		return detonated;
-	}
-
 	@Override
 	public String toString() {
 		String str = new String();
 		for (int i = 0; i < numberOfRows; i++) {
 			for (int j = 0; j < numberOfColumns; j++)
-				str += matrix[i][j] + " ";
+				str += fields[i][j] + " ";
 			str += "\n";
 		}
 		return str;
