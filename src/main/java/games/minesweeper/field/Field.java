@@ -66,6 +66,7 @@ public class Field {
 
 	public void flag() {
 		state = new Flagged(this);
+		minefield.incrementNumberOfFlags();
 	}
 
 	public int getNumber() {
