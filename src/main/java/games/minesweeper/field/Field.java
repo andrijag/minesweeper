@@ -57,6 +57,8 @@ public class Field {
 
 	public void layMine() {
 		value = new Mine(this);
+		incrementNeighbours();
+		minefield.addFieldWithMine(this);
 	}
 
 	public void uncover() {
