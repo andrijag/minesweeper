@@ -68,7 +68,7 @@ public class Minesweeper {
 		state = new FirstMoveState(this);
 	}
 
-	public void validate() {
+	public void evaluate() {
 		if (minefield.isDetonated())
 			youLose();
 		else if (minefield.isCleared())
