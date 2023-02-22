@@ -13,7 +13,7 @@ public class Unknown extends FieldState {
 
 	@Override
 	public void mark() {
-		field.setState(new Covered(field));
+		field.changeState(new Covered(field));
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class FirstMoveState extends GameState {
 		game.getStopwatch().start();
 		game.getMinelayer().remove(game.getMinefield().getField(i, j));
 		game.getMinelayer().scatterMines();
-		game.setState(new PlayingState(game));
+		game.changeState(new PlayingState(game));
 		game.sweep(i, j);
 	}
 

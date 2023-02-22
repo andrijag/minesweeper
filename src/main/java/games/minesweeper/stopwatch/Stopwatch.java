@@ -27,7 +27,7 @@ public class Stopwatch {
 		this.elapsedTime = elapsedTime;
 	}
 
-	public void setState(StopwatchState state) {
+	public void changeState(StopwatchState state) {
 		this.state = state;
 	}
 

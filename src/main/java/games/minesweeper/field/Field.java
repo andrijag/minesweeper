@@ -31,7 +31,7 @@ public class Field {
 		return value;
 	}
 
-	public void setState(FieldState state) {
+	public void changeState(FieldState state) {
 		this.state = state;
 	}
 

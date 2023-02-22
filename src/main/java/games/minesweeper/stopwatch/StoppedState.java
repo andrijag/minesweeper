@@ -8,7 +8,7 @@ public class StoppedState extends StopwatchState {
 	@Override
 	public void start() {
 		stopwatch.setStartTime(System.currentTimeMillis());
-		stopwatch.setState(new RunningState(stopwatch));
+		stopwatch.changeState(new RunningState(stopwatch));
 	}
 
 	@Override

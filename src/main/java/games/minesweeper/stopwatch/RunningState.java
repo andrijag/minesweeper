@@ -12,7 +12,7 @@ public class RunningState extends StopwatchState {
 	@Override
 	public void stop() {
 		stopwatch.setElapsedTime(getTime());
-		stopwatch.setState(new StoppedState(stopwatch));
+		stopwatch.changeState(new StoppedState(stopwatch));
 	}
 
 	@Override

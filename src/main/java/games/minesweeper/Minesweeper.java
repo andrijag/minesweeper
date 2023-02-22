@@ -37,7 +37,7 @@ public class Minesweeper {
 		return minelayer;
 	}
 
-	public void setState(GameState state) {
+	public void changeState(GameState state) {
 		this.state = state;
 	}
 
