@@ -5,8 +5,9 @@ import main.java.games.minesweeper.gamestate.LosingState;
 import main.java.games.minesweeper.gamestate.GameState;
 import main.java.games.minesweeper.gamestate.WinningState;
 import main.java.games.minesweeper.stopwatch.Stopwatch;
+import main.java.games.minesweeper.utils.Subject;
 
-public class Minesweeper {
+public class Minesweeper extends Subject {
 	private int numberOfRows;
 	private int numberOfColumns;
 	private int numberOfMines;
