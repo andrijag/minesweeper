@@ -23,7 +23,7 @@ public class Minelayer {
 		for (int i = 0; i < numberOfMines; i++) {
 			int randI = rand.nextInt(fields.size());
 			Field field = fields.remove(randI);
-			field.layMine();
+			layMine(field);
 		}
 	}
 
