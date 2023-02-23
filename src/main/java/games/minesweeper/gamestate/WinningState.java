@@ -2,8 +2,8 @@ package main.java.games.minesweeper.gamestate;
 
 import main.java.games.minesweeper.Minesweeper;
 
-public class WinnerState extends GameState {
-	public WinnerState(Minesweeper game) {
+public class WinningState extends GameState {
+	public WinningState(Minesweeper game) {
 		super(game);
 	}
 
