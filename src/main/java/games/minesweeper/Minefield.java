@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.games.minesweeper.field.Field;
+import main.java.games.minesweeper.utils.Vector;
 
 public class Minefield {
 	private int numberOfRows;
@@ -13,7 +14,6 @@ public class Minefield {
 	private int numberOfFlags;
 	private Field[][] fields;
 	private List<Field> fieldsWithMines;
-	private boolean detonated;
 
 	public Minefield(int numberOfRows, int numberOfColumns) {
 		this.numberOfRows = numberOfRows;
@@ -23,7 +23,6 @@ public class Minefield {
 		numberOfFlags = 0;
 		fields = new Field[numberOfRows][numberOfColumns];
 		fieldsWithMines = new ArrayList<Field>();
-		detonated = false;
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
@@ -97,16 +96,15 @@ public class Minefield {
 		numberOfFlags--;
 	}
 
-	public void detonate() {
-		detonated = true;
-	}
-
 	public boolean isCleared() {
 		return numberOfUncoveredFields + getNumberOfMines() == numberOfFields;
 	}
 
 	public boolean isDetonated() {
-		return detonated;
+		for (Field field : fieldsWithMines)
+			if (field.isDetonated())
+				return true;
+		return false;
 	}
 
 	public void uncoverMines() {

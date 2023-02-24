@@ -71,6 +71,10 @@ public class Field {
 		minefield.incrementNumberOfFlags();
 	}
 
+	public boolean isDetonated() {
+		return ((Mine) value).isDetonated();
+	}
+	
 	public int getNumber() {
 		return ((FieldNumber) value).getNumber();
 	}
