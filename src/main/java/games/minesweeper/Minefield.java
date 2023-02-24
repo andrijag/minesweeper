@@ -10,7 +10,6 @@ import main.java.games.minesweeper.utils.Vector;
 public class Minefield {
 	private int numberOfRows;
 	private int numberOfColumns;
-	private int numberOfFields;
 	private int numberOfUncoveredFields;
 	private int numberOfFlags;
 	private Field[][] fields;
@@ -20,7 +19,6 @@ public class Minefield {
 	public Minefield(int numberOfRows, int numberOfColumns) {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
-		numberOfFields = numberOfRows * numberOfColumns;
 		numberOfUncoveredFields = 0;
 		numberOfFlags = 0;
 		fields = new Field[numberOfRows][numberOfColumns];
@@ -42,6 +40,10 @@ public class Minefield {
 
 	public int getNumberOfColumns() {
 		return numberOfColumns;
+	}
+	
+	public int getNumberOfFields() {
+		return numberOfRows * numberOfColumns;
 	}
 
 	public int getNumberOfFlags() {
@@ -104,7 +106,7 @@ public class Minefield {
 	}
 	
 	public boolean isCleared() {
-		return numberOfUncoveredFields + getNumberOfMines() == numberOfFields;
+		return numberOfUncoveredFields + getNumberOfMines() == getNumberOfFields();
 	}
 
 	public boolean isDetonated() {
