@@ -21,6 +21,7 @@ public class Mine extends FieldValue {
 	@Override
 	public void open() {
 		detonate();
+		field.getMinefield().detonate();
 	}
 
 	@Override
