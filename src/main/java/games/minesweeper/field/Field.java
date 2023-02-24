@@ -60,10 +60,14 @@ public class Field {
 		incrementNeighbours();
 		minefield.addFieldWithMine(this);
 	}
+	
+	public void open() {
+		uncover();
+		value.open();
+	}
 
 	public void uncover() {
 		state = new Uncovered(this);
-		value.uncover();
 	}
 
 	public void flag() {

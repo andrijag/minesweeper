@@ -19,7 +19,7 @@ public class FieldNumber extends FieldValue {
 	}
 
 	@Override
-	public void uncover() {
+	public void open() {
 		field.getMinefield().incrementNumberOfUncoveredFields();
 	}
 

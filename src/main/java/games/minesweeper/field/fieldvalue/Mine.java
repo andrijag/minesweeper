@@ -19,12 +19,15 @@ public class Mine extends FieldValue {
 	}
 
 	@Override
-	public void uncover() {
+	public void open() {
 		detonate();
 	}
 
 	@Override
 	public String toString() {
-		return "*";
+		if (isDetonated())
+			return "x";
+		else
+			return "*";
 	}
 }

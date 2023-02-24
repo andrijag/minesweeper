@@ -10,7 +10,7 @@ public abstract class FieldState {
 	}
 
 	public void sweep() {
-		field.uncover();
+		field.open();
 		if (!field.isMine() && field.getNumber() == 0)
 			for (Field neighbour : field.getNeighbours())
 				neighbour.sweep();
