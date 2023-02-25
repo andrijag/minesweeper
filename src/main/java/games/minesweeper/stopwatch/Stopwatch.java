@@ -11,23 +11,23 @@ public class Stopwatch {
 		state = new StoppedState(this);
 	}
 
-	public long getStartTime() {
+	long getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(long startTime) {
+	void setStartTime(long startTime) {
 		this.startTime = startTime;
 	}
 
-	public long getElapsedTime() {
+	long getElapsedTime() {
 		return elapsedTime;
 	}
 
-	public void setElapsedTime(long elapsedTime) {
+	void setElapsedTime(long elapsedTime) {
 		this.elapsedTime = elapsedTime;
 	}
 
-	public void changeState(StopwatchState state) {
+	void changeState(StopwatchState state) {
 		this.state = state;
 	}
 
