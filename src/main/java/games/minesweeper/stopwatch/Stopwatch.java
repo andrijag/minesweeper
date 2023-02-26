@@ -11,6 +11,24 @@ public class Stopwatch {
 		state = new StoppedState(this);
 	}
 
+	public void start() {
+		state.start();
+	}
+
+	public void stop() {
+		state.stop();
+	}
+
+	public long getTime() {
+		return state.getTime();
+	}
+
+	public void reset() {
+		startTime = 0;
+		elapsedTime = 0;
+		state = new StoppedState(this);
+	}
+
 	long getStartTime() {
 		return startTime;
 	}
@@ -29,23 +47,5 @@ public class Stopwatch {
 
 	void changeState(StopwatchState state) {
 		this.state = state;
-	}
-
-	public void start() {
-		state.start();
-	}
-
-	public void stop() {
-		state.stop();
-	}
-
-	public void reset() {
-		startTime = 0;
-		elapsedTime = 0;
-		state = new StoppedState(this);
-	}
-
-	public long getTime() {
-		return state.getTime();
 	}
 }

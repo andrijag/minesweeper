@@ -1,15 +1,15 @@
 package main.java.games.minesweeper.stopwatch;
 
-public abstract class StopwatchState {
+abstract class StopwatchState {
 	protected Stopwatch stopwatch;
 
-	public StopwatchState(Stopwatch stopwatch) {
+	protected StopwatchState(Stopwatch stopwatch) {
 		this.stopwatch = stopwatch;
 	}
 
-	public abstract void start();
+	abstract void start();
 
-	public abstract void stop();
+	abstract void stop();
 
-	public abstract long getTime();
+	abstract long getTime();
 }

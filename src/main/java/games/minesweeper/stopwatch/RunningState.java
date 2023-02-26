@@ -1,22 +1,22 @@
 package main.java.games.minesweeper.stopwatch;
 
-public class RunningState extends StopwatchState {
-	public RunningState(Stopwatch stopwatch) {
+class RunningState extends StopwatchState {
+	RunningState(Stopwatch stopwatch) {
 		super(stopwatch);
 	}
 
 	@Override
-	public void start() {
+	void start() {
 	}
 
 	@Override
-	public void stop() {
+	void stop() {
 		stopwatch.setElapsedTime(getTime());
 		stopwatch.changeState(new StoppedState(stopwatch));
 	}
 
 	@Override
-	public long getTime() {
+	long getTime() {
 		return stopwatch.getElapsedTime() + System.currentTimeMillis() - stopwatch.getStartTime();
 	}
 }
