@@ -7,18 +7,16 @@ import java.util.Random;
 import main.java.games.minesweeper.field.Field;
 
 public class Minelayer {
-	private int numberOfMines;
 	private List<Field> fields;
 
-	public Minelayer(Minefield minefield, int numberOfMines) {
-		this.numberOfMines = numberOfMines;
+	public Minelayer(Minefield minefield) {
 		fields = new ArrayList<Field>();
 		for (int i = 0; i < minefield.getNumberOfRows(); i++)
 			for (int j = 0; j < minefield.getNumberOfColumns(); j++)
 				fields.add(minefield.getField(i, j));
 	}
 
-	public void scatterMines() {
+	public void scatterMines(int numberOfMines) {
 		Random rand = new Random();
 		for (int i = 0; i < numberOfMines; i++) {
 			int randI = rand.nextInt(fields.size());

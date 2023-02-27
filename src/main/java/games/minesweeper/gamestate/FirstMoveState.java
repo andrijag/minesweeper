@@ -11,7 +11,7 @@ public class FirstMoveState extends GameState {
 	public void sweep(int i, int j) {
 		game.getStopwatch().start();
 		game.getMinelayer().remove(game.getMinefield().getField(i, j));
-		game.getMinelayer().scatterMines();
+		game.getMinelayer().scatterMines(game.getNumberOfMines());
 		game.changeState(new PlayingState(game));
 		game.sweep(i, j);
 	}

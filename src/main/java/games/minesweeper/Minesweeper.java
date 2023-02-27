@@ -22,7 +22,7 @@ public class Minesweeper extends Subject {
 		this.numberOfMines = numberOfMines;
 		stopwatch = new Stopwatch();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
-		minelayer = new Minelayer(minefield, numberOfMines);
+		minelayer = new Minelayer(minefield);
 		state = new FirstMoveState(this);
 	}
 
@@ -33,9 +33,13 @@ public class Minesweeper extends Subject {
 	public Minefield getMinefield() {
 		return minefield;
 	}
-	
+
 	public Minelayer getMinelayer() {
 		return minelayer;
+	}
+	
+	public int getNumberOfMines() {
+		return numberOfMines;
 	}
 
 	public void changeState(GameState state) {
@@ -65,7 +69,7 @@ public class Minesweeper extends Subject {
 	public void restart() {
 		stopwatch.reset();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
-		minelayer = new Minelayer(minefield, numberOfMines);
+		minelayer = new Minelayer(minefield);
 		state = new FirstMoveState(this);
 	}
 
