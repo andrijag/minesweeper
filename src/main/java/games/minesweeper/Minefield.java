@@ -31,7 +31,7 @@ public class Minefield {
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
-				fields[i][j].setNeighbours(getNeighbours(i, j));
+				fields[i][j].setNeighbours(getNeighboursOfField(i, j));
 	}
 
 	public int getNumberOfRows() {
@@ -41,7 +41,7 @@ public class Minefield {
 	public int getNumberOfColumns() {
 		return numberOfColumns;
 	}
-	
+
 	public int getNumberOfFields() {
 		return numberOfRows * numberOfColumns;
 	}
@@ -54,11 +54,7 @@ public class Minefield {
 		return fields[i][j];
 	}
 
-	public boolean contains(int i, int j) {
-		return (0 <= i && i < numberOfRows) && (0 <= j && j < numberOfColumns);
-	}
-
-	public List<Field> getNeighbours(int i, int j) {
+	private List<Field> getNeighboursOfField(int i, int j) {
 		List<Field> neighbours = new ArrayList<Field>();
 		for (Vector vector : Vector.values()) {
 			int di = vector.getI();
@@ -67,6 +63,10 @@ public class Minefield {
 				neighbours.add(fields[i + di][j + dj]);
 		}
 		return neighbours;
+	}
+
+	private boolean contains(int i, int j) {
+		return (0 <= i && i < numberOfRows) && (0 <= j && j < numberOfColumns);
 	}
 
 	public void addFieldWithMine(Field field) {
@@ -104,7 +104,7 @@ public class Minefield {
 	public void detonate() {
 		state = ExplosiveState.DETONATED;
 	}
-	
+
 	public boolean isCleared() {
 		return numberOfUncoveredFields + getNumberOfMines() == getNumberOfFields();
 	}
