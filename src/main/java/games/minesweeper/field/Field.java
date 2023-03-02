@@ -94,6 +94,10 @@ public class Field {
 	public boolean isFlagged() {
 		return state instanceof Flagged;
 	}
+	
+	public boolean isUncovered() {
+		return state instanceof Uncovered;
+	}
 
 	public int neighbourFlags() {
 		int nFlags = 0;
