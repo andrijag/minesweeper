@@ -8,10 +8,6 @@ public class Covered extends FieldState {
 	}
 
 	@Override
-	public void chord() {
-	}
-
-	@Override
 	public void mark() {
 		field.flag();
 	}

@@ -8,17 +8,8 @@ public class Flagged extends FieldState {
 	}
 
 	@Override
-	public void sweep() {
-	}
-
-	@Override
-	public void chord() {
-	}
-
-	@Override
 	public void mark() {
 		field.changeState(new Unknown(field));
-		field.getMinefield().decrementNumberOfFlags();
 	}
 
 	@Override

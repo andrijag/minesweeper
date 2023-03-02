@@ -9,18 +9,5 @@ public abstract class FieldState {
 		this.field = field;
 	}
 
-	public void sweep() {
-		field.open();
-		if (!field.isMine() && field.getNumber() == 0)
-			for (Field neighbour : field.getNeighbours())
-				neighbour.sweep();
-	}
-
-	public void chord() {
-		if (field.getNumber() == field.neighbourFlags())
-			for (Field neighbour : field.getNeighbours())
-				neighbour.sweep();
-	}
-
 	public abstract void mark();
 }

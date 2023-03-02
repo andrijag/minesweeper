@@ -8,10 +8,6 @@ public class Uncovered extends FieldState {
 	}
 
 	@Override
-	public void sweep() {
-	}
-
-	@Override
 	public void mark() {
 	}
 
