@@ -7,7 +7,7 @@ import main.java.games.minesweeper.gamestate.WinningState;
 import main.java.games.minesweeper.stopwatch.Stopwatch;
 import main.java.games.minesweeper.utils.Subject;
 
-public class Minesweeper extends Subject {
+public class Game extends Subject {
 	private int numberOfRows;
 	private int numberOfColumns;
 	private int numberOfMines;
@@ -16,7 +16,7 @@ public class Minesweeper extends Subject {
 	private Minelayer minelayer;
 	private GameState state;
 
-	public Minesweeper(int numberOfRows, int numberOfColumns, int numberOfMines) {
+	public Game(int numberOfRows, int numberOfColumns, int numberOfMines) {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
 		this.numberOfMines = numberOfMines;

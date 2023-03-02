@@ -1,11 +1,11 @@
 package main.java.games.minesweeper.gamestate;
 
-import main.java.games.minesweeper.Minesweeper;
+import main.java.games.minesweeper.Game;
 
 public abstract class GameState {
-	protected Minesweeper game;
+	protected Game game;
 
-	public GameState(Minesweeper game) {
+	public GameState(Game game) {
 		this.game = game;
 	}
 
