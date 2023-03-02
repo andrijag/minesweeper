@@ -27,7 +27,7 @@ public class Minefield {
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
-				fields[i][j] = new Field(this);
+				fields[i][j] = new Field();
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)

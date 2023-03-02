@@ -2,14 +2,12 @@ package main.java.games.minesweeper.field;
 
 import java.util.List;
 
-import main.java.games.minesweeper.Minefield;
-
 public class Field {
 	private FieldValue value;
 	private FieldState state;
 	private List<Field> neighbours;
 
-	public Field(Minefield minefield) {
+	public Field() {
 		value = new Number();
 		state = new Covered(this);
 	}
