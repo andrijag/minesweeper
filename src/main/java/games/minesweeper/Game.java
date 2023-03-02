@@ -1,9 +1,5 @@
 package main.java.games.minesweeper;
 
-import main.java.games.minesweeper.gamestate.FirstMoveState;
-import main.java.games.minesweeper.gamestate.LosingState;
-import main.java.games.minesweeper.gamestate.GameState;
-import main.java.games.minesweeper.gamestate.WinningState;
 import main.java.games.minesweeper.stopwatch.Stopwatch;
 import main.java.games.minesweeper.utils.Subject;
 
@@ -25,31 +21,7 @@ public class Game extends Subject {
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
 		minesweeper = new Minesweeper(minefield);
-		state = new FirstMoveState(this);
-	}
-
-	public Stopwatch getStopwatch() {
-		return stopwatch;
-	}
-
-	public Minefield getMinefield() {
-		return minefield;
-	}
-
-	public Minelayer getMinelayer() {
-		return minelayer;
-	}
-	
-	public Minesweeper getMinesweeper() {
-		return minesweeper;
-	}
-	
-	public int getNumberOfMines() {
-		return numberOfMines;
-	}
-
-	public void changeState(GameState state) {
-		this.state = state;
+		state = GameState.FIRST_MOVE;
 	}
 
 	public int getMinecount() {
@@ -60,16 +32,30 @@ public class Game extends Subject {
 		return stopwatch.getTime();
 	}
 
+	public Minefield getMinefield() {
+		return minefield;
+	}
+
 	public void sweep(int i, int j) {
-		state.sweep(i, j);
+		if (state == GameState.FIRST_MOVE) {
+			stopwatch.start();
+			minelayer.remove(minefield.getField(i, j));
+			minelayer.scatterMines(numberOfMines);
+			state = GameState.PLAYING;
+		}
+		minesweeper.sweep(minefield.getField(i, j));
+		evaluate();
 	}
 
 	public void mark(int i, int j) {
-		state.mark(i, j);
+		if (state == GameState.FIRST_MOVE)
+			stopwatch.start();
+		minesweeper.mark(minefield.getField(i, j));
 	}
 
 	public void chord(int i, int j) {
-		state.chord(i, j);
+		minesweeper.chord(minefield.getField(i, j));
+		evaluate();
 	}
 
 	public void restart() {
@@ -77,10 +63,10 @@ public class Game extends Subject {
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
 		minesweeper = new Minesweeper(minefield);
-		state = new FirstMoveState(this);
+		state = GameState.FIRST_MOVE;
 	}
 
-	public void evaluate() {
+	private void evaluate() {
 		if (minefield.isDetonated())
 			youLose();
 		else if (minefield.isCleared())
@@ -90,13 +76,13 @@ public class Game extends Subject {
 	private void youLose() {
 		stopwatch.stop();
 		minefield.uncoverMines();
-		state = new LosingState(this);
+		state = GameState.LOSING;
 	}
 
 	private void youWin() {
 		stopwatch.stop();
 		minefield.flagMines();
-		state = new WinningState(this);
+		state = GameState.WINNING;
 	}
 
 	@Override

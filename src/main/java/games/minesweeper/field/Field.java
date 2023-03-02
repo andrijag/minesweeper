@@ -1,5 +1,6 @@
 package main.java.games.minesweeper.field;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Field {
@@ -10,6 +11,7 @@ public class Field {
 	public Field() {
 		value = new Number();
 		state = new Covered(this);
+		neighbours = new ArrayList<Field>();
 	}
 
 	FieldValue getValue() {
