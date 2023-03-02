@@ -9,18 +9,18 @@ public class PlayingState extends GameState {
 
 	@Override
 	public void sweep(int i, int j) {
-		game.getMinefield().sweep(i, j);
+		game.getMinesweeper().sweep(game.getMinefield().getField(i, j));
 		game.evaluate();
 	}
 
 	@Override
 	public void mark(int i, int j) {
-		game.getMinefield().mark(i, j);
+		game.getMinesweeper().mark(game.getMinefield().getField(i, j));
 	}
 
 	@Override
 	public void chord(int i, int j) {
-		game.getMinefield().chord(i, j);
+		game.getMinesweeper().chord(game.getMinefield().getField(i, j));
 		game.evaluate();
 	}
 }

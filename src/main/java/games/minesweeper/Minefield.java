@@ -3,8 +3,8 @@ package main.java.games.minesweeper;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.java.games.minesweeper.field.ExplosiveState;
 import main.java.games.minesweeper.field.Field;
-import main.java.games.minesweeper.field.fieldvalue.ExplosiveState;
 import main.java.games.minesweeper.utils.Vector;
 
 public class Minefield {
@@ -75,18 +75,6 @@ public class Minefield {
 
 	public int getNumberOfMines() {
 		return fieldsWithMines.size();
-	}
-
-	public void sweep(int i, int j) {
-		fields[i][j].sweep();
-	}
-
-	public void mark(int i, int j) {
-		fields[i][j].mark();
-	}
-
-	public void chord(int i, int j) {
-		fields[i][j].chord();
 	}
 
 	public void incrementNumberOfUncoveredFields() {

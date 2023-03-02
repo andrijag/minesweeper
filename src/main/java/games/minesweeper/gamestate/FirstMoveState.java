@@ -19,7 +19,7 @@ public class FirstMoveState extends GameState {
 	@Override
 	public void mark(int i, int j) {
 		game.getStopwatch().start();
-		game.getMinefield().mark(i, j);
+		game.getMinesweeper().mark(game.getMinefield().getField(i, j));
 	}
 
 	@Override

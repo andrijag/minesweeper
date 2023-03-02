@@ -14,6 +14,7 @@ public class Game extends Subject {
 	private Stopwatch stopwatch;
 	private Minefield minefield;
 	private Minelayer minelayer;
+	private Minesweeper minesweeper;
 	private GameState state;
 
 	public Game(int numberOfRows, int numberOfColumns, int numberOfMines) {
@@ -23,6 +24,7 @@ public class Game extends Subject {
 		stopwatch = new Stopwatch();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
+		minesweeper = new Minesweeper(minefield);
 		state = new FirstMoveState(this);
 	}
 
@@ -36,6 +38,10 @@ public class Game extends Subject {
 
 	public Minelayer getMinelayer() {
 		return minelayer;
+	}
+	
+	public Minesweeper getMinesweeper() {
+		return minesweeper;
 	}
 	
 	public int getNumberOfMines() {
@@ -70,6 +76,7 @@ public class Game extends Subject {
 		stopwatch.reset();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
+		minesweeper = new Minesweeper(minefield);
 		state = new FirstMoveState(this);
 	}
 

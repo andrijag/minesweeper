@@ -20,9 +20,10 @@ public class Minesweeper {
 
 	private void uncover(Field field) {
 		field.uncover();
-		if (field.isMine())
+		if (field.isMine()) {
+			field.detonate();
 			minefield.detonate();
-		else
+		} else
 			minefield.incrementNumberOfUncoveredFields();
 	}
 
@@ -41,7 +42,7 @@ public class Minesweeper {
 	public void chord(Field field) {
 		if (!field.isUncovered())
 			return;
-		if (field.getNumber() == field.neighbourFlags())
+		if (field.getNumber() == field.getNumberOfNeighbourFlags())
 			for (Field neighbour : field.getNeighbours())
 				sweep(neighbour);
 	}
