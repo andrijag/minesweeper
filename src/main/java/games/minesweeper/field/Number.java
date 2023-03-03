@@ -4,7 +4,7 @@ class Number extends FieldValue {
 	private int number;
 
 	Number() {
-		this.number = 0;
+		number = 0;
 	}
 
 	int getNumber() {
