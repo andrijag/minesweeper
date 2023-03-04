@@ -22,7 +22,6 @@ public class Minesweeper {
 		field.uncover();
 		if (field.isMine()) {
 			field.detonate();
-			minefield.detonate();
 		} else
 			minefield.incrementNumberOfUncoveredFields();
 	}

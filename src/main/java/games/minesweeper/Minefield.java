@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.games.minesweeper.field.Field;
-import main.java.games.minesweeper.utils.ExplosiveState;
 import main.java.games.minesweeper.utils.Vector;
 
 public class Minefield {
@@ -14,7 +13,6 @@ public class Minefield {
 	private int numberOfFlags;
 	private Field[][] fields;
 	private List<Field> fieldsWithMines;
-	private ExplosiveState state;
 
 	public Minefield(int numberOfRows, int numberOfColumns) {
 		this.numberOfRows = numberOfRows;
@@ -23,7 +21,6 @@ public class Minefield {
 		numberOfFlags = 0;
 		fields = new Field[numberOfRows][numberOfColumns];
 		fieldsWithMines = new ArrayList<Field>();
-		state = ExplosiveState.LIVE;
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
@@ -89,16 +86,15 @@ public class Minefield {
 		numberOfFlags--;
 	}
 
-	public void detonate() {
-		state = ExplosiveState.DETONATED;
-	}
-
 	public boolean isCleared() {
 		return numberOfUncoveredFields + getNumberOfMines() == getNumberOfFields();
 	}
 
 	public boolean isDetonated() {
-		return state == ExplosiveState.DETONATED;
+		for (Field field : fieldsWithMines)
+			if (field.isDetonated())
+				return true;
+		return false;
 	}
 
 	public void uncoverMines() {
