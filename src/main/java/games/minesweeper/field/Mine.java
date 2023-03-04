@@ -1,5 +1,7 @@
 package main.java.games.minesweeper.field;
 
+import main.java.games.minesweeper.utils.ExplosiveState;
+
 class Mine extends FieldValue {
 	private ExplosiveState state;
 

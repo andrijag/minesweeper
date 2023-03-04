@@ -3,8 +3,8 @@ package main.java.games.minesweeper;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.games.minesweeper.field.ExplosiveState;
 import main.java.games.minesweeper.field.Field;
+import main.java.games.minesweeper.utils.ExplosiveState;
 import main.java.games.minesweeper.utils.Vector;
 
 public class Minefield {
