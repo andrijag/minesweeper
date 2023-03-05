@@ -1,7 +1,9 @@
 package main.java.games.minesweeper;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import main.java.games.minesweeper.field.Field;
 import main.java.games.minesweeper.utils.Vector;
@@ -10,17 +12,17 @@ public class Minefield {
 	private int numberOfRows;
 	private int numberOfColumns;
 	private int numberOfUncoveredFields;
-	private int numberOfFlags;
 	private Field[][] fields;
 	private List<Field> fieldsWithMines;
+	private Set<Field> fieldsWithFlags;
 
 	public Minefield(int numberOfRows, int numberOfColumns) {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
 		numberOfUncoveredFields = 0;
-		numberOfFlags = 0;
 		fields = new Field[numberOfRows][numberOfColumns];
-		fieldsWithMines = new ArrayList<Field>();
+		fieldsWithMines = new ArrayList<>();
+		fieldsWithFlags = new HashSet<>();
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
@@ -41,10 +43,6 @@ public class Minefield {
 
 	public int getNumberOfFields() {
 		return numberOfRows * numberOfColumns;
-	}
-
-	public int getNumberOfFlags() {
-		return numberOfFlags;
 	}
 
 	public Field getField(int i, int j) {
@@ -74,16 +72,20 @@ public class Minefield {
 		return fieldsWithMines.size();
 	}
 
+	public void addFieldWithFlag(Field field) {
+		fieldsWithFlags.add(field);
+	}
+
+	public void removeFieldWithFlag(Field field) {
+		fieldsWithFlags.remove(field);
+	}
+
+	public int getNumberOfFlags() {
+		return fieldsWithFlags.size();
+	}
+
 	public void incrementNumberOfUncoveredFields() {
 		numberOfUncoveredFields++;
-	}
-
-	public void incrementNumberOfFlags() {
-		numberOfFlags++;
-	}
-
-	public void decrementNumberOfFlags() {
-		numberOfFlags--;
 	}
 
 	public boolean isCleared() {
