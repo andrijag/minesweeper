@@ -20,7 +20,7 @@ public class Game extends Subject {
 		stopwatch = new Stopwatch();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
-		minesweeper = new Minesweeper(minefield);
+		minesweeper = new Minesweeper();
 		state = GameState.FIRST_MOVE;
 	}
 
@@ -43,18 +43,18 @@ public class Game extends Subject {
 			minelayer.scatterMines(numberOfMines);
 			state = GameState.PLAYING;
 		}
-		minesweeper.sweep(minefield.getField(i, j));
+		Minesweeper.sweep(minefield.getField(i, j));
 		evaluate();
 	}
 
 	public void mark(int i, int j) {
 		if (state == GameState.FIRST_MOVE)
 			stopwatch.start();
-		minesweeper.mark(minefield.getField(i, j));
+		Minesweeper.mark(minefield.getField(i, j));
 	}
 
 	public void chord(int i, int j) {
-		minesweeper.chord(minefield.getField(i, j));
+		Minesweeper.chord(minefield.getField(i, j));
 		evaluate();
 	}
 
@@ -62,7 +62,7 @@ public class Game extends Subject {
 		stopwatch.reset();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
-		minesweeper = new Minesweeper(minefield);
+		minesweeper = new Minesweeper();
 		state = GameState.FIRST_MOVE;
 	}
 
