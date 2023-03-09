@@ -1,18 +1,18 @@
 package main.java.games.minesweeper.field;
 
 class Mine extends FieldValue {
-	private ExplosiveState state;
+	private boolean isDetonated;
 
 	Mine() {
-		state = ExplosiveState.LIVE;
+		isDetonated = false;
 	}
 
 	void detonate() {
-		state = ExplosiveState.DETONATED;
+		isDetonated = true;
 	}
 
 	boolean isDetonated() {
-		return state == ExplosiveState.DETONATED;
+		return isDetonated;
 	}
 
 	@Override
