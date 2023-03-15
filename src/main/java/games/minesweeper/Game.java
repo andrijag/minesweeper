@@ -67,6 +67,7 @@ public class Game extends Subject {
 		stopwatch.reset();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
+		minesweeper = new Minesweeper(minefield);
 		state = GameState.FIRST_MOVE;
 	}
 

@@ -49,8 +49,16 @@ public class Minefield {
 		return fields[i][j];
 	}
 
+	public List<Field> getFields() {
+		List<Field> fields = new ArrayList<>();
+		for (int i = 0; i < numberOfRows; i++)
+			for (int j = 0; j < numberOfColumns; j++)
+				fields.add(this.fields[i][j]);
+		return fields;
+	}
+
 	private List<Field> getNeighboursOfField(int i, int j) {
-		List<Field> neighbours = new ArrayList<Field>();
+		List<Field> neighbours = new ArrayList<>();
 		for (Vector vector : Vector.values()) {
 			int di = vector.getI();
 			int dj = vector.getJ();
@@ -64,32 +72,46 @@ public class Minefield {
 		return (0 <= i && i < numberOfRows) && (0 <= j && j < numberOfColumns);
 	}
 
-	public void addFieldWithMine(Field field) {
-		fieldsWithMines.add(field);
-	}
-
 	public int getNumberOfMines() {
 		return fieldsWithMines.size();
-	}
-
-	public void addFieldWithFlag(Field field) {
-		fieldsWithFlags.add(field);
-	}
-
-	public void removeFieldWithFlag(Field field) {
-		fieldsWithFlags.remove(field);
 	}
 
 	public int getNumberOfFlags() {
 		return fieldsWithFlags.size();
 	}
 
-	public void incrementNumberOfUncoveredFields() {
+	public void layMine(Field field) {
+		field.layMine();
+		addFieldWithMine(field);
+	}
+
+	private void addFieldWithMine(Field field) {
+		fieldsWithMines.add(field);
+	}
+
+	public void uncover(Field field) {
+		field.uncover();
+		incrementNumberOfUncoveredFields();
+	}
+
+	private void incrementNumberOfUncoveredFields() {
 		numberOfUncoveredFields++;
 	}
 
-	public boolean isCleared() {
-		return numberOfUncoveredFields + getNumberOfMines() == getNumberOfFields();
+	public void mark(Field field) {
+		field.mark();
+		if (field.isFlagged())
+			addFieldWithFlag(field);
+		else
+			removeFieldWithFlag(field);
+	}
+
+	private void addFieldWithFlag(Field field) {
+		fieldsWithFlags.add(field);
+	}
+
+	private void removeFieldWithFlag(Field field) {
+		fieldsWithFlags.remove(field);
 	}
 
 	public boolean isDetonated() {
@@ -97,6 +119,10 @@ public class Minefield {
 			if (field.isDetonated())
 				return true;
 		return false;
+	}
+
+	public boolean isCleared() {
+		return numberOfUncoveredFields + getNumberOfMines() == getNumberOfFields();
 	}
 
 	public void uncoverMines() {
@@ -109,27 +135,9 @@ public class Minefield {
 			flag(field);
 	}
 
-	public void flag(Field field) {
+	private void flag(Field field) {
 		field.flag();
-		fieldsWithFlags.add(field);
-	}
-
-	public void layMine(Field field) {
-		field.layMine();
-		fieldsWithMines.add(field);
-	}
-
-	public void uncover(Field field) {
-		field.uncover();
-		numberOfUncoveredFields++;
-	}
-
-	public void mark(Field field) {
-		field.mark();
-		if (field.isFlagged())
-			fieldsWithFlags.add(field);
-		else
-			fieldsWithFlags.remove(field);
+		addFieldWithFlag(field);
 	}
 
 	@Override

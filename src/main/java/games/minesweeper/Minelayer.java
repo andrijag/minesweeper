@@ -1,6 +1,5 @@
 package main.java.games.minesweeper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -12,10 +11,7 @@ public class Minelayer {
 
 	public Minelayer(Minefield minefield) {
 		this.minefield = minefield;
-		fields = new ArrayList<>();
-		for (int i = 0; i < minefield.getNumberOfRows(); i++)
-			for (int j = 0; j < minefield.getNumberOfColumns(); j++)
-				fields.add(minefield.getField(i, j));
+		fields = minefield.getFields();
 	}
 
 	public void scatterMines(int numberOfMines) {

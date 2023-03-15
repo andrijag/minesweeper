@@ -3,8 +3,6 @@ package main.java.games.minesweeper.field;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.games.minesweeper.Minefield;
-
 public class Field {
 	private FieldValue value;
 	private FieldState state;
@@ -13,7 +11,7 @@ public class Field {
 	public Field() {
 		value = new Number();
 		state = new Covered(this);
-		neighbours = new ArrayList<Field>();
+		neighbours = new ArrayList<>();
 	}
 
 	FieldValue getValue() {
@@ -39,7 +37,7 @@ public class Field {
 				neighbour.setNumber(neighbour.getNumberOfNeighbourMines());
 	}
 
-	public void setNumber(int number) {
+	private void setNumber(int number) {
 		((Number) value).setNumber(number);
 	}
 
@@ -49,16 +47,16 @@ public class Field {
 			detonate();
 	}
 
+	private void detonate() {
+		((Mine) value).detonate();
+	}
+
 	public void mark() {
 		state.mark();
 	}
 
 	public void flag() {
 		state = new Flagged(this);
-	}
-
-	public void detonate() {
-		((Mine) value).detonate();
 	}
 
 	public boolean isDetonated() {
