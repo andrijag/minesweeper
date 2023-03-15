@@ -3,7 +3,13 @@ package main.java.games.minesweeper;
 import main.java.games.minesweeper.field.Field;
 
 public class Minesweeper {
-	public static void sweep(Field field) {
+	private Minefield minefield;
+
+	public Minesweeper(Minefield minefield) {
+		this.minefield = minefield;
+	}
+
+	public void sweep(Field field) {
 		if (field.isUncovered() || field.isFlagged())
 			return;
 		uncover(field);
@@ -12,17 +18,15 @@ public class Minesweeper {
 				sweep(neighbour);
 	}
 
-	private static void uncover(Field field) {
-		field.uncover();
-		if (field.isMine())
-			field.detonate();
+	private void uncover(Field field) {
+		minefield.uncover(field);
 	}
 
-	public static void mark(Field field) {
-		field.mark();
+	public void mark(Field field) {
+		minefield.mark(field);
 	}
 
-	public static void chord(Field field) {
+	public void chord(Field field) {
 		if (!field.isUncovered())
 			return;
 		if (field.getNumber() == field.getNumberOfNeighbourFlags())

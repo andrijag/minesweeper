@@ -10,6 +10,7 @@ public class Game extends Subject {
 	private Stopwatch stopwatch;
 	private Minefield minefield;
 	private Minelayer minelayer;
+	private Minesweeper minesweeper;
 	private GameState state;
 
 	public Game(int numberOfRows, int numberOfColumns, int numberOfMines) {
@@ -19,6 +20,7 @@ public class Game extends Subject {
 		stopwatch = new Stopwatch();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
+		minesweeper = new Minesweeper(minefield);
 		state = GameState.FIRST_MOVE;
 	}
 
@@ -36,7 +38,7 @@ public class Game extends Subject {
 
 	public void sweep(int i, int j) {
 		if (state == GameState.PLAYING) {
-			Minesweeper.sweep(minefield.getField(i, j));
+			minesweeper.sweep(minefield.getField(i, j));
 			evaluate();
 		} else if (state == GameState.FIRST_MOVE) {
 			stopwatch.start();
@@ -49,14 +51,14 @@ public class Game extends Subject {
 
 	public void mark(int i, int j) {
 		if (state == GameState.PLAYING)
-			Minesweeper.mark(minefield.getField(i, j));
+			minesweeper.mark(minefield.getField(i, j));
 		else if (state == GameState.FIRST_MOVE)
 			stopwatch.start();
 	}
 
 	public void chord(int i, int j) {
 		if (state == GameState.PLAYING) {
-			Minesweeper.chord(minefield.getField(i, j));
+			minesweeper.chord(minefield.getField(i, j));
 			evaluate();
 		}
 	}

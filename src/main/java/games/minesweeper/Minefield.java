@@ -26,7 +26,7 @@ public class Minefield {
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
-				fields[i][j] = new Field(this);
+				fields[i][j] = new Field();
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
@@ -101,12 +101,35 @@ public class Minefield {
 
 	public void uncoverMines() {
 		for (Field field : fieldsWithMines)
-			field.uncover();
+			uncover(field);
 	}
 
 	public void flagMines() {
 		for (Field field : fieldsWithMines)
-			field.flag();
+			flag(field);
+	}
+
+	public void flag(Field field) {
+		field.flag();
+		fieldsWithFlags.add(field);
+	}
+
+	public void layMine(Field field) {
+		field.layMine();
+		fieldsWithMines.add(field);
+	}
+
+	public void uncover(Field field) {
+		field.uncover();
+		numberOfUncoveredFields++;
+	}
+
+	public void mark(Field field) {
+		field.mark();
+		if (field.isFlagged())
+			fieldsWithFlags.add(field);
+		else
+			fieldsWithFlags.remove(field);
 	}
 
 	@Override

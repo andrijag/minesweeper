@@ -11,8 +11,8 @@ class Number extends FieldValue {
 		return number;
 	}
 
-	void increment() {
-		number++;
+	void setNumber(int number) {
+		this.number = number;
 	}
 
 	@Override

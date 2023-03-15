@@ -6,13 +6,11 @@ import java.util.List;
 import main.java.games.minesweeper.Minefield;
 
 public class Field {
-	private Minefield minefield;
 	private FieldValue value;
 	private FieldState state;
 	private List<Field> neighbours;
 
-	public Field(Minefield minefield) {
-		this.minefield = minefield;
+	public Field() {
 		value = new Number();
 		state = new Covered(this);
 		neighbours = new ArrayList<Field>();
@@ -36,34 +34,27 @@ public class Field {
 
 	public void layMine() {
 		value = new Mine();
-		incrementNeighbours();
-		minefield.addFieldWithMine(this);
-	}
-
-	private void incrementNeighbours() {
 		for (Field neighbour : neighbours)
 			if (!neighbour.isMine())
-				neighbour.increment();
+				neighbour.setNumber(neighbour.getNumberOfNeighbourMines());
 	}
 
-	private void increment() {
-		((Number) value).increment();
+	public void setNumber(int number) {
+		((Number) value).setNumber(number);
 	}
 
 	public void uncover() {
 		state = new Uncovered(this);
-		minefield.incrementNumberOfUncoveredFields();
+		if (isMine())
+			detonate();
 	}
 
 	public void mark() {
 		state.mark();
-		if (!isFlagged())
-			minefield.removeFieldWithFlag(this);
 	}
 
 	public void flag() {
 		state = new Flagged(this);
-		minefield.addFieldWithFlag(this);
 	}
 
 	public void detonate() {
@@ -84,6 +75,14 @@ public class Field {
 			if (neighbour.isFlagged())
 				numberOfFlags++;
 		return numberOfFlags;
+	}
+
+	public int getNumberOfNeighbourMines() {
+		int numberOfMines = 0;
+		for (Field neighbour : neighbours)
+			if (neighbour.isMine())
+				numberOfMines++;
+		return numberOfMines;
 	}
 
 	public boolean isMine() {
