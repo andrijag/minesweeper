@@ -1,6 +1,7 @@
 package main.java.games.minesweeper;
 
-import main.java.games.minesweeper.field.Field;
+import main.java.games.minesweeper.minefield.Field;
+import main.java.games.minesweeper.minefield.Minefield;
 
 public class Minesweeper {
 	private Minefield minefield;

@@ -1,5 +1,6 @@
 package main.java.games.minesweeper;
 
+import main.java.games.minesweeper.minefield.Minefield;
 import main.java.games.minesweeper.stopwatch.Stopwatch;
 import main.java.games.minesweeper.utils.Subject;
 

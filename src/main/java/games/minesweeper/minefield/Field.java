@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.field;
+package main.java.games.minesweeper.minefield;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +26,11 @@ public class Field {
 		return neighbours;
 	}
 
-	public void setNeighbours(List<Field> neighbours) {
+	void setNeighbours(List<Field> neighbours) {
 		this.neighbours = neighbours;
 	}
 
-	public void layMine() {
+	void layMine() {
 		value = new Mine();
 		for (Field neighbour : neighbours)
 			if (!neighbour.isMine())
@@ -41,21 +41,19 @@ public class Field {
 		((Number) value).setNumber(number);
 	}
 
-	public void uncover() {
+	void uncover() {
 		state = new Uncovered(this);
-		if (isMine())
-			detonate();
 	}
 
-	private void detonate() {
+	void detonate() {
 		((Mine) value).detonate();
 	}
 
-	public void mark() {
+	void mark() {
 		state.mark();
 	}
 
-	public void flag() {
+	void flag() {
 		state = new Flagged(this);
 	}
 

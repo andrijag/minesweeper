@@ -1,26 +1,25 @@
-package main.java.games.minesweeper;
+package main.java.games.minesweeper.minefield;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import main.java.games.minesweeper.field.Field;
 import main.java.games.minesweeper.utils.Vector;
 
 public class Minefield {
 	private int numberOfRows;
 	private int numberOfColumns;
-	private int numberOfUncoveredFields;
 	private Field[][] fields;
+	private int numberOfUncoveredFields;
 	private List<Field> fieldsWithMines;
 	private Set<Field> fieldsWithFlags;
 
 	public Minefield(int numberOfRows, int numberOfColumns) {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
-		numberOfUncoveredFields = 0;
 		fields = new Field[numberOfRows][numberOfColumns];
+		numberOfUncoveredFields = 0;
 		fieldsWithMines = new ArrayList<>();
 		fieldsWithFlags = new HashSet<>();
 
@@ -47,14 +46,6 @@ public class Minefield {
 
 	public Field getField(int i, int j) {
 		return fields[i][j];
-	}
-
-	public List<Field> getFields() {
-		List<Field> fields = new ArrayList<>();
-		for (int i = 0; i < numberOfRows; i++)
-			for (int j = 0; j < numberOfColumns; j++)
-				fields.add(this.fields[i][j]);
-		return fields;
 	}
 
 	private List<Field> getNeighboursOfField(int i, int j) {
@@ -91,7 +82,10 @@ public class Minefield {
 
 	public void uncover(Field field) {
 		field.uncover();
-		incrementNumberOfUncoveredFields();
+		if (field.isMine())
+			field.detonate();
+		else
+			incrementNumberOfUncoveredFields();
 	}
 
 	private void incrementNumberOfUncoveredFields() {
@@ -127,7 +121,7 @@ public class Minefield {
 
 	public void uncoverMines() {
 		for (Field field : fieldsWithMines)
-			uncover(field);
+			field.uncover();
 	}
 
 	public void flagMines() {
