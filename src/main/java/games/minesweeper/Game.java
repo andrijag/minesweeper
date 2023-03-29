@@ -43,18 +43,20 @@ public class Game extends Subject {
 			evaluate();
 		} else if (state == GameState.FIRST_MOVE) {
 			stopwatch.start();
-			minelayer.remove(minefield.getField(i, j));
-			minelayer.scatterMines(numberOfMines);
+			scatterMinesExcludingField(i, j);
 			state = GameState.PLAYING;
 			sweep(i, j);
 		}
 	}
 
+	private void scatterMinesExcludingField(int i, int j) {
+		minelayer.remove(minefield.getField(i, j));
+		minelayer.scatterMines(numberOfMines);
+	}
+
 	public void mark(int i, int j) {
 		if (state == GameState.PLAYING)
 			minesweeper.mark(minefield.getField(i, j));
-		else if (state == GameState.FIRST_MOVE)
-			stopwatch.start();
 	}
 
 	public void chord(int i, int j) {
