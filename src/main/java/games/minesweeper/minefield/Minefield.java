@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import main.java.games.minesweeper.utils.Vector;
+import main.java.games.minesweeper.util.Vector;
 
 public class Minefield {
 	private int numberOfRows;
