@@ -8,7 +8,7 @@ public class Field {
 	private FieldState state;
 	private List<Field> neighbours;
 
-	public Field() {
+	Field() {
 		value = new Number();
 		state = new Covered(this);
 		neighbours = new ArrayList<>();
