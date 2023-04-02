@@ -41,6 +41,7 @@ public class Game extends Subject {
 		if (state == GameState.PLAYING) {
 			minesweeper.sweep(minefield.getField(i, j));
 			evaluate();
+			notifyObservers();
 		} else if (state == GameState.FIRST_MOVE) {
 			stopwatch.start();
 			scatterMinesExcludingField(i, j);
@@ -55,14 +56,17 @@ public class Game extends Subject {
 	}
 
 	public void mark(int i, int j) {
-		if (state == GameState.PLAYING)
+		if (state == GameState.PLAYING) {
 			minesweeper.mark(minefield.getField(i, j));
+			notifyObservers();
+		}
 	}
 
 	public void chord(int i, int j) {
 		if (state == GameState.PLAYING) {
 			minesweeper.chord(minefield.getField(i, j));
 			evaluate();
+			notifyObservers();
 		}
 	}
 
@@ -72,6 +76,7 @@ public class Game extends Subject {
 		minelayer = new Minelayer(minefield);
 		minesweeper = new Minesweeper(minefield);
 		state = GameState.FIRST_MOVE;
+		notifyObservers();
 	}
 
 	private void evaluate() {
