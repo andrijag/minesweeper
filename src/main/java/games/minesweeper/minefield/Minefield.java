@@ -50,12 +50,9 @@ public class Minefield {
 
 	private List<Field> getNeighboursOfField(int i, int j) {
 		List<Field> neighbours = new ArrayList<>();
-		for (Vector vector : Vector.values()) {
-			int di = vector.getI();
-			int dj = vector.getJ();
-			if (contains(i + di, j + dj))
-				neighbours.add(fields[i + di][j + dj]);
-		}
+		for (Vector vector : Vector.values())
+			if (contains(i + vector.getI(), j + vector.getJ()))
+				neighbours.add(fields[i + vector.getI()][j + vector.getJ()]);
 		return neighbours;
 	}
 
@@ -73,10 +70,6 @@ public class Minefield {
 
 	public void layMine(Field field) {
 		field.layMine();
-		addFieldWithMine(field);
-	}
-
-	private void addFieldWithMine(Field field) {
 		fieldsWithMines.add(field);
 	}
 
@@ -85,27 +78,15 @@ public class Minefield {
 		if (field.isMine())
 			field.detonate();
 		else
-			incrementNumberOfUncoveredFields();
-	}
-
-	private void incrementNumberOfUncoveredFields() {
-		numberOfUncoveredFields++;
+			numberOfUncoveredFields++;
 	}
 
 	public void mark(Field field) {
 		field.mark();
 		if (field.isFlagged())
-			addFieldWithFlag(field);
+			fieldsWithFlags.add(field);
 		else
-			removeFieldWithFlag(field);
-	}
-
-	private void addFieldWithFlag(Field field) {
-		fieldsWithFlags.add(field);
-	}
-
-	private void removeFieldWithFlag(Field field) {
-		fieldsWithFlags.remove(field);
+			fieldsWithFlags.remove(field);
 	}
 
 	public boolean isDetonated() {
@@ -131,7 +112,7 @@ public class Minefield {
 
 	private void flag(Field field) {
 		field.flag();
-		addFieldWithFlag(field);
+		fieldsWithFlags.add(field);
 	}
 
 	@Override
