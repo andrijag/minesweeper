@@ -98,6 +98,18 @@ public class Game extends Subject {
 		state = GameState.WINNING;
 	}
 
+	public boolean isOver() {
+		return isLost() || isWon();
+	}
+
+	public boolean isLost() {
+		return state == GameState.LOSING;
+	}
+
+	public boolean isWon() {
+		return state == GameState.WINNING;
+	}
+
 	@Override
 	public String toString() {
 		return getMinecount() + "\t" + getTime() + "\n" + minefield.toString();
