@@ -1,7 +1,7 @@
 package main.java.games.minesweeper;
 
-public class FirstMove extends GameState {
-	public FirstMove(Game game) {
+class FirstMove extends GameState {
+	FirstMove(Game game) {
 		super(game);
 	}
 

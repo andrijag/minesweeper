@@ -34,10 +34,6 @@ public class Game extends Subject {
 		return stopwatch.getTime();
 	}
 
-	void startTime() {
-		stopwatch.start();
-	}
-	
 	public Field getField(int i, int j) {
 		return minefield.getField(i, j);
 	}
@@ -50,13 +46,17 @@ public class Game extends Subject {
 		this.state = state;
 	}
 
-	public void sweep(int i, int j) {
-		state.sweep(i, j);
+	void startTime() {
+		stopwatch.start();
 	}
 
 	void scatterMinesExcludingField(int i, int j) {
 		minelayer.remove(minefield.getField(i, j));
 		minelayer.scatterMines(numberOfMines);
+	}
+
+	public void sweep(int i, int j) {
+		state.sweep(i, j);
 	}
 
 	public void mark(int i, int j) {
