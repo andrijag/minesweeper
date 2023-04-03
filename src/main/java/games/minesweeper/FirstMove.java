@@ -16,7 +16,7 @@ public class FirstMove extends GameState {
 	@Override
 	void mark(int i, int j) {
 		game.startTime();
-		game.getMinesweeper().mark(game.getMinefield().getField(i, j));
+		game.getMinesweeper().mark(game.getField(i, j));
 		game.notifyObservers();
 	}
 

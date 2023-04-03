@@ -1,5 +1,6 @@
 package main.java.games.minesweeper;
 
+import main.java.games.minesweeper.minefield.Field;
 import main.java.games.minesweeper.minefield.Minefield;
 import main.java.games.minesweeper.stopwatch.Stopwatch;
 import main.java.games.minesweeper.util.Subject;
@@ -36,9 +37,9 @@ public class Game extends Subject {
 	void startTime() {
 		stopwatch.start();
 	}
-
-	public Minefield getMinefield() {
-		return minefield;
+	
+	public Field getField(int i, int j) {
+		return minefield.getField(i, j);
 	}
 
 	Minesweeper getMinesweeper() {

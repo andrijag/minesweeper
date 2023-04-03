@@ -7,20 +7,20 @@ public class Playing extends GameState {
 
 	@Override
 	void sweep(int i, int j) {
-		game.getMinesweeper().sweep(game.getMinefield().getField(i, j));
+		game.getMinesweeper().sweep(game.getField(i, j));
 		game.evaluate();
 		game.notifyObservers();
 	}
 
 	@Override
 	void mark(int i, int j) {
-		game.getMinesweeper().mark(game.getMinefield().getField(i, j));
+		game.getMinesweeper().mark(game.getField(i, j));
 		game.notifyObservers();
 	}
 
 	@Override
 	void chord(int i, int j) {
-		game.getMinesweeper().chord(game.getMinefield().getField(i, j));
+		game.getMinesweeper().chord(game.getField(i, j));
 		game.evaluate();
 		game.notifyObservers();
 	}
