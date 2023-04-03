@@ -22,7 +22,7 @@ public class Game extends Subject {
 		stopwatch = new Stopwatch();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
-		minesweeper = new Minesweeper(minefield);
+		minesweeper = new Minesweeper();
 		state = new FirstMove(this);
 	}
 
@@ -71,7 +71,7 @@ public class Game extends Subject {
 		stopwatch.reset();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
-		minesweeper = new Minesweeper(minefield);
+		minesweeper = new Minesweeper();
 		state = new FirstMove(this);
 		notifyObservers();
 	}

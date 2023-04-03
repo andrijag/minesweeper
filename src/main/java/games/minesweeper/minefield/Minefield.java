@@ -1,35 +1,27 @@
 package main.java.games.minesweeper.minefield;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import main.java.games.minesweeper.util.Vector;
 
 public class Minefield {
 	private int numberOfRows;
 	private int numberOfColumns;
-	private Field[][] fields;
-	private int numberOfUncoveredFields;
-	private List<Field> fieldsWithMines;
-	private Set<Field> fieldsWithFlags;
+	private List<Field> fields;
 
 	public Minefield(int numberOfRows, int numberOfColumns) {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
-		fields = new Field[numberOfRows][numberOfColumns];
-		numberOfUncoveredFields = 0;
-		fieldsWithMines = new ArrayList<>();
-		fieldsWithFlags = new HashSet<>();
+		fields = new ArrayList<>();
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
-				fields[i][j] = new Field();
+				fields.add(new Field());
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
-				fields[i][j].setNeighbours(getNeighboursOfField(i, j));
+				getField(i, j).setNeighbours(getNeighboursOfField(i, j));
 	}
 
 	public int getNumberOfRows() {
@@ -45,14 +37,14 @@ public class Minefield {
 	}
 
 	public Field getField(int i, int j) {
-		return fields[i][j];
+		return fields.get(i * numberOfColumns + j);
 	}
 
 	private List<Field> getNeighboursOfField(int i, int j) {
 		List<Field> neighbours = new ArrayList<>();
 		for (Vector vector : Vector.values())
 			if (contains(i + vector.getI(), j + vector.getJ()))
-				neighbours.add(fields[i + vector.getI()][j + vector.getJ()]);
+				neighbours.add(getField(i + vector.getI(), j + vector.getJ()));
 		return neighbours;
 	}
 
@@ -60,59 +52,54 @@ public class Minefield {
 		return (0 <= i && i < numberOfRows) && (0 <= j && j < numberOfColumns);
 	}
 
-	public int getNumberOfMines() {
-		return fieldsWithMines.size();
+	private List<Field> getFieldsWithMines() {
+		List<Field> fieldsWithMines = new ArrayList<Field>();
+		for (Field field : fields)
+			if (field.isMine())
+				fieldsWithMines.add(field);
+		return fieldsWithMines;
+
+	}
+
+	private int getNumberOfMines() {
+		return getFieldsWithMines().size();
 	}
 
 	public int getNumberOfFlags() {
-		return fieldsWithFlags.size();
+		int numberOfFlags = 0;
+		for (Field field : fields)
+			if (field.isFlagged())
+				numberOfFlags++;
+		return numberOfFlags;
 	}
 
-	public void layMine(Field field) {
-		field.layMine();
-		fieldsWithMines.add(field);
-	}
-
-	public void uncover(Field field) {
-		field.uncover();
-		if (field.isMine())
-			field.detonate();
-		else
-			numberOfUncoveredFields++;
-	}
-
-	public void mark(Field field) {
-		field.mark();
-		if (field.isFlagged())
-			fieldsWithFlags.add(field);
-		else
-			fieldsWithFlags.remove(field);
+	private int getNumberOfUncoveredFields() {
+		int numberUncoveredFields = 0;
+		for (Field field : fields)
+			if (field.isFlagged())
+				numberUncoveredFields++;
+		return numberUncoveredFields;
 	}
 
 	public boolean isDetonated() {
-		for (Field field : fieldsWithMines)
+		for (Field field : getFieldsWithMines())
 			if (field.isDetonated())
 				return true;
 		return false;
 	}
 
 	public boolean isCleared() {
-		return numberOfUncoveredFields + getNumberOfMines() == getNumberOfFields();
+		return getNumberOfUncoveredFields() + getNumberOfMines() == getNumberOfFields();
 	}
 
 	public void uncoverMines() {
-		for (Field field : fieldsWithMines)
+		for (Field field : getFieldsWithMines())
 			field.uncover();
 	}
 
 	public void flagMines() {
-		for (Field field : fieldsWithMines)
-			flag(field);
-	}
-
-	private void flag(Field field) {
-		field.flag();
-		fieldsWithFlags.add(field);
+		for (Field field : getFieldsWithMines())
+			field.flag();
 	}
 
 	@Override
@@ -120,7 +107,7 @@ public class Minefield {
 		String str = new String();
 		for (int i = 0; i < numberOfRows; i++) {
 			for (int j = 0; j < numberOfColumns; j++)
-				str += fields[i][j] + " ";
+				str += getField(i, j) + " ";
 			str += "\n";
 		}
 		return str;

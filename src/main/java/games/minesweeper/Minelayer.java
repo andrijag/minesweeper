@@ -8,11 +8,9 @@ import main.java.games.minesweeper.minefield.Field;
 import main.java.games.minesweeper.minefield.Minefield;
 
 public class Minelayer {
-	private Minefield minefield;
 	private List<Field> fields;
 
 	public Minelayer(Minefield minefield) {
-		this.minefield = minefield;
 		fields = new ArrayList<>();
 		for (int i = 0; i < minefield.getNumberOfRows(); i++)
 			for (int j = 0; j < minefield.getNumberOfColumns(); j++)
@@ -28,7 +26,7 @@ public class Minelayer {
 	}
 
 	public void layMine(Field field) {
-		minefield.layMine(field);
+		field.layMine();
 	}
 
 	public void remove(Field field) {

@@ -30,26 +30,34 @@ public class Field {
 		this.neighbours = neighbours;
 	}
 
-	void layMine() {
+	public void layMine() {
 		value = new Mine();
+		updateNeighbours();
+	}
+
+	private void updateNeighbours() {
 		for (Field neighbour : neighbours)
 			if (!neighbour.isMine())
-				neighbour.setNumber(neighbour.getNumberOfNeighbourMines());
+				neighbour.updateNumber();
+	}
+
+	private void updateNumber() {
+		setNumber(getNumberOfNeighbourMines());
 	}
 
 	private void setNumber(int number) {
 		((Number) value).setNumber(number);
 	}
 
-	void uncover() {
+	public void uncover() {
 		state = new Uncovered(this);
 	}
 
-	void detonate() {
+	public void detonate() {
 		((Mine) value).detonate();
 	}
 
-	void mark() {
+	public void mark() {
 		state.mark();
 	}
 

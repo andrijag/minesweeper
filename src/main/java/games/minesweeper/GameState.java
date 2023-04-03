@@ -7,9 +7,20 @@ abstract class GameState {
 		this.game = game;
 	}
 
-	abstract void sweep(int i, int j);
+	void sweep(int i, int j) {
+		game.getMinesweeper().sweep(game.getField(i, j));
+		game.evaluate();
+		game.notifyObservers();
+	}
 
-	abstract void mark(int i, int j);
+	void mark(int i, int j) {
+		game.getMinesweeper().mark(game.getField(i, j));
+		game.notifyObservers();
+	}
 
-	abstract void chord(int i, int j);
+	void chord(int i, int j) {
+		game.getMinesweeper().chord(game.getField(i, j));
+		game.evaluate();
+		game.notifyObservers();
+	}
 }
