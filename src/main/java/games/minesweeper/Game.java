@@ -22,7 +22,7 @@ public class Game extends Subject {
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
 		minesweeper = new Minesweeper(minefield);
-		state = GameState.FIRST_MOVE;
+		state = new FirstMove(this);
 	}
 
 	public int getMinecount() {
@@ -33,41 +33,37 @@ public class Game extends Subject {
 		return stopwatch.getTime();
 	}
 
+	void startTime() {
+		stopwatch.start();
+	}
+
 	public Minefield getMinefield() {
 		return minefield;
 	}
 
-	public void sweep(int i, int j) {
-		if (state == GameState.PLAYING) {
-			minesweeper.sweep(minefield.getField(i, j));
-			evaluate();
-			notifyObservers();
-		} else if (state == GameState.FIRST_MOVE) {
-			stopwatch.start();
-			scatterMinesExcludingField(i, j);
-			state = GameState.PLAYING;
-			sweep(i, j);
-		}
+	Minesweeper getMinesweeper() {
+		return minesweeper;
 	}
 
-	private void scatterMinesExcludingField(int i, int j) {
+	void changeState(GameState state) {
+		this.state = state;
+	}
+
+	public void sweep(int i, int j) {
+		state.sweep(i, j);
+	}
+
+	void scatterMinesExcludingField(int i, int j) {
 		minelayer.remove(minefield.getField(i, j));
 		minelayer.scatterMines(numberOfMines);
 	}
 
 	public void mark(int i, int j) {
-		if (state == GameState.PLAYING) {
-			minesweeper.mark(minefield.getField(i, j));
-			notifyObservers();
-		}
+		state.mark(i, j);
 	}
 
 	public void chord(int i, int j) {
-		if (state == GameState.PLAYING) {
-			minesweeper.chord(minefield.getField(i, j));
-			evaluate();
-			notifyObservers();
-		}
+		state.chord(i, j);
 	}
 
 	public void restart() {
@@ -75,11 +71,11 @@ public class Game extends Subject {
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
 		minesweeper = new Minesweeper(minefield);
-		state = GameState.FIRST_MOVE;
+		state = new FirstMove(this);
 		notifyObservers();
 	}
 
-	private void evaluate() {
+	void evaluate() {
 		if (minefield.isDetonated())
 			youLose();
 		else if (minefield.isCleared())
@@ -89,13 +85,13 @@ public class Game extends Subject {
 	private void youLose() {
 		stopwatch.stop();
 		minefield.uncoverMines();
-		state = GameState.LOSING;
+		state = new Losing(this);
 	}
 
 	private void youWin() {
 		stopwatch.stop();
 		minefield.flagMines();
-		state = GameState.WINNING;
+		state = new Winning(this);
 	}
 
 	public boolean isOver() {
@@ -103,11 +99,11 @@ public class Game extends Subject {
 	}
 
 	public boolean isLost() {
-		return state == GameState.LOSING;
+		return state instanceof Losing;
 	}
 
 	public boolean isWon() {
-		return state == GameState.WINNING;
+		return state instanceof Winning;
 	}
 
 	@Override
