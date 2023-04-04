@@ -1,18 +1,29 @@
 package main.java.games.minesweeper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import main.java.games.minesweeper.minefield.Field;
 
 public class Minesweeper {
+	private List<Field> fields;
+
+	public Minesweeper() {
+		this.fields = new ArrayList<>();
+	}
 
 	public void sweep(Field field) {
-		if (field.isUncovered() || field.isFlagged())
-			return;
-		uncover(field);
-		if (!field.isMine() && field.getNumber() == 0)
-			for (Field neighbour : field.getNeighbours())
-				sweep(neighbour);
+		fields.add(field);
+		while (!fields.isEmpty()) {
+			field = fields.remove(0);
+			if (field.isUncovered() || field.isFlagged())
+				continue;
+			uncover(field);
+			if (!field.isMine() && field.getNumber() == 0)
+				fields.addAll(field.getNeighbours());
+		}
 	}
-	
+
 	private void uncover(Field field) {
 		field.uncover();
 		if (field.isMine())
