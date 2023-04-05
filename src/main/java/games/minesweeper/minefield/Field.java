@@ -66,7 +66,9 @@ public class Field {
 	}
 
 	public boolean isDetonated() {
-		return ((Mine) value).isDetonated();
+		if (isMine())
+			return ((Mine) value).isDetonated();
+		return false;
 	}
 
 	public int getNumber() {

@@ -15,7 +15,7 @@ public class Minesweeper {
 	public void sweep(Field field) {
 		fields.add(field);
 		while (!fields.isEmpty()) {
-			field = fields.remove(0);
+			field = fields.remove(fields.size() - 1);
 			if (field.isUncovered() || field.isFlagged())
 				continue;
 			uncover(field);

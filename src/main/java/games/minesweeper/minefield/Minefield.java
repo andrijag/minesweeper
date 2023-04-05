@@ -8,20 +8,20 @@ import main.java.games.minesweeper.util.Vector;
 public class Minefield {
 	private int numberOfRows;
 	private int numberOfColumns;
-	private List<Field> fields;
+	private Field[][] fields;
 
 	public Minefield(int numberOfRows, int numberOfColumns) {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
-		fields = new ArrayList<>();
+		fields = new Field[numberOfRows][numberOfColumns];
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
-				fields.add(new Field());
+				fields[i][j] = new Field();
 
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
-				getField(i, j).setNeighbours(getNeighboursOfField(i, j));
+				fields[i][j].setNeighbours(getNeighboursOfField(i, j));
 	}
 
 	public int getNumberOfRows() {
@@ -32,19 +32,15 @@ public class Minefield {
 		return numberOfColumns;
 	}
 
-	public int getNumberOfFields() {
-		return numberOfRows * numberOfColumns;
-	}
-
 	public Field getField(int i, int j) {
-		return fields.get(i * numberOfColumns + j);
+		return fields[i][j];
 	}
 
 	private List<Field> getNeighboursOfField(int i, int j) {
 		List<Field> neighbours = new ArrayList<>();
 		for (Vector vector : Vector.values())
 			if (contains(i + vector.getI(), j + vector.getJ()))
-				neighbours.add(getField(i + vector.getI(), j + vector.getJ()));
+				neighbours.add(fields[i + vector.getI()][j + vector.getJ()]);
 		return neighbours;
 	}
 
@@ -52,33 +48,23 @@ public class Minefield {
 		return (0 <= i && i < numberOfRows) && (0 <= j && j < numberOfColumns);
 	}
 
-	private List<Field> getFieldsWithMines() {
-		List<Field> fieldsWithMines = new ArrayList<Field>();
-		for (Field field : fields)
-			if (field.isMine())
-				fieldsWithMines.add(field);
-		return fieldsWithMines;
-
-	}
-
-	private int getNumberOfMines() {
-		return getFieldsWithMines().size();
-	}
-
 	public int getNumberOfFlags() {
 		int numberOfFlags = 0;
-		for (Field field : fields)
-			if (field.isFlagged())
-				numberOfFlags++;
+		for (int i = 0; i < numberOfRows; i++)
+			for (int j = 0; j < numberOfColumns; j++)
+				if (fields[i][j].isFlagged())
+					numberOfFlags++;
 		return numberOfFlags;
 	}
 
-	private int getNumberOfUncoveredFields() {
-		int numberUncoveredFields = 0;
-		for (Field field : fields)
-			if (field.isFlagged())
-				numberUncoveredFields++;
-		return numberUncoveredFields;
+	private List<Field> getFieldsWithMines() {
+		List<Field> fieldsWithMines = new ArrayList<Field>();
+		for (int i = 0; i < numberOfRows; i++)
+			for (int j = 0; j < numberOfColumns; j++)
+				if (fields[i][j].isMine())
+					fieldsWithMines.add(fields[i][j]);
+		return fieldsWithMines;
+
 	}
 
 	public boolean isDetonated() {
@@ -89,7 +75,11 @@ public class Minefield {
 	}
 
 	public boolean isCleared() {
-		return getNumberOfUncoveredFields() + getNumberOfMines() == getNumberOfFields();
+		for (int i = 0; i < numberOfRows; i++)
+			for (int j = 0; j < numberOfColumns; j++)
+				if (!fields[i][j].isMine() && !fields[i][j].isUncovered())
+					return false;
+		return true;
 	}
 
 	public void uncoverMines() {
