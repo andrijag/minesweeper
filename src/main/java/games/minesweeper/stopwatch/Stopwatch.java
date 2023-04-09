@@ -19,8 +19,8 @@ public class Stopwatch {
 		state.stop();
 	}
 
-	public long getTime() {
-		return state.getTime();
+	public long readTimeInMillis() {
+		return state.readTimeInMillis();
 	}
 
 	public void reset() {

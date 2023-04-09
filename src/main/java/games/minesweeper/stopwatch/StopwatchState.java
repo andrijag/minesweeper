@@ -11,5 +11,5 @@ abstract class StopwatchState {
 
 	abstract void stop();
 
-	abstract long getTime();
+	abstract long readTimeInMillis();
 }

@@ -16,7 +16,7 @@ class StoppedState extends StopwatchState {
 	}
 
 	@Override
-	long getTime() {
+	long readTimeInMillis() {
 		return stopwatch.getElapsedTime();
 	}
 }

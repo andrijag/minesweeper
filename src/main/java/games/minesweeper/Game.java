@@ -31,7 +31,7 @@ public class Game extends Subject {
 	}
 
 	public long getTime() {
-		return stopwatch.getTime();
+		return stopwatch.readTimeInMillis();
 	}
 
 	public Field getField(int i, int j) {
