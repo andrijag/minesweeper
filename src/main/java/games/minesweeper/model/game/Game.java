@@ -39,6 +39,14 @@ public class Game extends Subject {
 	public Field getField(int i, int j) {
 		return minefield.getField(i, j);
 	}
+	
+	public int getNumberOfRows() {
+		return numberOfRows;
+	}
+	
+	public int getNumberOfColumns() {
+		return numberOfColumns;
+	}
 
 	Minesweeper getMinesweeper() {
 		return minesweeper;
