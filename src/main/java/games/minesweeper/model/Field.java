@@ -22,7 +22,7 @@ public class Field {
 		this.state = state;
 	}
 
-	public List<Field> getNeighbours() {
+	List<Field> getNeighbours() {
 		return neighbours;
 	}
 
@@ -46,7 +46,15 @@ public class Field {
 	}
 
 	private void setNumber(int number) {
-		((Number) value).setNumber(number);
+		((Number) value).setValue(number);
+	}
+
+	private int getNumberOfNeighbourMines() {
+		int numberOfMines = 0;
+		for (Field neighbour : neighbours)
+			if (neighbour.isMine())
+				numberOfMines++;
+		return numberOfMines;
 	}
 
 	void uncover() {
@@ -65,17 +73,7 @@ public class Field {
 		state = new Flagged(this);
 	}
 
-	public boolean isDetonated() {
-		if (isMine())
-			return ((Mine) value).isDetonated();
-		return false;
-	}
-
-	public int getNumber() {
-		return ((Number) value).getNumber();
-	}
-
-	public int getNumberOfNeighbourFlags() {
+	int getNumberOfNeighbourFlags() {
 		int numberOfFlags = 0;
 		for (Field neighbour : neighbours)
 			if (neighbour.isFlagged())
@@ -83,12 +81,14 @@ public class Field {
 		return numberOfFlags;
 	}
 
-	public int getNumberOfNeighbourMines() {
-		int numberOfMines = 0;
-		for (Field neighbour : neighbours)
-			if (neighbour.isMine())
-				numberOfMines++;
-		return numberOfMines;
+	public boolean isDetonated() {
+		if (isMine())
+			return ((Mine) value).isDetonated();
+		return false;
+	}
+
+	public int getNumber() {
+		return ((Number) value).getValue();
 	}
 
 	public boolean isMine() {

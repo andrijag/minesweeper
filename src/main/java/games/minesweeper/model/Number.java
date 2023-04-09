@@ -1,22 +1,22 @@
 package main.java.games.minesweeper.model;
 
 class Number extends FieldValue {
-	private int number;
+	private int value;
 
 	Number() {
-		number = 0;
+		value = 0;
 	}
 
-	int getNumber() {
-		return number;
+	int getValue() {
+		return value;
 	}
 
-	void setNumber(int number) {
-		this.number = number;
+	void setValue(int value) {
+		this.value = value;
 	}
 
 	@Override
 	public String toString() {
-		return Integer.toString(number);
+		return Integer.toString(value);
 	}
 }
