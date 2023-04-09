@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.minefield;
+package main.java.games.minesweeper.model;
 
 class Uncovered extends FieldState {
 	Uncovered(Field field) {

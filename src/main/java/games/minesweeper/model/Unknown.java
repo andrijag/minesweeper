@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.minefield;
+package main.java.games.minesweeper.model;
 
 class Unknown extends FieldState {
 	Unknown(Field field) {

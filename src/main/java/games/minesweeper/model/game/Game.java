@@ -1,8 +1,10 @@
-package main.java.games.minesweeper;
+package main.java.games.minesweeper.model.game;
 
-import main.java.games.minesweeper.minefield.Field;
-import main.java.games.minesweeper.minefield.Minefield;
-import main.java.games.minesweeper.stopwatch.Stopwatch;
+import main.java.games.minesweeper.model.Field;
+import main.java.games.minesweeper.model.Minefield;
+import main.java.games.minesweeper.model.Minelayer;
+import main.java.games.minesweeper.model.Minesweeper;
+import main.java.games.minesweeper.model.stopwatch.Stopwatch;
 import main.java.games.minesweeper.util.Subject;
 
 public class Game extends Subject {

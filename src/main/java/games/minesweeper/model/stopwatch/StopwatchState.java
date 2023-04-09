@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.stopwatch;
+package main.java.games.minesweeper.model.stopwatch;
 
 abstract class StopwatchState {
 	protected Stopwatch stopwatch;

@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.stopwatch;
+package main.java.games.minesweeper.model.stopwatch;
 
 class StoppedState extends StopwatchState {
 	StoppedState(Stopwatch stopwatch) {

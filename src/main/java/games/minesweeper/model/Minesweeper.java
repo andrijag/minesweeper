@@ -1,9 +1,7 @@
-package main.java.games.minesweeper;
+package main.java.games.minesweeper.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import main.java.games.minesweeper.minefield.Field;
 
 public class Minesweeper {
 	private List<Field> fields;

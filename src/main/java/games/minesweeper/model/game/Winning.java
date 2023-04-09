@@ -1,7 +1,7 @@
-package main.java.games.minesweeper;
+package main.java.games.minesweeper.model.game;
 
-class Losing extends GameState {
-	Losing(Game game) {
+class Winning extends GameState {
+	Winning(Game game) {
 		super(game);
 	}
 
