@@ -5,7 +5,7 @@ import main.java.games.minesweeper.model.Minefield;
 import main.java.games.minesweeper.model.Minelayer;
 import main.java.games.minesweeper.model.Minesweeper;
 import main.java.games.minesweeper.model.stopwatch.Stopwatch;
-import main.java.games.minesweeper.util.Subject;
+import main.java.games.minesweeper.model.util.Subject;
 
 public class Game extends Subject {
 	private int numberOfRows;

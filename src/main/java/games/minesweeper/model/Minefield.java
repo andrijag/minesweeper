@@ -3,7 +3,7 @@ package main.java.games.minesweeper.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.games.minesweeper.util.Vector;
+import main.java.games.minesweeper.model.util.Vector;
 
 public class Minefield {
 	private int numberOfRows;
