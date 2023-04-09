@@ -12,14 +12,4 @@ class FirstMove extends GameState {
 		game.changeState(new Playing(game));
 		super.sweep(i, j);
 	}
-
-	@Override
-	void mark(int i, int j) {
-		game.startTime();
-		super.mark(i, j);
-	}
-
-	@Override
-	void chord(int i, int j) {
-	}
 }
