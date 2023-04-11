@@ -32,6 +32,10 @@ public class Minefield {
 		return numberOfColumns;
 	}
 
+	public int getNumberOfFields() {
+		return numberOfRows * numberOfColumns;
+	}
+
 	public Field getField(int i, int j) {
 		return fields[i][j];
 	}
@@ -57,6 +61,19 @@ public class Minefield {
 		return numberOfFlags;
 	}
 
+	private int getNumberOfUncoveredFields() {
+		int numberOfUncoveredFields = 0;
+		for (int i = 0; i < numberOfRows; i++)
+			for (int j = 0; j < numberOfColumns; j++)
+				if (fields[i][j].isUncovered())
+					numberOfUncoveredFields++;
+		return numberOfUncoveredFields;
+	}
+
+	private int getNumberOfMines() {
+		return getFieldsWithMines().size();
+	}
+
 	private List<Field> getFieldsWithMines() {
 		List<Field> fieldsWithMines = new ArrayList<Field>();
 		for (int i = 0; i < numberOfRows; i++)
@@ -75,11 +92,7 @@ public class Minefield {
 	}
 
 	public boolean isCleared() {
-		for (int i = 0; i < numberOfRows; i++)
-			for (int j = 0; j < numberOfColumns; j++)
-				if (!fields[i][j].isMine() && !fields[i][j].isUncovered())
-					return false;
-		return true;
+		return getNumberOfUncoveredFields() + getNumberOfMines() == getNumberOfFields();
 	}
 
 	public void uncoverMines() {
