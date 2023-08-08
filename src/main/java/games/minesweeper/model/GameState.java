@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.model.game;
+package main.java.games.minesweeper.model;
 
 abstract class GameState {
 	protected Game game;

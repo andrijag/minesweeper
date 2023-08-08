@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.model;
+package main.java.games.minesweeper.model.minefield;
 
 class Mine extends FieldValue {
 	private boolean isDetonated;

@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.model;
+package main.java.games.minesweeper.model.minefield;
 
 class Number extends FieldValue {
 	private int value;

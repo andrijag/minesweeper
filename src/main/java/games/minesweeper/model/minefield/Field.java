@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.model;
+package main.java.games.minesweeper.model.minefield;
 
 import java.util.ArrayList;
 import java.util.List;

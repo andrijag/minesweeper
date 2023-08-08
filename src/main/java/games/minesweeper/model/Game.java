@@ -1,9 +1,9 @@
-package main.java.games.minesweeper.model.game;
+package main.java.games.minesweeper.model;
 
-import main.java.games.minesweeper.model.Field;
-import main.java.games.minesweeper.model.Minefield;
-import main.java.games.minesweeper.model.Minelayer;
-import main.java.games.minesweeper.model.Minesweeper;
+import main.java.games.minesweeper.model.minefield.Field;
+import main.java.games.minesweeper.model.minefield.Minefield;
+import main.java.games.minesweeper.model.minefield.Minelayer;
+import main.java.games.minesweeper.model.minefield.Minesweeper;
 import main.java.games.minesweeper.model.stopwatch.Stopwatch;
 import main.java.games.minesweeper.model.util.Subject;
 

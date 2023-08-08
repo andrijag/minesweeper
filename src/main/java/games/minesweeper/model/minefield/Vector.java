@@ -1,6 +1,6 @@
-package main.java.games.minesweeper.model.util;
+package main.java.games.minesweeper.model.minefield;
 
-public enum Vector {
+enum Vector {
 	N(-1, 0), NE(-1, 1), E(0, 1), SE(1, 1), S(1, 0), SW(1, -1), W(0, -1), NW(-1, -1);
 
 	private int i;
@@ -11,11 +11,11 @@ public enum Vector {
 		this.j = j;
 	}
 
-	public int getI() {
+	int getI() {
 		return i;
 	}
 
-	public int getJ() {
+	int getJ() {
 		return j;
 	}
 }

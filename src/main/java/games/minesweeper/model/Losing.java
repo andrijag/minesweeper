@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.model.game;
+package main.java.games.minesweeper.model;
 
 class Losing extends GameState {
 	Losing(Game game) {
