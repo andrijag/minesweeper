@@ -51,12 +51,16 @@ public class Minefield {
 	}
 
 	public int getNumberOfFlags() {
-		int numberOfFlags = 0;
+		return getFieldsWithFlags().size();
+	}
+	
+	private List<Field> getFieldsWithFlags() {
+		List<Field> fieldsWithFlags = new ArrayList<Field>();
 		for (int i = 0; i < numberOfRows; i++)
 			for (int j = 0; j < numberOfColumns; j++)
 				if (fields[i][j].isFlagged())
-					numberOfFlags++;
-		return numberOfFlags;
+					fieldsWithFlags.add(fields[i][j]);
+		return fieldsWithFlags;
 	}
 
 	private int getNumberOfUncoveredFields() {
@@ -96,6 +100,12 @@ public class Minefield {
 	public void uncoverMines() {
 		for (Field field : getFieldsWithMines())
 			field.uncover();
+	}
+	
+	public void checkFlags() {
+		for (Field field : getFieldsWithFlags())
+			if (!field.isMine())
+				field.setFalselyFlagged();
 	}
 
 	public void flagMines() {

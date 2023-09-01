@@ -5,9 +5,9 @@ import main.java.games.minesweeper.model.minefield.Minefield;
 import main.java.games.minesweeper.model.minefield.Minelayer;
 import main.java.games.minesweeper.model.minefield.Minesweeper;
 import main.java.games.minesweeper.model.stopwatch.Stopwatch;
-import main.java.games.minesweeper.model.util.Subject;
+import main.java.games.minesweeper.model.util.Observable;
 
-public class Game extends Subject {
+public class Game extends Observable {
 	private int numberOfRows;
 	private int numberOfColumns;
 	private int numberOfMines;
@@ -96,6 +96,7 @@ public class Game extends Subject {
 	private void youLose() {
 		stopwatch.stop();
 		minefield.uncoverMines();
+		minefield.checkFlags();
 		state = new Losing(this);
 	}
 

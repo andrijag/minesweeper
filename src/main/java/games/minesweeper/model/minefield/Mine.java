@@ -1,5 +1,7 @@
 package main.java.games.minesweeper.model.minefield;
 
+import main.java.games.minesweeper.model.util.Visitor;
+
 class Mine extends FieldValue {
 	private boolean isDetonated;
 
@@ -13,6 +15,11 @@ class Mine extends FieldValue {
 
 	boolean isDetonated() {
 		return isDetonated;
+	}
+	
+	@Override
+	void accept(Visitor visitor) {
+		visitor.visitUncoveredFieldWithMine(isDetonated);
 	}
 
 	@Override

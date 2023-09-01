@@ -3,10 +3,10 @@ package main.java.games.minesweeper.model.util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Subject {
+public class Observable {
 	private List<Observer> observers;
 	
-	public Subject() {
+	public Observable() {
 		observers = new ArrayList<>();
 	}
 	

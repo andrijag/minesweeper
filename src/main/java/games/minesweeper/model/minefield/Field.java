@@ -3,7 +3,10 @@ package main.java.games.minesweeper.model.minefield;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Field {
+import main.java.games.minesweeper.model.util.Visitable;
+import main.java.games.minesweeper.model.util.Visitor;
+
+public class Field implements Visitable {
 	private FieldValue value;
 	private FieldState state;
 	private List<Field> neighbours;
@@ -73,6 +76,10 @@ public class Field {
 		state = new Flagged(this);
 	}
 
+	int getNumber() {
+		return ((Number) value).getValue();
+	}
+
 	int getNumberOfNeighbourFlags() {
 		int numberOfFlags = 0;
 		for (Field neighbour : neighbours)
@@ -81,26 +88,30 @@ public class Field {
 		return numberOfFlags;
 	}
 
-	public boolean isDetonated() {
+	boolean isDetonated() {
 		if (isMine())
 			return ((Mine) value).isDetonated();
 		return false;
 	}
-
-	public int getNumber() {
-		return ((Number) value).getValue();
+	
+	void setFalselyFlagged() {
+		((Flagged) state).setFalselyFlagged();
 	}
 
-	public boolean isMine() {
+	boolean isMine() {
 		return value instanceof Mine;
 	}
 
-	public boolean isFlagged() {
+	boolean isFlagged() {
 		return state instanceof Flagged;
 	}
 
-	public boolean isUncovered() {
+	boolean isUncovered() {
 		return state instanceof Uncovered;
+	}
+	
+	public void accept(Visitor visitor) {
+		state.accept(visitor);
 	}
 
 	@Override
