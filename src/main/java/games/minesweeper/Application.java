@@ -18,10 +18,10 @@ public class Application implements Runnable {
 
 		Game game = new Game(NUMBER_OF_ROWS, NUMBER_OF_COLUMNS, NUMBER_OF_MINES);
 		View view = new View(game);
-		
+
 		game.addObserver(view);
 		game.notifyObservers();
-		
+
 		frame.add(view);
 		frame.pack();
 		frame.setVisible(true);

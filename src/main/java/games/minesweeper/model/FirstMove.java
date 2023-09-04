@@ -6,10 +6,10 @@ class FirstMove extends GameState {
 	}
 
 	@Override
-	void sweep(int i, int j) {
+	void sweep(int row, int column) {
 		game.startTime();
-		game.scatterMinesExcludingField(i, j);
+		game.scatterMinesExcludingField(row, column);
 		game.changeState(new Playing(game));
-		super.sweep(i, j);
+		super.sweep(row, column);
 	}
 }

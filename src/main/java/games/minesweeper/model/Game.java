@@ -36,8 +36,8 @@ public class Game extends Observable {
 		return stopwatch.readTimeInMillis();
 	}
 
-	public Field getField(int i, int j) {
-		return minefield.getField(i, j);
+	public Field getField(int row, int column) {
+		return minefield.getField(row, column);
 	}
 	
 	public int getNumberOfRows() {
@@ -60,21 +60,21 @@ public class Game extends Observable {
 		stopwatch.start();
 	}
 
-	void scatterMinesExcludingField(int i, int j) {
-		minelayer.remove(minefield.getField(i, j));
+	void scatterMinesExcludingField(int row, int column) {
+		minelayer.remove(minefield.getField(row, column));
 		minelayer.scatterMines(numberOfMines);
 	}
 
-	public void sweep(int i, int j) {
-		state.sweep(i, j);
+	public void sweep(int row, int column) {
+		state.sweep(row, column);
 	}
 
-	public void mark(int i, int j) {
-		state.mark(i, j);
+	public void mark(int row, int column) {
+		state.mark(row, column);
 	}
 
-	public void chord(int i, int j) {
-		state.chord(i, j);
+	public void chord(int row, int column) {
+		state.chord(row, column);
 	}
 
 	public void restart() {

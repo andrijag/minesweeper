@@ -13,13 +13,13 @@ public class Minefield {
 		this.numberOfColumns = numberOfColumns;
 		fields = new Field[numberOfRows][numberOfColumns];
 
-		for (int i = 0; i < numberOfRows; i++)
-			for (int j = 0; j < numberOfColumns; j++)
-				fields[i][j] = new Field();
+		for (int row = 0; row < numberOfRows; row++)
+			for (int column = 0; column < numberOfColumns; column++)
+				fields[row][column] = new Field();
 
-		for (int i = 0; i < numberOfRows; i++)
-			for (int j = 0; j < numberOfColumns; j++)
-				fields[i][j].setNeighbours(getNeighboursOfField(i, j));
+		for (int row = 0; row < numberOfRows; row++)
+			for (int column = 0; column < numberOfColumns; column++)
+				fields[row][column].setNeighbours(getNeighboursOfField(row, column));
 	}
 
 	public int getNumberOfRows() {
@@ -34,20 +34,20 @@ public class Minefield {
 		return numberOfRows * numberOfColumns;
 	}
 
-	public Field getField(int i, int j) {
-		return fields[i][j];
+	public Field getField(int row, int column) {
+		return fields[row][column];
 	}
 
-	private List<Field> getNeighboursOfField(int i, int j) {
+	private List<Field> getNeighboursOfField(int row, int column) {
 		List<Field> neighbours = new ArrayList<>();
 		for (Vector vector : Vector.values())
-			if (contains(i + vector.getI(), j + vector.getJ()))
-				neighbours.add(fields[i + vector.getI()][j + vector.getJ()]);
+			if (contains(row + vector.getI(), column + vector.getJ()))
+				neighbours.add(fields[row + vector.getI()][column + vector.getJ()]);
 		return neighbours;
 	}
 
-	private boolean contains(int i, int j) {
-		return (0 <= i && i < numberOfRows) && (0 <= j && j < numberOfColumns);
+	private boolean contains(int row, int column) {
+		return (0 <= row && row < numberOfRows) && (0 <= column && column < numberOfColumns);
 	}
 
 	public int getNumberOfFlags() {
@@ -56,18 +56,18 @@ public class Minefield {
 	
 	private List<Field> getFieldsWithFlags() {
 		List<Field> fieldsWithFlags = new ArrayList<Field>();
-		for (int i = 0; i < numberOfRows; i++)
-			for (int j = 0; j < numberOfColumns; j++)
-				if (fields[i][j].isFlagged())
-					fieldsWithFlags.add(fields[i][j]);
+		for (int row = 0; row < numberOfRows; row++)
+			for (int column = 0; column < numberOfColumns; column++)
+				if (fields[row][column].isFlagged())
+					fieldsWithFlags.add(fields[row][column]);
 		return fieldsWithFlags;
 	}
 
 	private int getNumberOfUncoveredFields() {
 		int numberOfUncoveredFields = 0;
-		for (int i = 0; i < numberOfRows; i++)
-			for (int j = 0; j < numberOfColumns; j++)
-				if (fields[i][j].isUncovered())
+		for (int row = 0; row < numberOfRows; row++)
+			for (int column = 0; column < numberOfColumns; column++)
+				if (fields[row][column].isUncovered())
 					numberOfUncoveredFields++;
 		return numberOfUncoveredFields;
 	}
@@ -78,10 +78,10 @@ public class Minefield {
 
 	private List<Field> getFieldsWithMines() {
 		List<Field> fieldsWithMines = new ArrayList<Field>();
-		for (int i = 0; i < numberOfRows; i++)
-			for (int j = 0; j < numberOfColumns; j++)
-				if (fields[i][j].isMine())
-					fieldsWithMines.add(fields[i][j]);
+		for (int row = 0; row < numberOfRows; row++)
+			for (int column = 0; column < numberOfColumns; column++)
+				if (fields[row][column].isMine())
+					fieldsWithMines.add(fields[row][column]);
 		return fieldsWithMines;
 
 	}
@@ -116,9 +116,9 @@ public class Minefield {
 	@Override
 	public String toString() {
 		String str = new String();
-		for (int i = 0; i < numberOfRows; i++) {
-			for (int j = 0; j < numberOfColumns; j++)
-				str += getField(i, j) + " ";
+		for (int row = 0; row < numberOfRows; row++) {
+			for (int column = 0; column < numberOfColumns; column++)
+				str += getField(row, column) + " ";
 			str += "\n";
 		}
 		return str;

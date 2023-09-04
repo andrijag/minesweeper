@@ -9,9 +9,9 @@ public class Minelayer {
 
 	public Minelayer(Minefield minefield) {
 		fields = new ArrayList<>();
-		for (int i = 0; i < minefield.getNumberOfRows(); i++)
-			for (int j = 0; j < minefield.getNumberOfColumns(); j++)
-				fields.add(minefield.getField(i, j));
+		for (int row = 0; row < minefield.getNumberOfRows(); row++)
+			for (int column = 0; column < minefield.getNumberOfColumns(); column++)
+				fields.add(minefield.getField(row, column));
 	}
 
 	public void scatterMines(int numberOfMines) {

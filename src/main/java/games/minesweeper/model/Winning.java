@@ -6,14 +6,14 @@ class Winning extends GameState {
 	}
 
 	@Override
-	void sweep(int i, int j) {
+	void sweep(int row, int column) {
 	}
 
 	@Override
-	void mark(int i, int j) {
+	void mark(int row, int column) {
 	}
 
 	@Override
-	void chord(int i, int j) {
+	void chord(int row, int column) {
 	}
 }

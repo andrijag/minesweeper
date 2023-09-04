@@ -7,19 +7,19 @@ abstract class GameState {
 		this.game = game;
 	}
 
-	void sweep(int i, int j) {
-		game.getMinesweeper().sweep(game.getField(i, j));
+	void sweep(int row, int column) {
+		game.getMinesweeper().sweep(game.getField(row, column));
 		game.evaluate();
 		game.notifyObservers();
 	}
 
-	void mark(int i, int j) {
-		game.getMinesweeper().mark(game.getField(i, j));
+	void mark(int row, int column) {
+		game.getMinesweeper().mark(game.getField(row, column));
 		game.notifyObservers();
 	}
 
-	void chord(int i, int j) {
-		game.getMinesweeper().chord(game.getField(i, j));
+	void chord(int row, int column) {
+		game.getMinesweeper().chord(game.getField(row, column));
 		game.evaluate();
 		game.notifyObservers();
 	}
