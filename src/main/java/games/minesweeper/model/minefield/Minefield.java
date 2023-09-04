@@ -99,7 +99,8 @@ public class Minefield {
 
 	public void uncoverMines() {
 		for (Field field : getFieldsWithMines())
-			field.uncover();
+			if (!field.isFlagged())
+				field.uncover();
 	}
 	
 	public void checkFlags() {

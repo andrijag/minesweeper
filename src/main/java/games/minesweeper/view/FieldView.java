@@ -12,7 +12,7 @@ public class FieldView extends JButton {
 	
 	public FieldView(int row, int column) {
 		super();
-		setPreferredSize(new Dimension(20, 20));
+		setPreferredSize(new Dimension(50, 50));
 		this.row = row;
 		this.column = column;
 	}
