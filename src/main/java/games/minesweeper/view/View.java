@@ -5,10 +5,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import main.java.games.minesweeper.model.Game;
@@ -50,19 +53,45 @@ public class View extends JPanel implements Observer {
 		
 		JPanel frame = new JPanel(new BorderLayout());
 		minefield = new MinefieldView(game.getNumberOfRows(), game.getNumberOfColumns());
-		
+		frame.add(minefield, BorderLayout.CENTER);
+
+		add(header,  BorderLayout.PAGE_START);
+		add(frame, BorderLayout.CENTER);
+
 		int periodInMillis = 100;
-		ActionListener timerTaskPerformer = new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
+		Timer timer = new Timer(periodInMillis, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
 				updateTime();
 		    }
-		};
-		Timer timer = new Timer(periodInMillis, timerTaskPerformer);
+		});
 		timer.start();
 		
-		add(header,  BorderLayout.PAGE_START);
-		frame.add(minefield, BorderLayout.CENTER);
-		add(frame, BorderLayout.CENTER);
+		restartButton.addActionListener(new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				restart();
+			}
+		});
+		
+		for (int row = 0; row < game.getNumberOfRows(); row++) {
+			for (int column = 0; column < game.getNumberOfRows(); column++) {
+				FieldView fieldview = minefield.get(row, column);
+				fieldview.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mousePressed(MouseEvent event) {
+						int row = fieldview.getRow();
+						int column = fieldview.getColumn();
+						if (SwingUtilities.isLeftMouseButton(event))
+							sweep(row, column);
+						else if (SwingUtilities.isRightMouseButton(event))
+							mark(row, column);
+						else if (SwingUtilities.isMiddleMouseButton(event))
+							chord(row, column);
+					}
+				});
+			}
+		}
 	}
 
 	@Override
@@ -89,5 +118,21 @@ public class View extends JPanel implements Observer {
 	private String getTime() {
 		int millisInSecond = 1000;
 		return Long.toString(game.getTime() / millisInSecond);
+	}
+	
+	private void restart() {
+		game.restart();
+	}
+	
+	private void sweep(int row, int column) {
+		game.sweep(row, column);
+	}
+	
+	private void mark(int row, int column) {
+		game.mark(row, column);
+	}
+	
+	private void chord(int row, int column) {
+		game.chord(row, column);
 	}
 }
