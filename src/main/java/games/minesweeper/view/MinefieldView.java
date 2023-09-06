@@ -14,7 +14,7 @@ public class MinefieldView extends JPanel {
 		
 		for (int row = 0; row < numberOfRows; row++) {
 			for (int column = 0; column < numberOfColumns; column++) {
-				fieldViews[row][column] = new FieldView(row, column);
+				fieldViews[row][column] = new FieldView();
 				add(fieldViews[row][column]);
 			}
 		}

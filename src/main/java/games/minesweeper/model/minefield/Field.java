@@ -93,9 +93,13 @@ public class Field implements Visitable {
 			return ((Mine) value).isDetonated();
 		return false;
 	}
-	
+
 	void setFalselyFlagged() {
 		((Flagged) state).setFalselyFlagged();
+	}
+
+	boolean isUncovered() {
+		return state instanceof Uncovered;
 	}
 
 	boolean isMine() {
@@ -106,10 +110,6 @@ public class Field implements Visitable {
 		return state instanceof Flagged;
 	}
 
-	boolean isUncovered() {
-		return state instanceof Uncovered;
-	}
-	
 	public void accept(Visitor visitor) {
 		state.accept(visitor);
 	}

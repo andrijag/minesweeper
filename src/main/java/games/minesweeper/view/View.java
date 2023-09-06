@@ -1,6 +1,8 @@
 package main.java.games.minesweeper.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -58,7 +60,7 @@ public class View extends JPanel implements Observer {
 		c.gridy = 0;
 		minefield = new MinefieldView(game.getNumberOfRows(), game.getNumberOfColumns());
 		frame.add(minefield, c);
-		
+
 		JScrollPane scrollPane = new JScrollPane(frame);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
 		scrollPane.getHorizontalScrollBar().setUnitIncrement(10);
@@ -82,14 +84,13 @@ public class View extends JPanel implements Observer {
 			}
 		});
 
-		for (int row = 0; row < game.getNumberOfRows(); row++) {
-			for (int column = 0; column < game.getNumberOfRows(); column++) {
-				FieldView fieldview = minefield.get(row, column);
-				fieldview.addMouseListener(new MouseAdapter() {
+		for (int i = 0; i < game.getNumberOfRows(); i++) {
+			for (int j = 0; j < game.getNumberOfRows(); j++) {
+				final int row = i;
+				final int column = j;
+				minefield.get(i, j).addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent event) {
-						int row = fieldview.getRow();
-						int column = fieldview.getColumn();
 						if (SwingUtilities.isLeftMouseButton(event))
 							sweep(row, column);
 						else if (SwingUtilities.isRightMouseButton(event))
@@ -98,6 +99,12 @@ public class View extends JPanel implements Observer {
 							chord(row, column);
 					}
 				});
+			}
+		}
+
+		for (int row = 0; row < game.getNumberOfRows(); row++) {
+			for (int column = 0; column < game.getNumberOfRows(); column++) {
+				minefield.get(row, column).setModel(game.getField(row, column));
 			}
 		}
 	}
@@ -117,11 +124,7 @@ public class View extends JPanel implements Observer {
 	}
 
 	private void updateMinefield() {
-		for (int row = 0; row < game.getNumberOfRows(); row++) {
-			for (int column = 0; column < game.getNumberOfRows(); column++) {
-				minefield.get(row, column).setText(game.getField(row, column).toString());
-			}
-		}
+		minefield.repaint();
 	}
 
 	private void updateTime() {
@@ -135,6 +138,11 @@ public class View extends JPanel implements Observer {
 
 	private void restart() {
 		game.restart();
+		for (int row = 0; row < game.getNumberOfRows(); row++) {
+			for (int column = 0; column < game.getNumberOfRows(); column++) {
+				minefield.get(row, column).setModel(game.getField(row, column));
+			}
+		}
 	}
 
 	private void sweep(int row, int column) {
