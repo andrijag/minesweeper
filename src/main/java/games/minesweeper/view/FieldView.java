@@ -1,6 +1,5 @@
 package main.java.games.minesweeper.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
@@ -11,55 +10,56 @@ import main.java.games.minesweeper.model.util.Visitor;
 
 public class FieldView extends JButton implements Visitor {
 	private static final long serialVersionUID = 1L;
-	private Field model;
-	private Color color;
+	private FieldViewState state;
 
 	public FieldView() {
 		super();
+		state = new CoveredView();
 		setPreferredSize(new Dimension(25, 25));
 	}
-
-	public void setModel(Field model) {
-		this.model = model;
+	
+	void changeState(FieldViewState state) {
+		this.state = state;
+	}
+	
+	public void update(Field field) {
+		field.accept(this);
+		repaint();
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		model.accept(this);
-		g.setColor(color);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		g.setColor(Color.BLACK);
-		g.drawString(model.toString(), 10, 15);
+	public void paintComponent(Graphics graphics) {
+		super.paintComponent(graphics);
+		state.draw(graphics);
 	}
 	
 	@Override
 	public void visitCoveredField() {
-		color = Color.GRAY;
+		changeState(new CoveredView());
 		setEnabled(true);
 	}
 
 	@Override
 	public void visitUncoveredFieldWithNumber(int number) {
-		color = Color.WHITE;
+		changeState(new UncoveredViewWithNumber(number));
 		setEnabled(false);
 	}
 
 	@Override
 	public void visitUncoveredFieldWithMine(boolean isDetonated) {
-		color = Color.BLACK;
+		changeState(new UncoveredViewWithMine(isDetonated));
 		setEnabled(false);
 	}
 
 	@Override
 	public void visitFlaggedField(boolean isFalselyFlagged) {
-		color = Color.RED;
+		changeState(new FlaggedView(isFalselyFlagged));
 		setEnabled(true);
 	}
 
 	@Override
 	public void visitUnknownField() {
-		color = Color.BLUE;
+		changeState(new UnknownView());
 		setEnabled(true);
 	}
 }

@@ -89,9 +89,7 @@ public class Field implements Visitable {
 	}
 
 	boolean isDetonated() {
-		if (isMine())
-			return ((Mine) value).isDetonated();
-		return false;
+		return ((Mine) value).isDetonated();
 	}
 
 	void setFalselyFlagged() {

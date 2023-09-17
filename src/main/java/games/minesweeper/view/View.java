@@ -1,8 +1,6 @@
 package main.java.games.minesweeper.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -101,12 +99,6 @@ public class View extends JPanel implements Observer {
 				});
 			}
 		}
-
-		for (int row = 0; row < game.getNumberOfRows(); row++) {
-			for (int column = 0; column < game.getNumberOfRows(); column++) {
-				minefield.get(row, column).setModel(game.getField(row, column));
-			}
-		}
 	}
 
 	@Override
@@ -124,7 +116,9 @@ public class View extends JPanel implements Observer {
 	}
 
 	private void updateMinefield() {
-		minefield.repaint();
+		for (int row = 0; row < game.getNumberOfRows(); row++)
+			for (int column = 0; column < game.getNumberOfRows(); column++)
+				minefield.get(row, column).update(game.getField(row, column));
 	}
 
 	private void updateTime() {
@@ -138,11 +132,6 @@ public class View extends JPanel implements Observer {
 
 	private void restart() {
 		game.restart();
-		for (int row = 0; row < game.getNumberOfRows(); row++) {
-			for (int column = 0; column < game.getNumberOfRows(); column++) {
-				minefield.get(row, column).setModel(game.getField(row, column));
-			}
-		}
 	}
 
 	private void sweep(int row, int column) {
