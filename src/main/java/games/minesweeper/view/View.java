@@ -1,13 +1,10 @@
 package main.java.games.minesweeper.view;
 
-import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,64 +23,43 @@ public class View extends JPanel implements Observer {
 	private MinefieldView minefield;
 
 	public View(Game game) {
-		super(new BorderLayout());
+		super();
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.game = game;
-
-		JPanel header = new JPanel(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		c.weightx = 1;
-		c.weighty = 1;
-
 		minecount = new JLabel("minecount");
-		c.anchor = GridBagConstraints.LINE_START;
-		c.gridx = 0;
-		c.gridy = 0;
-		header.add(minecount, c);
-
-		JButton restartButton = new JButton();
-		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 1;
-		c.gridy = 0;
-		header.add(restartButton, c);
-
 		time = new JLabel("time");
-		c.anchor = GridBagConstraints.LINE_END;
-		c.gridx = 2;
-		c.gridy = 0;
-		header.add(time, c);
-
-		JPanel frame = new JPanel(new GridBagLayout());
-		c.anchor = GridBagConstraints.CENTER;
-		c.gridx = 0;
-		c.gridy = 0;
 		minefield = new MinefieldView(game.getNumberOfRows(), game.getNumberOfColumns());
-		frame.add(minefield, c);
+		JButton restartButton = new JButton();
 
-		JScrollPane scrollPane = new JScrollPane(frame);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(10);
-		scrollPane.getHorizontalScrollBar().setUnitIncrement(10);
+		JPanel header = new JPanel();
+		header.setLayout(new BoxLayout(header, BoxLayout.LINE_AXIS));
 
-		add(header, BorderLayout.PAGE_START);
-		add(scrollPane, BorderLayout.CENTER);
+		header.add(minecount);
+		header.add(Box.createHorizontalGlue());
+		header.add(restartButton);
+		header.add(Box.createHorizontalGlue());
+		header.add(time);
+
+		JScrollPane minefieldScrollPane = new JScrollPane(minefield);
+		minefieldScrollPane.getVerticalScrollBar().setUnitIncrement(10);
+		minefieldScrollPane.getHorizontalScrollBar().setUnitIncrement(10);
+
+		header.setMaximumSize(minefieldScrollPane.getPreferredSize());
+		minefieldScrollPane.setMaximumSize(minefieldScrollPane.getPreferredSize());
+
+		add(Box.createVerticalGlue());
+		add(header);
+		add(minefieldScrollPane);
+		add(Box.createVerticalGlue());
+
+		restartButton.addActionListener(event -> restart());
 
 		int periodInMillis = 100;
-		Timer timer = new Timer(periodInMillis, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				updateTime();
-			}
-		});
+		Timer timer = new Timer(periodInMillis, event -> updateTime());
 		timer.start();
 
-		restartButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				restart();
-			}
-		});
-
 		for (int i = 0; i < game.getNumberOfRows(); i++) {
-			for (int j = 0; j < game.getNumberOfRows(); j++) {
+			for (int j = 0; j < game.getNumberOfColumns(); j++) {
 				final int row = i;
 				final int column = j;
 				minefield.get(i, j).addMouseListener(new MouseAdapter() {
@@ -94,6 +70,8 @@ public class View extends JPanel implements Observer {
 						else if (SwingUtilities.isRightMouseButton(event))
 							mark(row, column);
 						else if (SwingUtilities.isMiddleMouseButton(event))
+							chord(row, column);
+						if (SwingUtilities.isLeftMouseButton(event) && event.getClickCount() == 2)
 							chord(row, column);
 					}
 				});
@@ -117,7 +95,7 @@ public class View extends JPanel implements Observer {
 
 	private void updateMinefield() {
 		for (int row = 0; row < game.getNumberOfRows(); row++)
-			for (int column = 0; column < game.getNumberOfRows(); column++)
+			for (int column = 0; column < game.getNumberOfColumns(); column++)
 				minefield.get(row, column).update(game.getField(row, column));
 	}
 

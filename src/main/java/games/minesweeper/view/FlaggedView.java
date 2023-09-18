@@ -16,9 +16,8 @@ public class FlaggedView extends FieldViewState {
 		graphics.drawLine(5, 20, 20, 20);
 		graphics.drawLine(25 / 2, 5, 25 / 2, 20);
 		graphics.setColor(Color.RED);
-		int[] xPoints = {25 / 2, 25 / 2, 5};
-		int[] yPoints = {5, 15, 10};
+		int[] xPoints = { 25 / 2, 25 / 2, 5 };
+		int[] yPoints = { 5, 15, 10 };
 		graphics.fillPolygon(xPoints, yPoints, 3);
-		
 	}
 }

@@ -17,11 +17,7 @@ public class FieldView extends JButton implements Visitor {
 		state = new CoveredView();
 		setPreferredSize(new Dimension(25, 25));
 	}
-	
-	void changeState(FieldViewState state) {
-		this.state = state;
-	}
-	
+
 	public void update(Field field) {
 		field.accept(this);
 		repaint();
@@ -32,34 +28,34 @@ public class FieldView extends JButton implements Visitor {
 		super.paintComponent(graphics);
 		state.draw(graphics);
 	}
-	
+
 	@Override
 	public void visitCoveredField() {
-		changeState(new CoveredView());
+		state = new CoveredView();
 		setEnabled(true);
 	}
 
 	@Override
 	public void visitUncoveredFieldWithNumber(int number) {
-		changeState(new UncoveredViewWithNumber(number));
+		state = new UncoveredViewWithNumber(number);
 		setEnabled(false);
 	}
 
 	@Override
 	public void visitUncoveredFieldWithMine(boolean isDetonated) {
-		changeState(new UncoveredViewWithMine(isDetonated));
+		state = new UncoveredViewWithMine(isDetonated);
 		setEnabled(false);
 	}
 
 	@Override
 	public void visitFlaggedField(boolean isFalselyFlagged) {
-		changeState(new FlaggedView(isFalselyFlagged));
+		state = new FlaggedView(isFalselyFlagged);
 		setEnabled(true);
 	}
 
 	@Override
 	public void visitUnknownField() {
-		changeState(new UnknownView());
+		state = new UnknownView();
 		setEnabled(true);
 	}
 }

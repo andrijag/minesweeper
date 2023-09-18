@@ -14,32 +14,32 @@ public class UncoveredViewWithNumber extends FieldViewState {
 	@Override
 	public void draw(Graphics graphics) {
 		switch (number) {
-			case 1:
-				graphics.setColor(Color.BLUE);
-				break;
-			case 2:
-				graphics.setColor(Color.GREEN);
-				break;
-			case 3:
-				graphics.setColor(Color.RED);
-				break;
-			case 4:
-				;
-				break;
-			case 5:
-				;
-				break;
-			case 6:
-				;
-				break;
-			case 7:
-				;
-				break;
-			case 8:
-				;
-				break;
-			default:
-				return;
+		case 1:
+			graphics.setColor(Color.BLUE);
+			break;
+		case 2:
+			graphics.setColor(Color.GREEN.darker());
+			break;
+		case 3:
+			graphics.setColor(Color.RED);
+			break;
+		case 4:
+			graphics.setColor(Color.BLUE.darker());
+			break;
+		case 5:
+			graphics.setColor(Color.RED.darker());
+			break;
+		case 6:
+			graphics.setColor(Color.CYAN.darker());
+			break;
+		case 7:
+			graphics.setColor(Color.BLACK);
+			break;
+		case 8:
+			graphics.setColor(Color.GRAY);
+			break;
+		default:
+			return;
 		}
 		graphics.drawString(Integer.toString(number), 10, 17);
 	}
