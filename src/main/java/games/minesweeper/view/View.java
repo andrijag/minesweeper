@@ -1,8 +1,11 @@
 package main.java.games.minesweeper.view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -29,27 +32,30 @@ public class View extends JPanel implements Observer {
 		minecount = new JLabel("minecount");
 		time = new JLabel("time");
 		minefield = new MinefieldView(game.getNumberOfRows(), game.getNumberOfColumns());
-		JButton restartButton = new JButton();
+		JButton restartButton = new JButton("Restart");
+		setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-		JPanel header = new JPanel();
-		header.setLayout(new BoxLayout(header, BoxLayout.LINE_AXIS));
-
-		header.add(minecount);
-		header.add(Box.createHorizontalGlue());
-		header.add(restartButton);
-		header.add(Box.createHorizontalGlue());
-		header.add(time);
+		JPanel header = new JPanel(new BorderLayout());
+		header.add(minecount, BorderLayout.LINE_START);
+		header.add(time, BorderLayout.LINE_END);
 
 		JScrollPane minefieldScrollPane = new JScrollPane(minefield);
 		minefieldScrollPane.getVerticalScrollBar().setUnitIncrement(10);
 		minefieldScrollPane.getHorizontalScrollBar().setUnitIncrement(10);
 
-		header.setMaximumSize(minefieldScrollPane.getPreferredSize());
+		JPanel footer = new JPanel();
+		footer.add(restartButton);
+
+		int minefieldScrollPanePreferredWidth = minefieldScrollPane.getPreferredSize().width;
+		header.setMaximumSize(new Dimension(minefieldScrollPanePreferredWidth, header.getPreferredSize().height));
 		minefieldScrollPane.setMaximumSize(minefieldScrollPane.getPreferredSize());
+		footer.setMinimumSize(new Dimension(minefieldScrollPanePreferredWidth, footer.getPreferredSize().height));
+		footer.setMaximumSize(new Dimension(minefieldScrollPanePreferredWidth, footer.getPreferredSize().height));
 
 		add(Box.createVerticalGlue());
 		add(header);
 		add(minefieldScrollPane);
+		add(footer);
 		add(Box.createVerticalGlue());
 
 		restartButton.addActionListener(event -> restart());
