@@ -15,7 +15,9 @@ public class FieldView extends JButton implements Visitor {
 	public FieldView() {
 		super();
 		state = new CoveredView();
-		setPreferredSize(new Dimension(25, 25));
+		int width = 25;
+		int height = 25;
+		setPreferredSize(new Dimension(width, height));
 	}
 
 	public void update(Field field) {
@@ -26,7 +28,7 @@ public class FieldView extends JButton implements Visitor {
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
-		state.draw(graphics);
+		state.draw(graphics, 0, 0, getWidth(), getHeight());
 	}
 
 	@Override
@@ -50,7 +52,7 @@ public class FieldView extends JButton implements Visitor {
 	@Override
 	public void visitFlaggedField(boolean isFalselyFlagged) {
 		state = new FlaggedView(isFalselyFlagged);
-		setEnabled(true);
+		setEnabled(!isFalselyFlagged);
 	}
 
 	@Override

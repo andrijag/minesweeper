@@ -7,17 +7,19 @@ public class FlaggedView extends FieldViewState {
 	private boolean isFalselyFlagged;
 
 	public FlaggedView(boolean isFalselyFlagged) {
-		super();
 		this.isFalselyFlagged = isFalselyFlagged;
 	}
 
 	@Override
-	public void draw(Graphics graphics) {
-		graphics.drawLine(5, 20, 20, 20);
-		graphics.drawLine(25 / 2, 5, 25 / 2, 20);
-		graphics.setColor(Color.RED);
-		int[] xPoints = { 25 / 2, 25 / 2, 5 };
-		int[] yPoints = { 5, 15, 10 };
-		graphics.fillPolygon(xPoints, yPoints, 3);
+	public void draw(Graphics graphics, int x0, int y0, int width, int height) {
+		if (isFalselyFlagged) {
+			addText(graphics, "*", x0, y0, width, height);
+			graphics.setColor(Color.RED);
+			graphics.drawLine(x0, y0, width, height);
+			graphics.drawLine(width, y0, x0, height);
+		} else {
+			graphics.setColor(Color.RED);
+			addText(graphics, "<", x0, y0, width, height);
+		}
 	}
 }

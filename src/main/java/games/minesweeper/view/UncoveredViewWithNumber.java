@@ -7,40 +7,38 @@ public class UncoveredViewWithNumber extends FieldViewState {
 	private int number;
 
 	public UncoveredViewWithNumber(int number) {
-		super();
 		this.number = number;
 	}
 
 	@Override
-	public void draw(Graphics graphics) {
+	public void draw(Graphics graphics, int x0, int y0, int width, int height) {
+		if (number == 0)
+			return;
+		graphics.setColor(getNumberColor(number));
+		String text = Integer.toString(number);
+		addText(graphics, text, x0, y0, width, height);
+	}
+
+	private Color getNumberColor(int number) {
 		switch (number) {
 		case 1:
-			graphics.setColor(Color.BLUE);
-			break;
+			return Color.BLUE;
 		case 2:
-			graphics.setColor(Color.GREEN.darker());
-			break;
+			return Color.GREEN.darker();
 		case 3:
-			graphics.setColor(Color.RED);
-			break;
+			return Color.RED;
 		case 4:
-			graphics.setColor(Color.BLUE.darker());
-			break;
+			return Color.BLUE.darker();
 		case 5:
-			graphics.setColor(Color.RED.darker());
-			break;
+			return Color.RED.darker();
 		case 6:
-			graphics.setColor(Color.CYAN.darker());
-			break;
+			return Color.CYAN.darker();
 		case 7:
-			graphics.setColor(Color.BLACK);
-			break;
+			return Color.BLACK;
 		case 8:
-			graphics.setColor(Color.GRAY);
-			break;
+			return Color.GRAY;
 		default:
-			return;
+			return null;
 		}
-		graphics.drawString(Integer.toString(number), 10, 17);
 	}
 }
