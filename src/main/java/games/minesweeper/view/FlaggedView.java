@@ -11,15 +11,15 @@ public class FlaggedView extends FieldViewState {
 	}
 
 	@Override
-	public void draw(Graphics graphics, int x0, int y0, int width, int height) {
+	public void draw(Graphics graphics, int x, int y, int width, int height) {
 		if (isFalselyFlagged) {
-			addText(graphics, "*", x0, y0, width, height);
+			drawMine(graphics, x, y, width, height);
 			graphics.setColor(Color.RED);
-			graphics.drawLine(x0, y0, width, height);
-			graphics.drawLine(width, y0, x0, height);
+			graphics.drawLine(x, y, width, height);
+			graphics.drawLine(width, y, x, height);
 		} else {
 			graphics.setColor(Color.RED);
-			addText(graphics, "<", x0, y0, width, height);
+			writeText(graphics, "<", x, y, width, height);
 		}
 	}
 }

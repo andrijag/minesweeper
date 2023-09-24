@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 public class UnknownView extends FieldViewState {
 	@Override
-	public void draw(Graphics graphics, int x0, int y0, int width, int height) {
+	public void draw(Graphics graphics, int x, int y, int width, int height) {
 		String text = "?";
-		addText(graphics, text, x0, y0, width, height);
+		writeText(graphics, text, x, y, width, height);
 	}
 }

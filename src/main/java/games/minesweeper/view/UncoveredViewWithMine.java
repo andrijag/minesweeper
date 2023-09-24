@@ -11,12 +11,11 @@ public class UncoveredViewWithMine extends FieldViewState {
 	}
 
 	@Override
-	public void draw(Graphics graphics, int x0, int y0, int width, int height) {
+	public void draw(Graphics graphics, int x, int y, int width, int height) {
 		if (isDetonated) {
 			graphics.setColor(Color.RED);
-			graphics.fillRect(x0, y0, width, height);
+			graphics.fillRect(x, y, width, height);
 		}
-		graphics.setColor(Color.BLACK);
-		addText(graphics, "*", x0, y0, width, height);
+		drawMine(graphics, x, y, width, height);
 	}
 }
