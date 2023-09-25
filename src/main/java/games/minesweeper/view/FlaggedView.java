@@ -18,8 +18,7 @@ public class FlaggedView extends FieldViewState {
 			graphics.drawLine(x, y, width, height);
 			graphics.drawLine(width, y, x, height);
 		} else {
-			graphics.setColor(Color.RED);
-			writeText(graphics, "<", x, y, width, height);
+			drawFlag(graphics, x, y, width, height);
 		}
 	}
 }

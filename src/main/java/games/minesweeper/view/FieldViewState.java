@@ -16,6 +16,29 @@ public abstract class FieldViewState {
 		graphics.drawString(text, textX, textY);
 	}
 
+	protected Color getNumberColor(int number) {
+		switch (number) {
+		case 1:
+			return Color.BLUE;
+		case 2:
+			return Color.GREEN.darker();
+		case 3:
+			return Color.RED;
+		case 4:
+			return Color.BLUE.darker();
+		case 5:
+			return Color.RED.darker();
+		case 6:
+			return Color.CYAN.darker();
+		case 7:
+			return Color.BLACK;
+		case 8:
+			return Color.GRAY;
+		default:
+			return null;
+		}
+	}
+
 	protected void drawMine(Graphics graphics, int x, int y, int width, int height) {
 		graphics.setColor(Color.BLACK);
 		int mineWidth = 10;
@@ -44,5 +67,27 @@ public abstract class FieldViewState {
 		int shineX = x + width / 2 - shineWidth;
 		int shineY = y + height / 2 - shineWidth;
 		graphics.fillOval(shineX, shineY, shineWidth, shineWidth);
+	}
+
+	protected void drawFlag(Graphics graphics, int x, int y, int width, int height) {
+		int poleHeight = 9;
+		int flagWidth = 6;
+		int flagHeight = 6;
+
+		graphics.setColor(Color.BLACK);
+		int poleX = x + (width + flagWidth) / 2;
+		int poleY1 = y + (height - poleHeight) / 2;
+		int poleY2 = poleY1 + poleHeight;
+		graphics.drawLine(poleX, poleY1, poleX, poleY2);
+
+		graphics.setColor(Color.RED);
+		int flagX1 = x + (width - flagWidth) / 2;
+		int flagX2 = flagX1 + flagWidth;
+		int flagY1 = y + (height - poleHeight) / 2;
+		int flagY2 = flagY1 + flagHeight;
+		int[] flagXPoints = { flagX2, flagX1, flagX2 };
+		int[] flagYPoints = { flagY1, (flagY1 + flagY2) / 2, flagY2 };
+		int numberOfPoints = 3;
+		graphics.fillPolygon(flagXPoints, flagYPoints, numberOfPoints);
 	}
 }
