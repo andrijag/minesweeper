@@ -10,14 +10,26 @@ import main.java.games.minesweeper.model.util.Visitor;
 
 public class FieldView extends JButton implements Visitor {
 	private static final long serialVersionUID = 1L;
+	private int row;
+	private int column;
 	private FieldViewState state;
 
-	public FieldView() {
+	public FieldView(int row, int column) {
 		super();
+		this.row = row;
+		this.column = column;
 		state = new CoveredView();
 		int width = 25;
 		int height = 25;
 		setPreferredSize(new Dimension(width, height));
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getColumn() {
+		return column;
 	}
 
 	public void update(Field field) {

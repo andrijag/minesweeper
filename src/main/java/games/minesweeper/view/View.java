@@ -2,8 +2,6 @@ package main.java.games.minesweeper.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -12,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import main.java.games.minesweeper.model.Game;
@@ -33,15 +30,17 @@ public class View extends JPanel implements Observer {
 		time = new JLabel("time");
 		minefield = new MinefieldView(game.getNumberOfRows(), game.getNumberOfColumns());
 		JButton restartButton = new JButton("Restart");
-		setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		int padding = 10;
+		setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
 
 		JPanel header = new JPanel(new BorderLayout());
 		header.add(minecount, BorderLayout.LINE_START);
 		header.add(time, BorderLayout.LINE_END);
 
 		JScrollPane minefieldScrollPane = new JScrollPane(minefield);
-		minefieldScrollPane.getVerticalScrollBar().setUnitIncrement(10);
-		minefieldScrollPane.getHorizontalScrollBar().setUnitIncrement(10);
+		int unitIncrement = 10;
+		minefieldScrollPane.getVerticalScrollBar().setUnitIncrement(unitIncrement);
+		minefieldScrollPane.getHorizontalScrollBar().setUnitIncrement(unitIncrement);
 
 		JPanel footer = new JPanel();
 		footer.add(restartButton);
@@ -64,25 +63,10 @@ public class View extends JPanel implements Observer {
 		Timer timer = new Timer(periodInMillis, event -> updateTime());
 		timer.start();
 
-		for (int i = 0; i < game.getNumberOfRows(); i++) {
-			for (int j = 0; j < game.getNumberOfColumns(); j++) {
-				final int row = i;
-				final int column = j;
-				minefield.get(i, j).addMouseListener(new MouseAdapter() {
-					@Override
-					public void mousePressed(MouseEvent event) {
-						if (SwingUtilities.isLeftMouseButton(event))
-							sweep(row, column);
-						else if (SwingUtilities.isRightMouseButton(event))
-							mark(row, column);
-						else if (SwingUtilities.isMiddleMouseButton(event))
-							chord(row, column);
-						if (SwingUtilities.isLeftMouseButton(event) && event.getClickCount() == 2)
-							chord(row, column);
-					}
-				});
-			}
-		}
+		FieldsMouseAdapter mouseAdapter = new FieldsMouseAdapter(game);
+		for (int row = 0; row < game.getNumberOfRows(); row++)
+			for (int column = 0; column < game.getNumberOfColumns(); column++)
+				minefield.get(row, column).addMouseListener(mouseAdapter);
 	}
 
 	@Override
@@ -116,17 +100,5 @@ public class View extends JPanel implements Observer {
 
 	private void restart() {
 		game.restart();
-	}
-
-	private void sweep(int row, int column) {
-		game.sweep(row, column);
-	}
-
-	private void mark(int row, int column) {
-		game.mark(row, column);
-	}
-
-	private void chord(int row, int column) {
-		game.chord(row, column);
 	}
 }
