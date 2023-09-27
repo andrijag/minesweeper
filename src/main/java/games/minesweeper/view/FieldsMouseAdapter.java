@@ -7,7 +7,7 @@ import javax.swing.SwingUtilities;
 
 import main.java.games.minesweeper.model.Game;
 
-public class FieldsMouseAdapter extends MouseAdapter {
+class FieldsMouseAdapter extends MouseAdapter {
 	private Game game;
 	private FieldView source;
 	private boolean leftIsPressed;
@@ -17,7 +17,7 @@ public class FieldsMouseAdapter extends MouseAdapter {
 	private boolean rightIsReleased;
 	private boolean middleIsReleased;
 
-	public FieldsMouseAdapter(Game game) {
+	FieldsMouseAdapter(Game game) {
 		super();
 		this.game = game;
 		source = null;
