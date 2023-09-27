@@ -78,7 +78,7 @@ public class Game extends Observable {
 	}
 
 	public void restart() {
-		stopwatch.reset();
+		stopwatch = new Stopwatch();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
 		minesweeper = new Minesweeper();
