@@ -8,13 +8,13 @@ import javax.swing.JButton;
 import main.java.games.minesweeper.model.minefield.Field;
 import main.java.games.minesweeper.model.util.Visitor;
 
-public class FieldView extends JButton implements Visitor {
+class FieldView extends JButton implements Visitor {
 	private static final long serialVersionUID = 1L;
 	private int row;
 	private int column;
 	private FieldViewState state;
 
-	public FieldView(int row, int column) {
+	FieldView(int row, int column) {
 		super();
 		this.row = row;
 		this.column = column;
@@ -24,15 +24,15 @@ public class FieldView extends JButton implements Visitor {
 		setPreferredSize(new Dimension(width, height));
 	}
 
-	public int getRow() {
+	int getRow() {
 		return row;
 	}
 
-	public int getColumn() {
+	int getColumn() {
 		return column;
 	}
 
-	public void update(Field field) {
+	void update(Field field) {
 		field.accept(this);
 		repaint();
 	}

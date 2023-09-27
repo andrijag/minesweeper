@@ -2,8 +2,8 @@ package main.java.games.minesweeper.view;
 
 import java.awt.Graphics;
 
-public class CoveredView extends FieldViewState {
+class CoveredView extends FieldViewState {
 	@Override
-	public void draw(Graphics graphics, int x, int y, int width, int height) {
+	void draw(Graphics graphics, int x, int y, int width, int height) {
 	}
 }
