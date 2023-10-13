@@ -7,7 +7,6 @@ class Flagged extends FieldState {
 
 	Flagged(Field field) {
 		super(field);
-		isFalselyFlagged = false;
 	}
 
 	void setFalselyFlagged() {

@@ -5,10 +5,6 @@ import main.java.games.minesweeper.model.util.Visitor;
 class Number extends FieldValue {
 	private int value;
 
-	Number() {
-		value = 0;
-	}
-
 	int getValue() {
 		return value;
 	}

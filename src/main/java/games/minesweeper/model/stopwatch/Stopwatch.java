@@ -6,8 +6,6 @@ public class Stopwatch {
 	private StopwatchState state;
 
 	public Stopwatch() {
-		startTime = 0;
-		elapsedTime = 0;
 		state = new StoppedState(this);
 	}
 

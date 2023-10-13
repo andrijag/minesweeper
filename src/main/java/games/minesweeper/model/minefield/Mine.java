@@ -5,10 +5,6 @@ import main.java.games.minesweeper.model.util.Visitor;
 class Mine extends FieldValue {
 	private boolean isDetonated;
 
-	Mine() {
-		isDetonated = false;
-	}
-
 	void detonate() {
 		isDetonated = true;
 	}
