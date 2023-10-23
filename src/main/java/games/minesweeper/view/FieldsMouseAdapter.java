@@ -20,10 +20,6 @@ class FieldsMouseAdapter extends MouseAdapter {
 	FieldsMouseAdapter(Game game) {
 		super();
 		this.game = game;
-		source = null;
-		leftIsPressed = false;
-		rightIsPressed = false;
-		middleIsPressed = false;
 		leftIsReleased = true;
 		rightIsReleased = true;
 		middleIsReleased = true;
