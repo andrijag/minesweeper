@@ -12,7 +12,7 @@ class Mine extends FieldValue {
 	boolean isDetonated() {
 		return isDetonated;
 	}
-	
+
 	@Override
 	void accept(Visitor visitor) {
 		visitor.visitUncoveredFieldWithMine(isDetonated);

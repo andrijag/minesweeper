@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Minesweeper {
-	private List<Field> fields;
-
-	public Minesweeper() {
-		this.fields = new ArrayList<>();
-	}
+	private List<Field> fields = new ArrayList<>();
 
 	public void sweep(Field field) {
 		fields.add(field);

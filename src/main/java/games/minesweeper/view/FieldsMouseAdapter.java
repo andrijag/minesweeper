@@ -13,16 +13,13 @@ class FieldsMouseAdapter extends MouseAdapter {
 	private boolean leftIsPressed;
 	private boolean rightIsPressed;
 	private boolean middleIsPressed;
-	private boolean leftIsReleased;
-	private boolean rightIsReleased;
-	private boolean middleIsReleased;
+	private boolean leftIsReleased = true;
+	private boolean rightIsReleased = true;
+	private boolean middleIsReleased = true;
 
 	FieldsMouseAdapter(Game game) {
 		super();
 		this.game = game;
-		leftIsReleased = true;
-		rightIsReleased = true;
-		middleIsReleased = true;
 	}
 
 	@Override

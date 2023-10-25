@@ -11,21 +11,18 @@ public class Game extends Observable {
 	private int numberOfRows;
 	private int numberOfColumns;
 	private int numberOfMines;
-	private Stopwatch stopwatch;
+	private Stopwatch stopwatch = new Stopwatch();
 	private Minefield minefield;
 	private Minelayer minelayer;
-	private Minesweeper minesweeper;
-	private GameState state;
+	private Minesweeper minesweeper = new Minesweeper();
+	private GameState state = new FirstMove(this);
 
 	public Game(int numberOfRows, int numberOfColumns, int numberOfMines) {
 		this.numberOfRows = numberOfRows;
 		this.numberOfColumns = numberOfColumns;
 		this.numberOfMines = numberOfMines;
-		stopwatch = new Stopwatch();
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
-		minesweeper = new Minesweeper();
-		state = new FirstMove(this);
 	}
 
 	public int getMinecount() {
@@ -39,11 +36,11 @@ public class Game extends Observable {
 	public Field getField(int row, int column) {
 		return minefield.getField(row, column);
 	}
-	
+
 	public int getNumberOfRows() {
 		return numberOfRows;
 	}
-	
+
 	public int getNumberOfColumns() {
 		return numberOfColumns;
 	}

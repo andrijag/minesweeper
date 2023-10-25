@@ -12,13 +12,12 @@ class FieldView extends JButton implements Visitor {
 	private static final long serialVersionUID = 1L;
 	private int row;
 	private int column;
-	private FieldViewState state;
+	private FieldViewState state = new CoveredView();
 
 	FieldView(int row, int column) {
 		super();
 		this.row = row;
 		this.column = column;
-		state = new CoveredView();
 		int width = 25;
 		int height = 25;
 		setPreferredSize(new Dimension(width, height));

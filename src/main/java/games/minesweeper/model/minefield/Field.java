@@ -7,15 +7,9 @@ import main.java.games.minesweeper.model.util.Visitable;
 import main.java.games.minesweeper.model.util.Visitor;
 
 public class Field implements Visitable {
-	private FieldValue value;
-	private FieldState state;
-	private List<Field> neighbours;
-
-	Field() {
-		value = new Number();
-		state = new Covered(this);
-		neighbours = new ArrayList<>();
-	}
+	private FieldValue value = new Number();
+	private FieldState state = new Covered(this);
+	private List<Field> neighbours = new ArrayList<>();
 
 	FieldValue getValue() {
 		return value;

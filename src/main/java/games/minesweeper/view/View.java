@@ -18,16 +18,14 @@ import main.java.games.minesweeper.model.util.Observer;
 public class View extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	private Game game;
-	private JLabel minecount;
-	private JLabel time;
+	private JLabel minecount = new JLabel("minecount");
+	private JLabel time = new JLabel("time");
 	private MinefieldView minefield;
 
 	public View(Game game) {
 		super();
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.game = game;
-		minecount = new JLabel("minecount");
-		time = new JLabel("time");
 		minefield = new MinefieldView(game.getNumberOfRows(), game.getNumberOfColumns());
 		JButton restartButton = new JButton("Restart");
 		int padding = 10;

@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Minelayer {
-	private List<Field> fields;
+	private List<Field> fields = new ArrayList<>();
 
 	public Minelayer(Minefield minefield) {
-		fields = new ArrayList<>();
 		for (int row = 0; row < minefield.getNumberOfRows(); row++)
 			for (int column = 0; column < minefield.getNumberOfColumns(); column++)
 				fields.add(minefield.getField(row, column));
