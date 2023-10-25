@@ -11,10 +11,6 @@ public class Field implements Visitable {
 	private FieldState state = new Covered();
 	private List<Field> neighbours = new ArrayList<>();
 
-	FieldValue getValue() {
-		return value;
-	}
-
 	void changeState(FieldState state) {
 		this.state = state;
 	}
