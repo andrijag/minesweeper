@@ -9,10 +9,10 @@ import main.java.games.minesweeper.model.Game;
 
 class FieldsMouseAdapter extends MouseAdapter {
 	private Game game;
-	private FieldView source;
-	private boolean leftIsPressed;
-	private boolean rightIsPressed;
-	private boolean middleIsPressed;
+	private FieldView source = null;
+	private boolean leftIsPressed = false;
+	private boolean rightIsPressed = false;
+	private boolean middleIsPressed = false;
 	private boolean leftIsReleased = true;
 	private boolean rightIsReleased = true;
 	private boolean middleIsReleased = true;
