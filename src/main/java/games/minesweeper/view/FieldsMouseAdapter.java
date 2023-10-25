@@ -18,7 +18,6 @@ class FieldsMouseAdapter extends MouseAdapter {
 	private boolean middleIsReleased = true;
 
 	FieldsMouseAdapter(Game game) {
-		super();
 		this.game = game;
 	}
 

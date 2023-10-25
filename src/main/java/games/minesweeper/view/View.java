@@ -23,7 +23,6 @@ public class View extends JPanel implements Observer {
 	private MinefieldView minefield;
 
 	public View(Game game) {
-		super();
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.game = game;
 		minefield = new MinefieldView(game.getNumberOfRows(), game.getNumberOfColumns());

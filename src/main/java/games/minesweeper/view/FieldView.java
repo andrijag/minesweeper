@@ -15,7 +15,6 @@ class FieldView extends JButton implements Visitor {
 	private FieldViewState state = new CoveredView();
 
 	FieldView(int row, int column) {
-		super();
 		this.row = row;
 		this.column = column;
 		int width = 25;
