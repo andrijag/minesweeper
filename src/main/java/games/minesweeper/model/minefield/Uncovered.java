@@ -3,21 +3,23 @@ package main.java.games.minesweeper.model.minefield;
 import main.java.games.minesweeper.model.util.Visitor;
 
 class Uncovered extends FieldState {
-	Uncovered(Field field) {
-		super(field);
+	private FieldValue value;
+
+	Uncovered(FieldValue value) {
+		this.value = value;
 	}
 
 	@Override
-	void mark() {
+	void mark(Field field) {
 	}
-	
+
 	@Override
 	void accept(Visitor visitor) {
-		field.getValue().accept(visitor);
+		value.accept(visitor);
 	}
 
 	@Override
 	public String toString() {
-		return field.getValue().toString();
+		return value.toString();
 	}
 }

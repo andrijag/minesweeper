@@ -3,13 +3,9 @@ package main.java.games.minesweeper.model.minefield;
 import main.java.games.minesweeper.model.util.Visitor;
 
 class Unknown extends FieldState {
-	Unknown(Field field) {
-		super(field);
-	}
-
 	@Override
-	void mark() {
-		field.changeState(new Covered(field));
+	void mark(Field field) {
+		field.changeState(new Covered());
 	}
 	
 	@Override

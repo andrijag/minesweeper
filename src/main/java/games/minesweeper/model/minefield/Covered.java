@@ -3,12 +3,8 @@ package main.java.games.minesweeper.model.minefield;
 import main.java.games.minesweeper.model.util.Visitor;
 
 class Covered extends FieldState {
-	Covered(Field field) {
-		super(field);
-	}
-
 	@Override
-	void mark() {
+	void mark(Field field) {
 		field.flag();
 	}
 

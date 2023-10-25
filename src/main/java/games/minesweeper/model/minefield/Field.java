@@ -8,7 +8,7 @@ import main.java.games.minesweeper.model.util.Visitor;
 
 public class Field implements Visitable {
 	private FieldValue value = new Number();
-	private FieldState state = new Covered(this);
+	private FieldState state = new Covered();
 	private List<Field> neighbours = new ArrayList<>();
 
 	FieldValue getValue() {
@@ -55,7 +55,7 @@ public class Field implements Visitable {
 	}
 
 	void uncover() {
-		state = new Uncovered(this);
+		state = new Uncovered(value);
 	}
 
 	void detonate() {
@@ -63,11 +63,11 @@ public class Field implements Visitable {
 	}
 
 	void mark() {
-		state.mark();
+		state.mark(this);
 	}
 
 	void flag() {
-		state = new Flagged(this);
+		state = new Flagged();
 	}
 
 	int getNumber() {
