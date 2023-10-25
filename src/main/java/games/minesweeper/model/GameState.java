@@ -1,26 +1,9 @@
 package main.java.games.minesweeper.model;
 
 abstract class GameState {
-	protected Game game;
+	abstract void sweep(Game game, int row, int column);
 
-	protected GameState(Game game) {
-		this.game = game;
-	}
+	abstract void mark(Game game, int row, int column);
 
-	void sweep(int row, int column) {
-		game.getMinesweeper().sweep(game.getField(row, column));
-		game.evaluate();
-		game.notifyObservers();
-	}
-
-	void mark(int row, int column) {
-		game.getMinesweeper().mark(game.getField(row, column));
-		game.notifyObservers();
-	}
-
-	void chord(int row, int column) {
-		game.getMinesweeper().chord(game.getField(row, column));
-		game.evaluate();
-		game.notifyObservers();
-	}
+	abstract void chord(Game game, int row, int column);
 }

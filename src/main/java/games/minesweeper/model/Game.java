@@ -15,7 +15,7 @@ public class Game extends Observable {
 	private Minefield minefield;
 	private Minelayer minelayer;
 	private Minesweeper minesweeper = new Minesweeper();
-	private GameState state = new FirstMove(this);
+	private GameState state = new FirstMove();
 
 	public Game(int numberOfRows, int numberOfColumns, int numberOfMines) {
 		this.numberOfRows = numberOfRows;
@@ -63,15 +63,15 @@ public class Game extends Observable {
 	}
 
 	public void sweep(int row, int column) {
-		state.sweep(row, column);
+		state.sweep(this, row, column);
 	}
 
 	public void mark(int row, int column) {
-		state.mark(row, column);
+		state.mark(this, row, column);
 	}
 
 	public void chord(int row, int column) {
-		state.chord(row, column);
+		state.chord(this, row, column);
 	}
 
 	public void restart() {
@@ -79,7 +79,7 @@ public class Game extends Observable {
 		minefield = new Minefield(numberOfRows, numberOfColumns);
 		minelayer = new Minelayer(minefield);
 		minesweeper = new Minesweeper();
-		state = new FirstMove(this);
+		state = new FirstMove();
 		notifyObservers();
 	}
 
@@ -94,13 +94,13 @@ public class Game extends Observable {
 		stopwatch.stop();
 		minefield.uncoverMines();
 		minefield.checkFlags();
-		state = new Losing(this);
+		state = new Losing();
 	}
 
 	private void youWin() {
 		stopwatch.stop();
 		minefield.flagMines();
-		state = new Winning(this);
+		state = new Winning();
 	}
 
 	public boolean isOver() {
