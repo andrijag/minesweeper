@@ -3,24 +3,24 @@ package main.java.games.minesweeper.model.stopwatch;
 public class Stopwatch {
 	private long startTime;
 	private long elapsedTime;
-	private StopwatchState state = new StoppedState(this);
+	private StopwatchState state = new StoppedState();
 
 	public void start() {
-		state.start();
+		state.start(this);
 	}
 
 	public void stop() {
-		state.stop();
+		state.stop(this);
 	}
 
 	public long readTimeInMillis() {
-		return state.readTimeInMillis();
+		return state.readTimeInMillis(this);
 	}
 
 	public void reset() {
 		startTime = 0;
 		elapsedTime = 0;
-		state = new StoppedState(this);
+		state = new StoppedState();
 	}
 
 	long getStartTime() {
