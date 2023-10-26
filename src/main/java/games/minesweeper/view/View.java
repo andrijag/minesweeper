@@ -23,10 +23,10 @@ public class View extends JPanel implements Observer {
 	private MinefieldView minefield;
 
 	public View(Game game) {
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		super(new BorderLayout());
 		this.game = game;
 		minefield = new MinefieldView(game.getNumberOfRows(), game.getNumberOfColumns());
-		JButton restartButton = new JButton("Restart");
+
 		int padding = 10;
 		setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
 
@@ -39,6 +39,8 @@ public class View extends JPanel implements Observer {
 		minefieldScrollPane.getVerticalScrollBar().setUnitIncrement(unitIncrement);
 		minefieldScrollPane.getHorizontalScrollBar().setUnitIncrement(unitIncrement);
 
+		JButton restartButton = new JButton("Restart");
+
 		JPanel footer = new JPanel();
 		footer.add(restartButton);
 
@@ -48,11 +50,15 @@ public class View extends JPanel implements Observer {
 		footer.setMinimumSize(new Dimension(minefieldScrollPanePreferredWidth, footer.getPreferredSize().height));
 		footer.setMaximumSize(new Dimension(minefieldScrollPanePreferredWidth, footer.getPreferredSize().height));
 
-		add(Box.createVerticalGlue());
-		add(header);
-		add(minefieldScrollPane);
-		add(footer);
-		add(Box.createVerticalGlue());
+		JPanel panel = new JPanel(new BorderLayout());
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.add(Box.createVerticalGlue());
+		panel.add(header);
+		panel.add(minefieldScrollPane);
+		panel.add(footer);
+		panel.add(Box.createVerticalGlue());
+
+		add(panel, BorderLayout.CENTER);
 
 		restartButton.addActionListener(event -> restart());
 
