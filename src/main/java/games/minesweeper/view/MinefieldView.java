@@ -12,12 +12,11 @@ class MinefieldView extends JPanel {
 		super(new GridLayout(numberOfRows, numberOfColumns));
 		fieldViews = new FieldView[numberOfRows][numberOfColumns];
 
-		for (int row = 0; row < numberOfRows; row++) {
+		for (int row = 0; row < numberOfRows; row++)
 			for (int column = 0; column < numberOfColumns; column++) {
 				fieldViews[row][column] = new FieldView(row, column);
 				add(fieldViews[row][column]);
 			}
-		}
 	}
 
 	FieldView get(int row, int column) {
