@@ -27,9 +27,6 @@ public class View extends JPanel implements Observer {
 		this.game = game;
 		minefield = new MinefieldView(game.getNumberOfRows(), game.getNumberOfColumns());
 
-		int padding = 10;
-		setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
-
 		JPanel header = new JPanel(new BorderLayout());
 		header.add(minecount, BorderLayout.LINE_START);
 		header.add(time, BorderLayout.LINE_END);
@@ -51,13 +48,14 @@ public class View extends JPanel implements Observer {
 		footer.setMaximumSize(new Dimension(minefieldScrollPanePreferredWidth, footer.getPreferredSize().height));
 
 		JPanel panel = new JPanel(new BorderLayout());
+		int padding = 10;
+		panel.setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.add(Box.createVerticalGlue());
 		panel.add(header);
 		panel.add(minefieldScrollPane);
 		panel.add(footer);
 		panel.add(Box.createVerticalGlue());
-
 		add(panel, BorderLayout.CENTER);
 
 		restartButton.addActionListener(event -> restart());
