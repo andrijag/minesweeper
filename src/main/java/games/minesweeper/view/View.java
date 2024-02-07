@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.Timer;
 
 import main.java.games.minesweeper.model.Game;
-import main.java.games.minesweeper.model.util.Observer;
+import main.java.games.minesweeper.model.Observer;
 
 public class View extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;

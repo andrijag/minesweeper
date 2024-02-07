@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.model.util;
+package main.java.games.minesweeper.model.minefield;
 
 public interface Visitor {
 	public void visitCoveredField();

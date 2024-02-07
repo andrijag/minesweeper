@@ -7,9 +7,9 @@ import main.java.games.minesweeper.model.Game;
 import main.java.games.minesweeper.view.View;
 
 public class Application implements Runnable {
-	private static final int NUMBER_OF_ROWS = 9;
-	private static final int NUMBER_OF_COLUMNS = 9;
-	private static final int NUMBER_OF_MINES = 10;
+	private static final int NUMBER_OF_ROWS = 16;
+	private static final int NUMBER_OF_COLUMNS = 30;
+	private static final int NUMBER_OF_MINES = 99;
 
 	@Override
 	public void run() {

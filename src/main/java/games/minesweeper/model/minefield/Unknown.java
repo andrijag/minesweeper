@@ -1,7 +1,5 @@
 package main.java.games.minesweeper.model.minefield;
 
-import main.java.games.minesweeper.model.util.Visitor;
-
 class Unknown extends FieldState {
 	@Override
 	void mark(Field field) {

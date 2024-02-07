@@ -3,9 +3,6 @@ package main.java.games.minesweeper.model.minefield;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.games.minesweeper.model.util.Visitable;
-import main.java.games.minesweeper.model.util.Visitor;
-
 public class Field implements Visitable {
 	private FieldValue value = new Number();
 	private FieldState state = new Covered();

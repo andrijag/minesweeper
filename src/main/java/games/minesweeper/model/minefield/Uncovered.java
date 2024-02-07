@@ -1,7 +1,5 @@
 package main.java.games.minesweeper.model.minefield;
 
-import main.java.games.minesweeper.model.util.Visitor;
-
 class Uncovered extends FieldState {
 	private FieldValue value;
 

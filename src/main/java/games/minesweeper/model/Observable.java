@@ -1,9 +1,9 @@
-package main.java.games.minesweeper.model.util;
+package main.java.games.minesweeper.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Observable {
+class Observable {
 	private List<Observer> observers = new ArrayList<>();
 
 	public void addObserver(Observer observer) {

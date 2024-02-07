@@ -1,4 +1,4 @@
-package main.java.games.minesweeper.model.util;
+package main.java.games.minesweeper.model;
 
 public interface Observer {
 	public void update();

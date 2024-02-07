@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JButton;
 
 import main.java.games.minesweeper.model.minefield.Field;
-import main.java.games.minesweeper.model.util.Visitor;
+import main.java.games.minesweeper.model.minefield.Visitor;
 
 class FieldView extends JButton implements Visitor {
 	private static final long serialVersionUID = 1L;
