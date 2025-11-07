@@ -5,7 +5,7 @@ class Unknown extends FieldState {
 	void mark(Field field) {
 		field.changeState(new Covered());
 	}
-	
+
 	@Override
 	void accept(Visitor visitor) {
 		visitor.visitUnknownField();
