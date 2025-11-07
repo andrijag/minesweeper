@@ -41,8 +41,8 @@ public class Minefield {
 	private List<Field> getNeighboursOfField(int row, int column) {
 		List<Field> neighbours = new ArrayList<>();
 		for (Vector vector : Vector.values())
-			if (contains(row + vector.getI(), column + vector.getJ()))
-				neighbours.add(fields[row + vector.getI()][column + vector.getJ()]);
+			if (contains(row + vector.getX(), column + vector.getY()))
+				neighbours.add(fields[row + vector.getX()][column + vector.getY()]);
 		return neighbours;
 	}
 
