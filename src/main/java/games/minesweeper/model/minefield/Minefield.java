@@ -53,7 +53,7 @@ public class Minefield {
 	public int getNumberOfFlags() {
 		return getFieldsWithFlags().size();
 	}
-	
+
 	private List<Field> getFieldsWithFlags() {
 		List<Field> fieldsWithFlags = new ArrayList<Field>();
 		for (int row = 0; row < numberOfRows; row++)
@@ -102,7 +102,7 @@ public class Minefield {
 			if (!field.isFlagged())
 				field.uncover();
 	}
-	
+
 	public void checkFlags() {
 		for (Field field : getFieldsWithFlags())
 			if (!field.isMine())
@@ -116,12 +116,12 @@ public class Minefield {
 
 	@Override
 	public String toString() {
-		String str = new String();
+		StringBuilder str = new StringBuilder();
 		for (int row = 0; row < numberOfRows; row++) {
 			for (int column = 0; column < numberOfColumns; column++)
-				str += getField(row, column) + " ";
-			str += "\n";
+				str.append(getField(row, column)).append(" ");
+			str.append("\n");
 		}
-		return str;
+		return str.toString();
 	}
 }
