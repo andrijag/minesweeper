@@ -14,7 +14,7 @@ public class Application implements Runnable {
 
 		int numberOfRows = 16;
 		int numberOfColumns = 30;
-		int numberOfMines = 9;
+		int numberOfMines = 99;
 		Game game = new Game(numberOfRows, numberOfColumns, numberOfMines);
 		View view = new View(game);
 
