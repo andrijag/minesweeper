@@ -7,16 +7,15 @@ import main.java.games.minesweeper.model.Game;
 import main.java.games.minesweeper.view.View;
 
 public class Application implements Runnable {
-	private static final int NUMBER_OF_ROWS = 16;
-	private static final int NUMBER_OF_COLUMNS = 30;
-	private static final int NUMBER_OF_MINES = 99;
-
 	@Override
 	public void run() {
 		JFrame frame = new JFrame("Minesweeper");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-		Game game = new Game(NUMBER_OF_ROWS, NUMBER_OF_COLUMNS, NUMBER_OF_MINES);
+		int numberOfRows = 16;
+		int numberOfColumns = 30;
+		int numberOfMines = 9;
+		Game game = new Game(numberOfRows, numberOfColumns, numberOfMines);
 		View view = new View(game);
 
 		game.addObserver(view);
