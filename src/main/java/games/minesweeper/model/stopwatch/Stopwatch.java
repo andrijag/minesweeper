@@ -1,8 +1,8 @@
 package main.java.games.minesweeper.model.stopwatch;
 
 public class Stopwatch {
-	private long startTime = 0L;
-	private long elapsedTime = 0L;
+	private long startTime = 0;
+	private long elapsedTime = 0;
 	private StopwatchState state = new StoppedState();
 
 	public void start() {
@@ -18,8 +18,8 @@ public class Stopwatch {
 	}
 
 	public void reset() {
-		startTime = 0L;
-		elapsedTime = 0L;
+		startTime = 0;
+		elapsedTime = 0;
 		state = new StoppedState();
 	}
 
