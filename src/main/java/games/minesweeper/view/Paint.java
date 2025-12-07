@@ -33,7 +33,7 @@ class Paint {
 		case 8:
 			return Color.GRAY;
 		default:
-			return null;
+			return Color.BLACK;
 		}
 	}
 
